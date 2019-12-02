@@ -1,4 +1,4 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
-public class DepartmentRepository {
+public interface DepartmentRepository {
 }

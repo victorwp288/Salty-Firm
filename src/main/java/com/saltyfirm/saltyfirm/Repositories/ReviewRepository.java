@@ -1,4 +1,4 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
-public class ReviewRepository {
+public interface ReviewRepository {
 }
