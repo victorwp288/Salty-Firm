@@ -1,11 +1,13 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.User;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class UserRepositoryImpl implements UserRepository {
 
     public int createUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String priviliges) {

@@ -16,26 +16,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int editUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String priviliges) {
-        return 0;
+        return userRepository.editUser(userId, username, password, firstname, lastname, phoneNumber, gender, birthdate, education, mail, nationality,priviliges);
     }
 
     @Override
     public int deleteUser(int userId) {
-        return 0;
+        return userRepository.deleteUser(userId);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return userRepository.getAllUsers();
     }
 
     @Override
     public int findUserById(int userId) {
-        return 0;
+        return userRepository.findUserById(userId);
     }
 
     @Override
     public User checkLogin(String user) {
-        return null;
+        return userRepository.checkLogin(user);
     }
 }
