@@ -1,5 +1,8 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class VoteRepositoryImpl implements VoteRepository {
 
     public int voteReview(boolean vote, int reviewId, int userId) {
