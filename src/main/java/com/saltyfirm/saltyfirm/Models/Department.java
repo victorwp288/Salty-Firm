@@ -4,13 +4,13 @@ public class Department {
 
     private int departmentId;
     private String departmentName;
-    private String departmentAdress;
+    private String departmentAddress;
     private double departmentScore;
 
-    public Department(int departmentId, String departmentName, String departmentAdress, double departmentScore) {
+    public Department(int departmentId, String departmentName, String departmentAddress, double departmentScore) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
-        this.departmentAdress = departmentAdress;
+        this.departmentAddress = departmentAddress;
         this.departmentScore = departmentScore;
     }
 
@@ -33,12 +33,12 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public String getDepartmentAdress() {
-        return departmentAdress;
+    public String getDepartmentAddress() {
+        return departmentAddress;
     }
 
-    public void setDepartmentAdress(String departmentAdress) {
-        this.departmentAdress = departmentAdress;
+    public void setDepartmentAddress(String departmentAddress) {
+        this.departmentAddress = departmentAddress;
     }
 
     public double getDepartmentScore() {
