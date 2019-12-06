@@ -1,6 +1,9 @@
 # Salty-Firm
 Best business in town
 
+Brug " ` " omkring highligted keywords i workbench
+
+
 MySQL script:
 
 
