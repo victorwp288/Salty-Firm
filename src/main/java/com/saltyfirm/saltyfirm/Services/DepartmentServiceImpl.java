@@ -13,10 +13,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     DepartmentRepository departmentRepository;
 
+
     @Override
     public int findDepartmentById(int departmentId) {
-
-        return departmentRepository.findDepartmentById(departmentId);
+        return 0;
     }
 
     @Override
