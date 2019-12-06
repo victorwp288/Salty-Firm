@@ -28,7 +28,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public int deleteDepartment(int departmentId) {
 
-        return ;
+        return 0;
     }
 
     @Override
