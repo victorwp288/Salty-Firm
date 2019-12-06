@@ -83,3 +83,4 @@ CREATE TABLE IF NOT EXISTS vote (
     FOREIGN KEY (user_fk_id)
     REFERENCES `user` (user_id))
 ENGINE = InnoDB;
+
