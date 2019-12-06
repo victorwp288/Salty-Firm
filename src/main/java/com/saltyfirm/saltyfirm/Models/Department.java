@@ -6,6 +6,7 @@ public class Department {
     private String departmentName;
     private String departmentAdress;
     private double departmentScore;
+    int a;
 
     public Department(int departmentId, String departmentName, String departmentAdress, double departmentScore) {
         this.departmentId = departmentId;
