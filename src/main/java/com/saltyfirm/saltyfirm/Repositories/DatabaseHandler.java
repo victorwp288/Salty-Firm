@@ -1,12 +1,10 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 public class DatabaseHandler {
 
@@ -23,15 +21,26 @@ public class DatabaseHandler {
 
     public Connection createConnection() {
         try {
-            log.info("CreateConnection: Trying to get connection");
+            log.info("createConnection: Trying to get connection");
             connection = DriverManager.getConnection(datasourceUrl, dbUsername, dbPassword);
-            log.info("CreateConnection: Connection complete");
+            log.info("createConnection: Connection complete");
         } catch (SQLException e) {
-            log.info("CreateConnection: Fangede SQLException");
+            log.info("createConnection: catched SQLException");
             e.printStackTrace();
         }
-        log.info("CreateConnection: Returning connection");
+        log.info("createConnection: Returning connection");
         return connection;
+    }
+
+    public void closeConnection() {
+        try {
+            log.info("closeConnection: Trying to close connection");
+            connection.close();
+            log.info("closeConnection: Connection closed");
+        } catch (SQLException e) {
+            log.info("closeConnection: catched SQLException");
+            e.printStackTrace();
+        }
     }
 
 }
