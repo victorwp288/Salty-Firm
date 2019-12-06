@@ -6,7 +6,7 @@ public class Review {
     private String post;
     private int salary;
     private String position;
-    private int pentionScheme;
+    private int pensionScheme;
     private int benefits;
     private int management;
     private int workEnvironment;
@@ -17,7 +17,7 @@ public class Review {
         this.post = post;
         this.salary = salary;
         this.position = position;
-        this.pentionScheme = pentionScheme;
+        this.pensionScheme = pentionScheme;
         this.benefits = benefits;
         this.management = management;
         this.workEnvironment = workEnvironment;
@@ -60,11 +60,11 @@ public class Review {
     }
 
     public int getPentionScheme() {
-        return pentionScheme;
+        return pensionScheme;
     }
 
     public void setPentionScheme(int pentionScheme) {
-        this.pentionScheme = pentionScheme;
+        this.pensionScheme = pentionScheme;
     }
 
     public int getBenefits() {
