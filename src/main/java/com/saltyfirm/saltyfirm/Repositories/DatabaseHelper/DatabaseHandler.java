@@ -1,4 +1,4 @@
-package com.saltyfirm.saltyfirm.Repositories;
+package com.saltyfirm.saltyfirm.Repositories.DatabaseHelper;
 
 import org.slf4j.LoggerFactory;
 
