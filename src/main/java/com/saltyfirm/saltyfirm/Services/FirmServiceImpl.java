@@ -13,21 +13,21 @@ public class FirmServiceImpl implements FirmService {
 
     @Override
     public String searchFirms(String word) {
-        return null;
+        return firmRepository.searchFirms(word);
     }
 
     @Override
     public int findFirmById(int firmId) {
-        return 0;
+        return firmRepository.findFirmById(firmId);
     }
 
     @Override
     public int deleteFirm(int firmId) {
-        return 0;
+        return firmRepository.deleteFirm(firmId);
     }
 
     @Override
     public int editFirm(int firmId, String firmName, String firmType, double overallScore, String description, String logoURL) {
-        return 0;
+        return firmRepository.editFirm(firmId, firmName, firmType, overallScore, description, logoURL);
     }
 }
