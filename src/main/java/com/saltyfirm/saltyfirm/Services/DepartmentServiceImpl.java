@@ -21,12 +21,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department> getDepartments(int firmId) {
-        return null;
+
+        return departmentRepository.getDepartments(firmId);
     }
 
     @Override
     public int deleteDepartment(int departmentId) {
-        return 0;
+
+        return ;
     }
 
     @Override
