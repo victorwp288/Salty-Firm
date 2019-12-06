@@ -1,5 +1,8 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class FirmRepositoryImpl implements FirmRepository {
 
     public String searchFirms(String word) {
