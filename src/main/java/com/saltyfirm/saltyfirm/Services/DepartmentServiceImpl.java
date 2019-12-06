@@ -1,6 +1,7 @@
 package com.saltyfirm.saltyfirm.Services;
 
 import com.saltyfirm.saltyfirm.Models.Department;
+import com.saltyfirm.saltyfirm.Repositories.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,12 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
-
+    DepartmentRepository departmentRepository;
 
     @Override
     public int findDepartmentById(int departmentId) {
-        return 0;
+
+        return departmentRepository.findDepartmentById(departmentId);
     }
 
     @Override
