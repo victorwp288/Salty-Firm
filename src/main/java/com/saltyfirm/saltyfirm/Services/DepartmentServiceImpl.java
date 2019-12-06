@@ -28,16 +28,19 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public int deleteDepartment(int departmentId) {
 
-        return ;
+        return departmentRepository.deleteDepartment(departmentId);
     }
 
     @Override
     public int editDepartment(int departmentId, String departmentName, String departmentAdress, double departmentScore) {
-        return 0;
+
+        return departmentRepository.editDepartment(departmentId, departmentName, departmentAdress, departmentScore);
     }
 
     @Override
     public double calculateDepartmentScore(int departmentId) {
-        return 0;
+
+        return departmentRepository.calculateDepartmentScore(departmentId);
     }
+
 }
