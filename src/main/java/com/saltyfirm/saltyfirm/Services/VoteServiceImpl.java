@@ -13,12 +13,12 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public int voteReview(boolean vote, int reviewId, int userId){
 
-        return 0;
+        return voteRepository.voteReview(vote, reviewId, userId);
     }
 
     @Override
     public int removeVote(int reviewId, int userId){
 
-        return 0;
+        return voteRepository.removeVote(reviewId, userId);
     }
 }
