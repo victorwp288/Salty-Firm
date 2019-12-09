@@ -12,11 +12,11 @@ public class DatabaseHandler {
 
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private String datasourceUrl = "jdbc:mysql://localhost:3306/saltyfirm";
+    private String datasourceUrl = "jdbc:mysql://saltyfirmdb.cxgtaawn9fts.eu-central-1.rds.amazonaws.com:3306";
 
-    private String dbUsername = "salt";
+    private String dbUsername = "SaltyFirm";
 
-    private String dbPassword = "1234!";
+    private String dbPassword = "SaltyFirm";
 
 
     public Connection createConnection() {
