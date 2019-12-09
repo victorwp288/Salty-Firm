@@ -12,6 +12,7 @@ public class Department {
         this.departmentName = departmentName;
         this.departmentAddress = departmentAddress;
         this.departmentScore = departmentScore;
+        int a;
     }
 
     public Department() {
