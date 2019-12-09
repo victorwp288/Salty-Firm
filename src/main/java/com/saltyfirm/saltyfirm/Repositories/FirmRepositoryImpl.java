@@ -22,9 +22,9 @@ public class FirmRepositoryImpl implements FirmRepository {
 
         try{
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_name = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_name LIKE ?");
 
-            preparedStatement.setString(1, word);
+            preparedStatement.setString(1, "%" + word + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){

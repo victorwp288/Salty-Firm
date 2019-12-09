@@ -10,6 +10,6 @@ public class Test {
         //System.out.println(ur.getAllUsers().toString());
 
         FirmRepositoryImpl f = new FirmRepositoryImpl();
-        System.out.println(f.searchFirms("Dalle Valle").toString());
+        System.out.println(f.searchFirms("alle").toString());
     }
 }
