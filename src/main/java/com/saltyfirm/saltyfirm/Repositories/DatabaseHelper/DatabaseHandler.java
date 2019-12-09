@@ -11,6 +11,7 @@ public class DatabaseHandler {
     private Connection connection;
 
 
+
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
     private String datasourceUrl = "jdbc:mysql://localhost:3306";
