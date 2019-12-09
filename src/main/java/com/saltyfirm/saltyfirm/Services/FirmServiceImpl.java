@@ -1,5 +1,6 @@
 package com.saltyfirm.saltyfirm.Services;
 
+import com.saltyfirm.saltyfirm.Models.Firm;
 import com.saltyfirm.saltyfirm.Repositories.FirmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class FirmServiceImpl implements FirmService {
     }
 
     @Override
-    public int findFirmById(int firmId) {
+    public Firm findFirmById(int firmId) {
         return firmRepository.findFirmById(firmId);
     }
 
