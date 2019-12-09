@@ -1,111 +1,165 @@
+-- Opret en ny skema kaldet 'saltyfirm' --
 CREATE SCHEMA IF NOT EXISTS saltyfirm DEFAULT CHARACTER SET UTF8MB4;
+
+-- Vælg saltyfirm skema til at bruge --
 USE saltyfirm;
 
--- create new table privileges --
+-- Opret en ny tabel kaldet 'Privileges' --
 CREATE TABLE IF NOT EXISTS `privileges`
 (
-        privileges_id       INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
-        access_level        VARCHAR(10)                  NOT NULL
+    privileges_id       INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
+    access_level        VARCHAR(10)                  NOT NULL
 )
     ENGINE = InnoDB;
 
--- create new table user --
+-- Opret en ny tabel kaldet 'User' --
 CREATE TABLE IF NOT EXISTS `user`
 (
-        user_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
-        username            VARCHAR(45)                  NOT NULL    UNIQUE,
-        `password`          VARCHAR(50)                  NOT NULL,
-        firstname           VARCHAR(45)                  NOT NULL,
-        lastname            VARCHAR(75)                  NOT NULL,
-        phone_number        INT                          NOT NULL    UNIQUE,
-        sex                 VARCHAR(15),
-        birthdate           DATE                         NOT NULL,
-        education           VARCHAR(45),
-        mail                VARCHAR(100)                 NOT NULL    UNIQUE,
-        nationality         VARCHAR(45),
-        privileges_fk_id    INT              UNSIGNED    NOT NULL,
-            FOREIGN KEY (privileges_fk_id)
-            REFERENCES `privileges` (privileges_id)
+    user_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
+    username            VARCHAR(45)                  NOT NULL    UNIQUE,
+    `password`          VARCHAR(50)                  NOT NULL,
+    firstname           VARCHAR(45)                  NOT NULL,
+    lastname            VARCHAR(75)                  NOT NULL,
+    phone_number        INT                          NOT NULL    UNIQUE,
+    sex                 VARCHAR(15),
+    birthdate           DATE                         NOT NULL,
+    education           VARCHAR(45),
+    mail                VARCHAR(100)                 NOT NULL    UNIQUE,
+    nationality         VARCHAR(45),
+    privileges_fk_id    INT              UNSIGNED    NOT NULL,
+    FOREIGN KEY (privileges_fk_id)
+        REFERENCES `privileges` (privileges_id)
 )
     ENGINE = InnoDB;
 
--- create new table firm --
+-- Opret en ny tabel kaldet 'Firm' --
 CREATE TABLE IF NOT EXISTS firm
 (
-        firm_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
-        firm_name           VARCHAR(100)                 NOT NULL,
-        firm_type           VARCHAR(45)                  NOT NULL,
-        overall_score       DECIMAL,
-        `description`       VARCHAR(500),
-        logo_url            VARCHAR(200)
+    firm_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
+    firm_name           VARCHAR(100)                 NOT NULL,
+    firm_type           VARCHAR(45)                  NOT NULL,
+    overall_score       DECIMAL,
+    `description`       VARCHAR(500),
+    logo_url            VARCHAR(200)
 )
     ENGINE = InnoDB;
 
--- create new table department --
+-- Opret en ny tabel kaldet 'Department' --
 CREATE TABLE IF NOT EXISTS department
 (
-        department_id       INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
-        department_name     VARCHAR(65)                  NOT NULL,
-        department_address  VARCHAR(200)                 NOT NULL,
-        department_score    DECIMAL,
-        firm_fk_id          INT              UNSIGNED    NOT NULL,
-            FOREIGN KEY (firm_fk_id)
-            REFERENCES firm (firm_id)
+    department_id       INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
+    department_name     VARCHAR(65)                  NOT NULL,
+    department_address  VARCHAR(200)                 NOT NULL,
+    department_score    DECIMAL,
+    firm_fk_id          INT              UNSIGNED    NOT NULL,
+    FOREIGN KEY (firm_fk_id)
+        REFERENCES firm (firm_id)
 )
     ENGINE = InnoDB;
 
--- create new table review --
+-- Opret en ny tabel kaldet 'Review' --
 CREATE TABLE IF NOT EXISTS review
 (
-        review_id           INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
-        post                VARCHAR(600),
-        salary              INT NULL,
-        position            VARCHAR(100),
-        pension_scheme      INT,
-        benefits            INT,
-        management          INT,
-        work_environment    INT,
-        flexibility         INT,
-        employment_time     INT,
-        user_fk_id          INT              UNSIGNED    NOT NULL,
-        department_fk_id    INT              UNSIGNED    NOT NULL,
-            FOREIGN KEY (user_fk_id)
-            REFERENCES `user` (user_id),
-            FOREIGN KEY (department_fk_id)
-            REFERENCES department (department_id)
+    review_id           INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
+    post                VARCHAR(600),
+    salary              INT NULL,
+    position            VARCHAR(100),
+    pension_scheme      INT,
+    benefits            INT,
+    management          INT,
+    work_environment    INT,
+    flexibility         INT,
+    employment_time     INT,
+    user_fk_id          INT              UNSIGNED    NOT NULL,
+    department_fk_id    INT              UNSIGNED    NOT NULL,
+    FOREIGN KEY (user_fk_id)
+        REFERENCES `user` (user_id),
+    FOREIGN KEY (department_fk_id)
+        REFERENCES department (department_id)
 )
     ENGINE = InnoDB;
 
--- create new table vote --
+-- Opret en ny tabel kaldet 'Vote' --
 CREATE TABLE IF NOT EXISTS vote
 (
-        vote_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT      PRIMARY KEY,
-        vote                BOOLEAN,
-        user_fk_id          INT              UNSIGNED    NOT NULL,
-        review_fk_id        INT              UNSIGNED    NOT NULL,
-            FOREIGN KEY (review_fk_id)
-            REFERENCES review (review_id),
-            FOREIGN KEY (user_fk_id)
-            REFERENCES `user` (user_id)
+    vote_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT      PRIMARY KEY,
+    vote                BOOLEAN,
+    user_fk_id          INT              UNSIGNED    NOT NULL,
+    review_fk_id        INT              UNSIGNED    NOT NULL,
+    FOREIGN KEY (review_fk_id)
+        REFERENCES review (review_id),
+    FOREIGN KEY (user_fk_id)
+        REFERENCES `user` (user_id)
 )
     ENGINE = InnoDB;
 
+-- Indsæt en række data i databasen --
 
+INSERT INTO saltyfirm.privileges
+(access_level)
+VALUE  ('admin'),
+       ('user'),
+       ('visitor');
 
-INSERT INTO saltyfirm.privileges(access_level)
-VALUE ('admin'),
-    ('user'),
-    ('visitor');
-
-
-
-INSERT INTO saltyfirm.user(username, password, firstname, lastname, phone_number, sex, birthdate, education, mail, nationality, privileges_fk_id)
+INSERT INTO saltyfirm.user
+(username, password, firstname, lastname, phone_number, sex, birthdate, education, mail, nationality, privileges_fk_id)
 VALUES ('test3', 'test3', 'C#', 'Strap', 64037621, 'm', '1990-02-04', 'Tjener', 'test3@kea.dk', 'Sverige', 3),
        ('test2', 'test2', 'Java', 'Boot', 12345678, 'f', '1991-12-04', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
        ('test1', 'test1', 'Python', 'Spring', 98765432, 'm', '1990-06-23', 'Skraldemand', 'test1@kea.dk', 'Tyskland', 1);
 
-INSERT INTO saltyfirm.firm(firm_name, firm_type, `description`, logo_url)
+INSERT INTO saltyfirm.firm
+(firm_name, firm_type, `description`, logo_url)
 VALUES ('Dalle Valle', 'Restaurant','Stor virksomhed med mange restauranter i hele landet.','https://vscs.dk/wp-content/uploads/2017/05/dalle-valle-1170x300.png'),
        ('McDonalds', 'Restaurant','Stor virksomhed med mange restauranter i hele verdenen.','https://onad.dk/wp-content/uploads/2019/04/McDonalds-Logo.png'),
        ('Føtex', 'Supermarked','Stor supermarkedskæde med mange butikker i hele landet.','https://via.ritzau.dk/data/images/00843/7bd3bb38-962f-4f68-aab4-df59d3f8a81d.png');
 
+INSERT INTO saltyfirm.department
+(department_name, department_address, firm_fk_id)
+VALUES ('Fisketorvet', 'Kalvebod Brygge 59, 1560 København', '1'),
+       ('Fields', 'Arne Jacobsens Allé 12, 2300 Københavnn', '1'),
+       ('Valby', 'Gammel Køge Landevej 103, 2500 København', '2'),
+       ('Gentofte', 'Nybrovej 2, 2820 Gentofte', '2'),
+       ('Mimersgade', 'Mimersgade 124, 2200 København', '3'),
+       ('Lyngbyvej', 'Lyngbyvej 11, 2100 København', '3');
+
+INSERT INTO saltyfirm.review
+(post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time, user_fk_id, department_fk_id)
+VALUES ('Ganske fint arbejde med masser af søde mennesker, og en rigtig god leder som er god til at lytte til sine medarbejdere', 2, 'Tjener', 7, 8, 6, 9, 7, 4, 1, 1),
+       ('Fint arbejde med masser af gode mennesker, og en fin leder som er god til at lytte til sine medarbejdere, dog dårlige arbejdstider og generelt hårdt arbejdspres', 4, 'Kok', 6, 9, 4, 6, 4, 6, 2, 1),
+       ('Generelt et fint arbejde, men lønnen er ikke særlig god, og der er mange udskiftninger i personalet', 3, 'Leder', 4, 5, 3, 4, 6, 5, 3, 2),
+       ('Hårdt arbejdspres og en leder som generelt er meget uforstående overfor hvilke problemer der er.', 2, 'Tjener', 3, 3, 5, 1, 2, 4, 1, 2),
+       ('Skide irriterende kunder som altid skal brokke sig over det mindste.. Til gengæld er det nogle fede julefrokoster!', 2, 'Tjener', 2, 3, 1, 5, 4, 4, 2, 3),
+       ('Lav morale blandt medarbejderne som gør at man altid skal være efter dem.. Men der er nogle flotte tøser blandt dem', 3, 'Leder', 4, 1, 3, 5, 2, 4, 3, 3),
+       ('Dejligt arbejdsmiljø, men en rigtig dårlig løn', 2, 'Leder', 5, 7, 5, 3, 5, 2, 1, 4),
+       ('Ikke særlig god arbejdsmorale blandt medarbejderne, men dejligt med gratis frokost ordning.. Jeg tog 12 kilo på!', 3, 'Medarbejder', 4, 4, 5, 7, 1, 4, 2, 4),
+       ('Rigtig stor føtex som kræver mange måneders ansættelse før man lærer at finde rundt i de forskellige afdelinger', 3, 'Afdelingsleder', 6, 4, 6, 6, 4, 5, 3, 5),
+       ('Nogle virkelig dårlige arbejdsforhold, der lugter helt ekstremt grimt i flaskerummet!', 1, 'Flaskedreng', 3, 2, 5, 5, 3, 2, 1, 5),
+       ('Nogle rigtig dejlige arbejdskollegaer, som gør arbejdet til en leg. Og så er der gode personalegoder i form af gratis mad og drikke fra bageren og slagteren.', 3, 'Slagter', 5, 6, 6, 5, 7, 8, 2, 6),
+       ('Ganske fint arbejde generelt, med nogle gode arbejdstider og en fleksibel og lyttende chef.', 3, 'Bagerjomfru', 7, 8, 6, 9, 7, 6, 3, 6);
+
+INSERT INTO saltyfirm.vote
+(vote, user_fk_id, review_fk_id)
+VALUES (true, 1, 1),
+       (false, 2, 1),
+       (true, 3, 2),
+       (true, 1, 2),
+       (false, 2, 3),
+       (false, 3, 3),
+       (true, 1, 4),
+       (false, 2, 4),
+       (true, 3, 5),
+       (true, 1, 5),
+       (false, 2, 6),
+       (true, 3, 6),
+       (false, 1, 7),
+       (false, 2, 7),
+       (true, 3, 8),
+       (true, 1, 8),
+       (true, 2, 9),
+       (false, 3, 9),
+       (true, 1, 10),
+       (true, 2, 10),
+       (false, 3, 11),
+       (false, 1, 11),
+       (false, 1, 12),
+       (false, 1, 12);
