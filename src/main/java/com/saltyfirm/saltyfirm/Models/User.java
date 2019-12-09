@@ -15,9 +15,9 @@ public class User {
     private String education;
     private String mail;
     private String nationality;
-    private String priviliges;
+    private String privileges;
 
-    public User(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String priviliges) {
+    public User(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -29,7 +29,7 @@ public class User {
         this.education = education;
         this.mail = mail;
         this.nationality = nationality;
-        this.priviliges = priviliges;
+        this.privileges = privileges;
     }
 
     public User() {
@@ -123,11 +123,11 @@ public class User {
         this.nationality = nationality;
     }
 
-    public String getPriviliges() {
-        return priviliges;
+    public String getPrivileges() {
+        return privileges;
     }
 
-    public void setPriviliges(String priviliges) {
-        this.priviliges = priviliges;
+    public void setPrivileges(String privileges) {
+        this.privileges = privileges;
     }
 }
