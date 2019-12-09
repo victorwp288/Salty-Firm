@@ -30,6 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 
+### DB connection###
 DatabaseHelper\
 DatabaseHandler.java
 
@@ -37,5 +38,8 @@ DatabaseHandler.java
 .\DatabaseHelper\*
 \DatabaseHelper\*
 DatabaseHelper/
+/DatabaseHelper/
+/.DatabaseHelper/
+
 ./DatabaseHelper/*
 /DatabaseHelper/*
