@@ -48,7 +48,7 @@ public class UserRepositoryImpl implements UserRepository {
     public int editUser(User user) {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET (username, `password`, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET username = ?, password = ?, firstname = ?, lastname = ?, phone_number = ?, gender = ?, birthdate = ?, education = ?, mail = ?, nationality = ?, privileges_fk_id = ?;");
 
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
