@@ -130,4 +130,22 @@ public class User {
     public void setPrivileges(String privileges) {
         this.privileges = privileges;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", gender='" + gender + '\'' +
+                ", birthdate=" + birthdate +
+                ", education='" + education + '\'' +
+                ", mail='" + mail + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", privileges='" + privileges + '\'' +
+                '}';
+    }
 }
