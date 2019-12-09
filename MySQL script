@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS department
     firm_fk_id          INT              UNSIGNED    NOT NULL,
     FOREIGN KEY (firm_fk_id)
         REFERENCES firm (firm_id)
+        ON DELETE CASCADE
 )
     ENGINE = InnoDB;
 
@@ -76,6 +77,7 @@ CREATE TABLE IF NOT EXISTS review
         REFERENCES `user` (user_id),
     FOREIGN KEY (department_fk_id)
         REFERENCES department (department_id)
+        ON DELETE CASCADE
 )
     ENGINE = InnoDB;
 
@@ -90,6 +92,7 @@ CREATE TABLE IF NOT EXISTS vote
         REFERENCES review (review_id),
     FOREIGN KEY (user_fk_id)
         REFERENCES `user` (user_id)
+        ON DELETE CASCADE
 )
     ENGINE = InnoDB;
 

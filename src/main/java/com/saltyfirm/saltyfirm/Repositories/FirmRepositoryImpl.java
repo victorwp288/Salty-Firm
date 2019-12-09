@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FirmRepositoryImpl implements FirmRepository {
@@ -13,9 +15,36 @@ public class FirmRepositoryImpl implements FirmRepository {
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public String searchFirms(String word) {
+    public List<Firm> searchFirms(String word) {
 
-        return null;
+        List<Firm> firmList = new ArrayList<>();
+
+
+        try{
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_name LIKE ?");
+
+            preparedStatement.setString(1, "%" + word + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                Firm firm = new Firm();
+
+                firm.setFirmId(resultSet.getInt("firm_id"));
+                firm.setFirmName(resultSet.getString("firm_name"));
+                firm.setFirmType(resultSet.getString("firm_type"));
+                firm.setOverallScore(resultSet.getDouble("overall_score"));
+                firm.setDescription(resultSet.getString("description"));
+                firm.setLogoURL(resultSet.getString("logo_url"));
+
+                firmList.add(firm);
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return firmList;
     }
 
     @Override
@@ -69,23 +98,20 @@ public class FirmRepositoryImpl implements FirmRepository {
     }
 
     @Override
-    public int editFirm(Firm firm) {
+    public void editFirm(String firmName, String firmType, String description, String logourl, int firmId) {
 
         try{
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET firm_name = ?, firm_type = ?, overall_score = ?, description = ?, logo_url = ? WHERE firm_id = ?");
-            preparedStatement.setString(1, firm.getFirmName());
-            preparedStatement.setString(2, firm.getFirmType());
-            preparedStatement.setDouble(3, firm.getOverallScore());
-            preparedStatement.setString(4, firm.getDescription());
-            preparedStatement.setString(5, firm.getLogoURL());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET firm_name = ?, firm_type = ?, description = ?, logo_url = ? WHERE firm_id = ?");
+            preparedStatement.setString(1, firmName);
+            preparedStatement.setString(2, firmType);
+            preparedStatement.setString(3, description);
+            preparedStatement.setString(4, logourl);
+            preparedStatement.setInt(5, firmId);
 
-
+            preparedStatement.executeUpdate();
         } catch (SQLException e){
             log.info("he");
         }
-        return 0;
     }
-
-
 }
