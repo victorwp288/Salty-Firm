@@ -1,10 +1,12 @@
 package com.saltyfirm.saltyfirm.Services;
 
+import com.saltyfirm.saltyfirm.Models.Firm;
+
 public interface FirmService {
 
     String searchFirms(String word);
 
-    int findFirmById(int firmId);
+    Firm findFirmById(int firmId);
 
     int deleteFirm(int firmId);
 
