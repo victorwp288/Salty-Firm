@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface UserService {
 
-    int createUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges);
-    int editUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges);
+    int createUser(User user);
+    int editUser(User user);
     int deleteUser(int userId);
     List<User> getAllUsers();
     User findUserById(int userId);

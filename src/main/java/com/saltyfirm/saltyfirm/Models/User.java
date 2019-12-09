@@ -32,6 +32,20 @@ public class User {
         this.privileges = privileges;
     }
 
+    public User(String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.education = education;
+        this.mail = mail;
+        this.nationality = nationality;
+        this.privileges = privileges;
+    }
+
     public User() {
     }
 
@@ -146,6 +160,6 @@ public class User {
                 ", mail='" + mail + '\'' +
                 ", nationality='" + nationality + '\'' +
                 ", privileges='" + privileges + '\'' +
-                '}';
+                '}'+"\n";
     }
 }

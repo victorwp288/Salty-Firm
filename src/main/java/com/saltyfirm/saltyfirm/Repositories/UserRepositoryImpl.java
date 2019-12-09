@@ -2,33 +2,84 @@ package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.DatabaseHandler;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class UserRepositoryImpl implements UserRepository {
 
-    int a;
     @Autowired
     DatabaseHandler databaseHandler;
 
-    public int createUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
+    public int createUser(User user) {
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement ("INSERT INTO saltyfirm.user (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFirstname());
+            preparedStatement.setString(4, user.getLastname());
+            preparedStatement.setInt(5, user.getPhoneNumber());
+            preparedStatement.setString(6, user.getGender());
+            preparedStatement.setDate(7, new java.sql.Date(user.getBirthdate().getTime()));
+            preparedStatement.setString(8, user.getEducation());
+            preparedStatement.setString(9, user.getMail());
+            preparedStatement.setString(10, user.getNationality());
+            preparedStatement.setString(11, user.getPrivileges());
+
+            preparedStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return 0;
     }
 
-    public int editUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
+    public int editUser(User user) {
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFirstname());
+            preparedStatement.setString(4, user.getLastname());
+            preparedStatement.setInt(5, user.getPhoneNumber());
+            preparedStatement.setString(6, user.getGender());
+            preparedStatement.setDate(7, new java.sql.Date(user.getBirthdate().getTime()));
+            preparedStatement.setString(8, user.getEducation());
+            preparedStatement.setString(9, user.getMail());
+            preparedStatement.setString(10, user.getNationality());
+            preparedStatement.setString(11, user.getPrivileges());
+
+            preparedStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     public int deleteUser(int userId) {
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.user WHERE user_id = ?");
+            preparedStatement.setInt(1,userId);
+            preparedStatement.executeUpdate();
+            connection.close();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
@@ -37,26 +88,26 @@ public class UserRepositoryImpl implements UserRepository {
         List<User> usersList = new ArrayList<>();
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "test1234", "test1234");
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.user LEFT JOIN  saltyfirm.privileges ON user.privileges_fk_id = privileges.privileges_id");
 
             while (resultSet.next()) {
-                User users = new User();
+                User current = new User();
 
-                users.setUserId(resultSet.getInt("user_id"));
-                users.setUsername(resultSet.getString("username"));
-                users.setPassword(resultSet.getString("password"));
-                users.setFirstname(resultSet.getString("firstname"));
-                users.setLastname(resultSet.getString("lastname"));
-                users.setPhoneNumber(resultSet.getInt("phone_number"));
-                users.setGender(resultSet.getString("sex"));
-                users.setBirthdate(resultSet.getDate("birthdate"));
-                users.setEducation(resultSet.getString("education"));
-                users.setMail(resultSet.getString("mail"));
-                users.setNationality(resultSet.getString("nationality"));
-                users.setPrivileges(resultSet.getString("access_level"));
-                usersList.add(users);
+                current.setUserId(resultSet.getInt("user_id"));
+                current.setUsername(resultSet.getString("username"));
+                current.setPassword(resultSet.getString("password"));
+                current.setFirstname(resultSet.getString("firstname"));
+                current.setLastname(resultSet.getString("lastname"));
+                current.setPhoneNumber(resultSet.getInt("phone_number"));
+                current.setGender(resultSet.getString("gender"));
+                current.setBirthdate(resultSet.getDate("birthdate"));
+                current.setEducation(resultSet.getString("education"));
+                current.setMail(resultSet.getString("mail"));
+                current.setNationality(resultSet.getString("nationality"));
+                current.setPrivileges(resultSet.getString("access_level"));
+                usersList.add(current);
             }
             connection.close();
         } catch (SQLException e) {
@@ -77,7 +128,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User checkLogin(String username, String password) {
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "test1234", "test1234");
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON saltyfirm.user.privileges_fk_id = privileges.privileges_id WHERE user.username = ? AND user.password = ?");
 
             preparedStatement.setString(1, username);

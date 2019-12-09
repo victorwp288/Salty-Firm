@@ -14,13 +14,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    public int createUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
+    public int createUser(User user) {
         return 0;
     }
 
     @Override
-    public int editUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
-        return userRepository.editUser(userId, username, password, firstname, lastname, phoneNumber, gender, birthdate, education, mail, nationality,privileges);
+    public int editUser(User user) {
+        return 0;
     }
 
     @Override
