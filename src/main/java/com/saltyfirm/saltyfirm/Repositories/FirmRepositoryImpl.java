@@ -51,7 +51,7 @@ public class FirmRepositoryImpl implements FirmRepository {
                 firm.setFirmType(resultSet.getString("firm_type"));
                 firm.setOverallScore(resultSet.getDouble("overall_score"));
                 firm.setDescription(resultSet.getString("description"));
-                firm.setLogoURL(resultSet.getString("logu_url"));
+                firm.setLogoURL(resultSet.getString("logo_url"));
                 return firm;
             } else {
                 log.info("Nej");
