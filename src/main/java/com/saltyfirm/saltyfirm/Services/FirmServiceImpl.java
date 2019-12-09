@@ -5,6 +5,8 @@ import com.saltyfirm.saltyfirm.Repositories.FirmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class FirmServiceImpl implements FirmService {
@@ -13,7 +15,7 @@ public class FirmServiceImpl implements FirmService {
     FirmRepository firmRepository;
 
     @Override
-    public String searchFirms(String word) {
+    public List<Firm> searchFirms(String word) {
         return firmRepository.searchFirms(word);
     }
 

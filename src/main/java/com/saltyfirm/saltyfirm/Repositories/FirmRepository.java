@@ -2,9 +2,11 @@ package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
 
+import java.util.List;
+
 public interface FirmRepository {
 
-    String searchFirms(String word);
+    List<Firm> searchFirms(String word);
 
     Firm findFirmById(int firmId);
 

@@ -2,9 +2,11 @@ package com.saltyfirm.saltyfirm.Services;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
 
+import java.util.List;
+
 public interface FirmService {
 
-    String searchFirms(String word);
+    List<Firm> searchFirms(String word);
 
     Firm findFirmById(int firmId);
 

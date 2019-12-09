@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FirmRepositoryImpl implements FirmRepository {
@@ -13,9 +15,36 @@ public class FirmRepositoryImpl implements FirmRepository {
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public String searchFirms(String word) {
+    public List<Firm> searchFirms(String word) {
 
-        return null;
+        List<Firm> firmList = new ArrayList<>();
+
+
+        try{
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_name = ?");
+
+            preparedStatement.setString(1, word);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                Firm firm = new Firm();
+
+                firm.setFirmId(resultSet.getInt("firm_id"));
+                firm.setFirmName(resultSet.getString("firm_name"));
+                firm.setFirmType(resultSet.getString("firm_type"));
+                firm.setOverallScore(resultSet.getDouble("overall_score"));
+                firm.setDescription(resultSet.getString("description"));
+                firm.setLogoURL(resultSet.getString("logo_url"));
+
+                firmList.add(firm);
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return firmList;
     }
 
     @Override
@@ -85,5 +114,4 @@ public class FirmRepositoryImpl implements FirmRepository {
             log.info("he");
         }
     }
-
 }
