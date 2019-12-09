@@ -16,6 +16,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Autowired
     DatabaseHandler databaseHandler;
 
+    @Override
     public int createUser(User user) {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
@@ -43,10 +44,11 @@ public class UserRepositoryImpl implements UserRepository {
         return 0;
     }
 
+    @Override
     public int editUser(User user) {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET (username, `password`, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
@@ -69,6 +71,7 @@ public class UserRepositoryImpl implements UserRepository {
         return 0;
     }
 
+    @Override
     public int deleteUser(int userId) {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
@@ -83,6 +86,7 @@ public class UserRepositoryImpl implements UserRepository {
         return 0;
     }
 
+    @Override
     public List<User> getAllUsers() {
 
         List<User> usersList = new ArrayList<>();
@@ -116,6 +120,7 @@ public class UserRepositoryImpl implements UserRepository {
         return usersList;
     }
 
+    @Override
     public User findUserById(int userId) {
         for (User currentUser : getAllUsers()) {
             if (userId == currentUser.getUserId()) {
@@ -125,6 +130,7 @@ public class UserRepositoryImpl implements UserRepository {
         return null;
     }
 
+    @Override
     public User checkLogin(String username, String password) {
 
         try {
