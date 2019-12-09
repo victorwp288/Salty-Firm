@@ -5,10 +5,8 @@ import com.saltyfirm.saltyfirm.Repositories.FirmRepositoryImpl;
 public class Test {
     public static void main(String[] args) {
 
-        FirmRepositoryImpl i = new FirmRepositoryImpl();
+        FirmRepositoryImpl firm = new FirmRepositoryImpl();
 
-
-        i.findFirmById(2).toString();
-
+        System.out.println(firm.findFirmById(2).toString());
     }
 }

@@ -68,4 +68,16 @@ public class Firm {
     public void setLogoURL(String logoURL) {
         this.logoURL = logoURL;
     }
+
+    @Override
+    public String toString() {
+        return "Firm{" +
+                "firmId=" + firmId +
+                ", firmName='" + firmName + '\'' +
+                ", firmType='" + firmType + '\'' +
+                ", overallScore=" + overallScore +
+                ", description='" + description + '\'' +
+                ", logoURL='" + logoURL + '\'' +
+                '}';
+    }
 }

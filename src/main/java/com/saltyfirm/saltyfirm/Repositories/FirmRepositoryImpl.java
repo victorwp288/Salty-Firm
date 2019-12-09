@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class FirmRepositoryImpl implements FirmRepository {
@@ -33,8 +31,6 @@ public class FirmRepositoryImpl implements FirmRepository {
     @Override
     public Firm findFirmById(int firmId) {
 
-        List<Firm> firmList = new ArrayList<>();
-
         try {
             //Connection connection = databaseHandler.createConnection();
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
@@ -43,6 +39,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             preparedStatement.setInt(1, firmId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            log.info("before if");
             if(resultSet.next()) {
                 Firm firm = new Firm();
 
@@ -54,14 +51,14 @@ public class FirmRepositoryImpl implements FirmRepository {
                 firm.setLogoURL(resultSet.getString("logo_url"));
                 return firm;
             } else {
-                log.info("Nej");
+                log.info("Didnt find anything");
             }
             connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        log.info("fandt ingen firm");
         return null;
     }
 
