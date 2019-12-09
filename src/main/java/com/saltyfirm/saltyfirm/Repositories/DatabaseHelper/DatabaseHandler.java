@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 public class DatabaseHandler {
 
-    int a;
     private Connection connection;
 
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
