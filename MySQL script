@@ -99,7 +99,7 @@ VALUE ('admin'),
 
 
 
-    INSERT INTO saltyfirm.user(username, password, firstname, lastname, phone_number, sex, birthdate, education, mail, nationality, privileges_fk_id)
+    INSERT INTO saltyfirm.user(username, `password`, firstname, lastname, phone_number, sex, birthdate, education, mail, nationality, privileges_fk_id)
     VALUES ('test3', 'test3', 'C#', 'Strap', 64037621, 'm', '1990-02-04', 'Tjener', 'test3@kea.dk', 'Sverige', 3),
            ('test2', 'test2', 'Java', 'Boot', 12345678, 'f', '1991-12-04', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
            ('test1', 'test1', 'Python', 'Spring', 98765432, 'm', '1990-06-23', 'Skraldemand', 'test1@kea.dk', 'Tyskland', 1);
