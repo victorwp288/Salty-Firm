@@ -56,8 +56,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             } else {
                 log.info("Nej");
             }
-
-            databaseHandler.closeConnection();
+            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();

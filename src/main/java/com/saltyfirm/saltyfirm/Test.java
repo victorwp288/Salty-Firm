@@ -7,7 +7,8 @@ public class Test {
 
         FirmRepositoryImpl i = new FirmRepositoryImpl();
 
-        i.findFirmById(1);
+
+        i.findFirmById(2).toString();
 
     }
 }
