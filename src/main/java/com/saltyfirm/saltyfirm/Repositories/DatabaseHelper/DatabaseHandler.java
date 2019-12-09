@@ -1,7 +1,6 @@
 package com.saltyfirm.saltyfirm.Repositories.DatabaseHelper;
 
 import org.slf4j.LoggerFactory;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,15 +8,10 @@ import java.sql.SQLException;
 public class DatabaseHandler {
 
     private Connection connection;
-
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
-
-    private String datasourceUrl = "jdbc:mysql://localhost:3306/saltyfirm";
-
-    private String dbUsername = "salt";
-
-    private String dbPassword = "1234!";
-
+    private String datasourceUrl = "jdbc:mysql://localhost:3306";
+    private String dbUsername = "SaltyFirmBoss";
+    private String dbPassword = "Boss1234";
 
     public Connection createConnection() {
         try {
