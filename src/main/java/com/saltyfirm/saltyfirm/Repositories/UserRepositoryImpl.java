@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public class UserRepositoryImpl implements UserRepository {
 
+    int a;
     @Autowired
     DatabaseHandler databaseHandler;
 
