@@ -28,7 +28,7 @@ public class FirmServiceImpl implements FirmService {
     }
 
     @Override
-    public int editFirm(int firmId, String firmName, String firmType, double overallScore, String description, String logoURL) {
-        return firmRepository.editFirm(firmId, firmName, firmType, overallScore, description, logoURL);
+    public void editFirm(Firm firm) {
+        firmRepository.editFirm(firm);
     }
 }
