@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS firm
         firm_type           VARCHAR(45)                  NOT NULL,
         overall_score       DECIMAL,
         `description`       VARCHAR(500),
-        logo_url            VARCHAR(45)
+        logo_url            VARCHAR(200)
 )
     ENGINE = InnoDB;
 
