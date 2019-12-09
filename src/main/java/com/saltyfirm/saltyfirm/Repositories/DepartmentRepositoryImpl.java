@@ -26,7 +26,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
-    public int editDepartment(int departmentId, String departmentName, String departmentAdress, double departmentScore) {
+    public int editDepartment(int departmentId, String departmentName, String departmentAddress, double departmentScore) {
 
         return 0;
     }

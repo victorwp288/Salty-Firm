@@ -32,9 +32,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public int editDepartment(int departmentId, String departmentName, String departmentAdress, double departmentScore) {
+    public int editDepartment(int departmentId, String departmentName, String departmentAddress, double departmentScore) {
 
-        return departmentRepository.editDepartment(departmentId, departmentName, departmentAdress, departmentScore);
+        return departmentRepository.editDepartment(departmentId, departmentName, departmentAddress, departmentScore);
     }
 
     @Override
