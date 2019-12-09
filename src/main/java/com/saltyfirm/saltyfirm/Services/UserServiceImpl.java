@@ -34,12 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int findUserById(int userId) {
+    public User findUserById(int userId) {
         return userRepository.findUserById(userId);
     }
 
     @Override
-    public User checkLogin(String user) {
-        return userRepository.checkLogin(user);
+    public User checkLogin(String username, String password) {
+        return userRepository.checkLogin(username, password);
     }
 }

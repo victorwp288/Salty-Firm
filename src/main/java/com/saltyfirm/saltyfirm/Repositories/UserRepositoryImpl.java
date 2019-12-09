@@ -36,8 +36,7 @@ public class UserRepositoryImpl implements UserRepository {
         List<User> usersList = new ArrayList<>();
 
         try {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "test1234", "test1234");
-
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "test1234", "test1234");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.user LEFT JOIN  saltyfirm.privileges ON user.privileges_fk_id = privileges.privileges_id");
 
@@ -55,25 +54,60 @@ public class UserRepositoryImpl implements UserRepository {
                 users.setEducation(resultSet.getString("education"));
                 users.setMail(resultSet.getString("mail"));
                 users.setNationality(resultSet.getString("nationality"));
-                users.setPrivileges(resultSet.getString("privileges_fk_id"));
-
+                users.setPrivileges(resultSet.getString("access_level"));
                 usersList.add(users);
-
             }
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return usersList;
     }
 
-    public int findUserById(int userId) {
-
-        return 0;
+    public User findUserById(int userId) {
+        for (User currentUser : getAllUsers()) {
+            if (userId == currentUser.getUserId()) {
+                return currentUser;
+            }
+        }
+        return null;
     }
 
-    public User checkLogin(String user) {
+    public User checkLogin(String username, String password) {
 
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "test1234", "test1234");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON saltyfirm.user.privileges_fk_id = privileges.privileges_id WHERE user.username = ? AND user.password = ?");
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+
+            ResultSet resultSet =preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                User user = new User();
+
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
+                user.setFirstname(resultSet.getString("firstname"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setPhoneNumber(resultSet.getInt("phone_number"));
+                user.setGender(resultSet.getString("sex"));
+                user.setBirthdate(resultSet.getDate("birthdate"));
+                user.setEducation(resultSet.getString("education"));
+                user.setMail(resultSet.getString("mail"));
+                user.setNationality(resultSet.getString("nationality"));
+                user.setPrivileges(resultSet.getString("access_level"));
+
+                connection.close();
+
+                return user;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

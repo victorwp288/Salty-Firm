@@ -1,13 +1,13 @@
 package com.saltyfirm.saltyfirm;
 
-import com.saltyfirm.saltyfirm.Repositories.FirmRepositoryImpl;
+import com.saltyfirm.saltyfirm.Repositories.UserRepository;
+import com.saltyfirm.saltyfirm.Repositories.UserRepositoryImpl;
 
 public class Test {
     public static void main(String[] args) {
 
-        FirmRepositoryImpl i = new FirmRepositoryImpl();
+        UserRepositoryImpl ur = new UserRepositoryImpl();
 
-        i.findFirmById(1);
-
+        System.out.println(ur.getAllUsers().toString());
     }
 }

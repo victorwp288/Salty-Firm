@@ -1,16 +1,28 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.DatabaseHandler;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.MySqlConnectionSingleton;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FirmRepositoryImpl implements FirmRepository {
 
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
+
+
+    @Autowired
+    DatabaseHandler databaseHandler;
+
+    @Autowired
+    MySqlConnectionSingleton mySqlConnectionSingleton;
 
     @Override
     public String searchFirms(String word) {
@@ -21,14 +33,16 @@ public class FirmRepositoryImpl implements FirmRepository {
     @Override
     public Firm findFirmById(int firmId) {
 
+        List<Firm> firmList = new ArrayList<>();
+
         try {
+            //Connection connection = databaseHandler.createConnection();
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_id = ?");
 
             preparedStatement.setInt(1, firmId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            log.info("before if");
             if(resultSet.next()) {
                 Firm firm = new Firm();
 
@@ -37,53 +51,30 @@ public class FirmRepositoryImpl implements FirmRepository {
                 firm.setFirmType(resultSet.getString("firm_type"));
                 firm.setOverallScore(resultSet.getDouble("overall_score"));
                 firm.setDescription(resultSet.getString("description"));
-                firm.setLogoURL(resultSet.getString("logo_url"));
+                firm.setLogoURL(resultSet.getString("logu_url"));
                 return firm;
             } else {
-                log.info("Didnt find anything");
+                log.info("Nej");
             }
-            connection.close();
+
+            databaseHandler.closeConnection();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        log.info("fandt ingen firm");
+
         return null;
     }
 
     @Override
-    public int deleteFirm(int id) {
-        try {
-            log.info("Køre deleteFirm");
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.firm WHERE firm_id = ?");
-            preparedStatement.setInt(1, id);
+    public int deleteFirm(int firmId) {
 
-            log.info("Executed deleteFirm");
-            return preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            log.info("fangede en exeption");
-        }
-        log.info("Lortet virkede ikke");
         return 0;
     }
 
     @Override
-    public int editFirm(Firm firm) {
+    public int editFirm(int firmId, String firmName, String firmType, double overallScore, String description, String logoURL) {
 
-        try{
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET firm_name = ?, firm_type = ?, overall_score = ?, description = ?, logo_url = ? WHERE firm_id = ?");
-            preparedStatement.setString(1, firm.getFirmName());
-            preparedStatement.setString(2, firm.getFirmType());
-            preparedStatement.setDouble(3, firm.getOverallScore());
-            preparedStatement.setString(4, firm.getDescription());
-            preparedStatement.setString(5, firm.getLogoURL());
-
-
-        } catch (SQLException e){
-            log.info("he");
-        }
         return 0;
     }
 

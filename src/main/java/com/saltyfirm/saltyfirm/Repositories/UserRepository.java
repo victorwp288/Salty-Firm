@@ -11,7 +11,7 @@ public interface UserRepository {
     int editUser(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges);
     int deleteUser(int userId);
     List<User> getAllUsers();
-    int findUserById(int userId);
-    User checkLogin(String user);
+    User findUserById(int userId);
+    User checkLogin(String username, String password);
 
 }
