@@ -7,6 +7,7 @@ public class Test {
 
         FirmRepositoryImpl firm = new FirmRepositoryImpl();
 
+        firm.deleteFirm(2);
         System.out.println(firm.findFirmById(2).toString());
     }
 }

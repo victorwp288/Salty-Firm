@@ -1,11 +1,8 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.DatabaseHandler;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.MySqlConnectionSingleton;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -14,13 +11,6 @@ import java.sql.*;
 public class FirmRepositoryImpl implements FirmRepository {
 
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
-
-
-    @Autowired
-    DatabaseHandler databaseHandler;
-
-    @Autowired
-    MySqlConnectionSingleton mySqlConnectionSingleton;
 
     @Override
     public String searchFirms(String word) {
@@ -32,7 +22,6 @@ public class FirmRepositoryImpl implements FirmRepository {
     public Firm findFirmById(int firmId) {
 
         try {
-            //Connection connection = databaseHandler.createConnection();
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_id = ?");
 
@@ -63,8 +52,19 @@ public class FirmRepositoryImpl implements FirmRepository {
     }
 
     @Override
-    public int deleteFirm(int firmId) {
+    public int deleteFirm(int id) {
+        try {
+            log.info("Køre deleteFirm");
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.firm WHERE firm_id = ?");
+            preparedStatement.setInt(1, id);
 
+            log.info("Executed deleteFirm");
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            log.info("fangede en exeption");
+        }
+        log.info("Lortet virkede ikke");
         return 0;
     }
 
