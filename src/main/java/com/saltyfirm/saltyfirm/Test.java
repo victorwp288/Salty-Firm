@@ -1,6 +1,5 @@
 package com.saltyfirm.saltyfirm;
 
-import com.saltyfirm.saltyfirm.Repositories.UserRepository;
 import com.saltyfirm.saltyfirm.Repositories.UserRepositoryImpl;
 
 public class Test {

@@ -10,5 +10,5 @@ public interface FirmService {
 
     int deleteFirm(int firmId);
 
-    void editFirm(Firm firm);
+    void editFirm(String firmName, String firmType, String description, String logourl, int firmId);
 }
