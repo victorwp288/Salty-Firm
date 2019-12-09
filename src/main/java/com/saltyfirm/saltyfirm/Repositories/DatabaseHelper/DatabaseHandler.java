@@ -10,14 +10,14 @@ public class DatabaseHandler {
 
     private Connection connection;
 
+
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private String datasourceUrl = "jdbc:mysql://localhost:3306/saltyfirm";
+    private String datasourceUrl = "jdbc:mysql://localhost:3306";
 
-    private String dbUsername = "salt";
+    private String dbUsername = "test1234";
 
-    private String dbPassword = "1234!";
-
+    private String dbPassword = "test1234";
 
     public Connection createConnection() {
         try {
