@@ -93,7 +93,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
-    public List<Double> calculateDepartmentScore(int departmentId) {
+    public List<Double> getDepartmentScores(int departmentId) {
         List<Double> scores = new ArrayList<>();
         int pensionScheme = 0; int benefits = 0; int management = 0; int workEnvironment = 0; int flexibility = 0; int counter = 0;
         try {
@@ -110,7 +110,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
                 flexibility += resultSet.getInt("flexibility");
                 counter++;
             }
-            connection.close();
+
             scores.add( (double) pensionScheme / counter);
             scores.add( (double) benefits / counter);
             scores.add( (double) management / counter);
@@ -118,11 +118,17 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             scores.add( (double) flexibility / counter);
             scores.add( (double) (pensionScheme+benefits+management+workEnvironment+flexibility) / (counter*5));
 
+            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return scores;
+    }
+
+    public int updateDepartmentScore(int departmentId) {
+        return 0;
     }
 
     public List<Review> getAllReviews(int departmentId) {

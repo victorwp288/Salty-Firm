@@ -10,5 +10,5 @@ public interface DepartmentRepository {
     List<Department> getDepartments(int firmId);
     int deleteDepartment(int departmentId);
     int editDepartment(Department department);
-    List<Double> calculateDepartmentScore(int departmentId);
+    List<Double> getDepartmentScores(int departmentId);
 }

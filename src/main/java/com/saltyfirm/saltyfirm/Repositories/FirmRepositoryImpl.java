@@ -117,7 +117,13 @@ public class FirmRepositoryImpl implements FirmRepository {
         return 0;
     }
 
-    public double getFirmTotalScore() {
-        return 0.0;
+    public double getFirmTotalScore(int firmId) {
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE review_fk_id = department_pk_id IS");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
