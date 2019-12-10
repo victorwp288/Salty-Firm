@@ -1,18 +1,25 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
+import com.saltyfirm.saltyfirm.Models.Vote;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class VoteRepositoryImpl implements VoteRepository {
 
     public int voteReview(boolean vote, int reviewId, int userId) {
+        List<Vote> votes = new ArrayList<>();
+        int counter = 0;
+
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT");
+
 
         } catch (SQLException e) {
             e.printStackTrace();

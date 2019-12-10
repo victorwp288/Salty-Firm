@@ -44,20 +44,48 @@ public class ReviewRepositoryImpl implements ReviewRepository{
         return 0;
     }
 
-    public int editReview(Review review, int userId, int departmentId) {
+    public int editReview(Review review) {
 
-       /* try {
+        try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review")
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review SET post, salary, position, pension_scheme, benefits, " +
+                    "management, work_environment, flexibility, employment_time VALUE (?,?,?,?,?,?,?,?,?)");
+
+            preparedStatement.setString(1, review.getPost());
+            preparedStatement.setInt(2, review.getSalary());
+            preparedStatement.setString(3, review.getPosition());
+            preparedStatement.setInt(4, review.getPensionScheme());
+            preparedStatement.setInt(5, review.getBenefits());
+            preparedStatement.setInt(6, review.getManagement());
+            preparedStatement.setInt(7, review.getWorkEnvironment());
+            preparedStatement.setInt(8, review.getFlexibility());
+            preparedStatement.setInt(9, review.getEmploymentTime());
+
+            preparedStatement.executeUpdate();
+            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        */
+
 
         return 0;
     }
 
     public int deleteReview(int reviewId) {
+
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.review WHERE review_id = ?");
+
+            preparedStatement.setInt(1, reviewId);
+            preparedStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         return 0;
     }
