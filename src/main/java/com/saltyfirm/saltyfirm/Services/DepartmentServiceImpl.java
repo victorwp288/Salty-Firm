@@ -1,6 +1,7 @@
 package com.saltyfirm.saltyfirm.Services;
 
 import com.saltyfirm.saltyfirm.Models.Department;
+import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Repositories.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,9 +39,21 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Double> calculateDepartmentScore(int departmentId) {
+    public List<Double> getDepartmentScores(int departmentId) {
 
-        return departmentRepository.calculateDepartmentScore(departmentId);
+        return departmentRepository.getDepartmentScores(departmentId);
     }
 
+    @Override
+    public int updateDepartmentScore(int departmentId) {
+
+        return departmentRepository.updateDepartmentScore(departmentId);
+    }
+
+
+    @Override
+    public List<Review> getAllReviews(int departmentId) {
+
+        return departmentRepository.getAllReviews(departmentId);
+    }
 }

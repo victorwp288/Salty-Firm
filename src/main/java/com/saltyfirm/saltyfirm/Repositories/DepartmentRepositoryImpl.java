@@ -128,6 +128,14 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     }
 
     public int updateDepartmentScore(int departmentId) {
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         return 0;
     }
 
