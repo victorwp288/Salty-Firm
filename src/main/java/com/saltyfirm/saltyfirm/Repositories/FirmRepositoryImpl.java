@@ -116,4 +116,8 @@ public class FirmRepositoryImpl implements FirmRepository {
         }
         return 0;
     }
+
+    public double getFirmTotalScore() {
+        return 0.0;
+    }
 }

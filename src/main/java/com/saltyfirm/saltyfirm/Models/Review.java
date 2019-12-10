@@ -11,6 +11,7 @@ public class Review {
     private int management;
     private int workEnvironment;
     private int flexibility;
+    private int employmentTime;
 
     public Review(int reviewId, String post, int salary, String position, int pentionScheme, int benefits, int management, int workEnvironment, int flexibility) {
         this.reviewId = reviewId;
@@ -59,11 +60,11 @@ public class Review {
         this.position = position;
     }
 
-    public int getPentionScheme() {
+    public int getPensionScheme() {
         return pensionScheme;
     }
 
-    public void setPentionScheme(int pentionScheme) {
+    public void setPensionScheme(int pentionScheme) {
         this.pensionScheme = pentionScheme;
     }
 
@@ -97,5 +98,29 @@ public class Review {
 
     public void setFlexibility(int flexibility) {
         this.flexibility = flexibility;
+    }
+
+    public int getEmploymentTime() {
+        return employmentTime;
+    }
+
+    public void setEmploymentTime(int employmentTime) {
+        this.employmentTime = employmentTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + reviewId +
+                ", post='" + post + '\'' +
+                ", salary=" + salary +
+                ", position='" + position + '\'' +
+                ", pensionScheme=" + pensionScheme +
+                ", benefits=" + benefits +
+                ", management=" + management +
+                ", workEnvironment=" + workEnvironment +
+                ", flexibility=" + flexibility +
+                ", employmentTime=" + employmentTime +
+                '\n';
     }
 }

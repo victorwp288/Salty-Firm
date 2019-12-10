@@ -24,7 +24,7 @@ public class Test {
         // ur.editUser(user1);
         // System.out.println(ur.getAllUsers().toString());
 
-        // DepartmentRepositoryImpl dr = new DepartmentRepositoryImpl();
+        DepartmentRepositoryImpl dr = new DepartmentRepositoryImpl();
         // List<Department> departmentList = dr.getDepartments(1);
         // System.out.println(departmentList.toString());
         // dr.deleteDepartment(1);
