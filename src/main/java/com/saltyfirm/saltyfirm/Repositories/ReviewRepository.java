@@ -1,8 +1,10 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
+import com.saltyfirm.saltyfirm.Models.Review;
+
 public interface ReviewRepository {
 
-    int createReview(int userId, int reviewId, String post, int salary, String position, int pensionScheme, int benefits, int management, int workEnvironment, int flexibility);
-    int editReview(int userId, int reviewId, String post, int salary, String position, int pensionScheme, int benefits, int management, int workEnvironment, int flexibility);
+    int createReview(Review review, int userId, int departmentId);
+    int editReview(Review review, int userId, int departmentId);
     int deleteReview(int reviewId);
 }
