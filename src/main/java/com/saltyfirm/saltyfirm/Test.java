@@ -24,17 +24,18 @@ public class Test {
         // ur.editUser(user1);
         // System.out.println(ur.getAllUsers().toString());
 
-        DepartmentRepositoryImpl dr = new DepartmentRepositoryImpl();
+        // DepartmentRepositoryImpl dr = new DepartmentRepositoryImpl();
+        // System.out.println(dr.getAllReviews(2));
         // List<Department> departmentList = dr.getDepartments(1);
         // System.out.println(departmentList.toString());
         // dr.deleteDepartment(1);
         // List<Department> departmentList1 = dr.getDepartments(1);
-        // System.out.println("Pension = "+dr.calculateDepartmentScore(1).get(0));
-        // System.out.println("Benefits = "+dr.calculateDepartmentScore(1).get(1));
-        // System.out.println("Management = "+dr.calculateDepartmentScore(1).get(2));
-        // System.out.println("Environment = "+dr.calculateDepartmentScore(1).get(3));
-        // System.out.println("Flexibility = "+dr.calculateDepartmentScore(1).get(4));
-        // System.out.println("Total Score = "+dr.calculateDepartmentScore(1).get(5));
+        // System.out.println("Pension = "+dr.getDepartmentScores(1).get(0));
+        // System.out.println("Benefits = "+dr.getDepartmentScores(1).get(1));
+        // System.out.println("Management = "+dr.getDepartmentScores(1).get(2));
+        // System.out.println("Environment = "+dr.getDepartmentScores(1).get(3));
+        // System.out.println("Flexibility = "+dr.getDepartmentScores(1).get(4));
+        // System.out.println("Total Score = "+dr.getDepartmentScores(1).get(5));
         // System.out.println(dr.findDepartmentById(4).toString());
 
         // FirmRepositoryImpl f = new FirmRepositoryImpl();
