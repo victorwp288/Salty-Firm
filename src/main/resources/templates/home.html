@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
-<head><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link th:href="@{/css/Topnavigationsbar.css}" href="static/css/Topnavigationsbar.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<head>
     <meta charset="UTF-8">
     <title>SaltyFirm</title>
 </head>
@@ -9,7 +12,30 @@
 
     <div class="topNavigationsbar">
         <a class="active" th:href="@{'/'}">Salty Firm</a>
-        <input type="button"
+
+        <!-- Indsæt  th:field="${}" til højre for password og username -->
+        <!-- <td> <input type="password"> th:field="${}" </td> -->
+            <p>Password</p>
+            <input type="password" placeholder="email@example.com">
+            <p>Username</p>
+            <input type="username" placeholder="password1234">
+            <button type="button">Login</button>
+            <button type="button">Opret bruger</button>
+    </div>
+
+    <div class="maincontent">
+
+        <h1>Velkommen til Salty Firm!</h1>
+        <h3>Stedet hvor du kan se anmeldelser fra medarbejdere og selv give anmeldelser ... </h3>
+        <b style="text-align: center"> Søg efter firma </b>
+        <input style="text-align: center" type="text" placeholder="Search...">
+    </div>
+
+
+    <div class="bottomBar">
+        <b> Følg os på: <medi></medi></b>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
     </div>
 
 </body>
