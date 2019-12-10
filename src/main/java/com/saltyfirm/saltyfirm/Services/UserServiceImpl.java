@@ -15,12 +15,12 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     public int createUser(User user) {
-        return 0;
+        return userRepository.createUser(user);
     }
 
     @Override
     public int editUser(User user) {
-        return 0;
+        return userRepository.editUser(user);
     }
 
     @Override

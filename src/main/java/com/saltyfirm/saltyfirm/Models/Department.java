@@ -48,4 +48,14 @@ public class Department {
     public void setDepartmentScore(double departmentScore) {
         this.departmentScore = departmentScore;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
+                ", departmentAddress='" + departmentAddress + '\'' +
+                ", departmentScore=" + departmentScore +
+                '}'+"\n";
+    }
 }
