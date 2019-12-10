@@ -1,11 +1,9 @@
 package com.saltyfirm.saltyfirm;
 
 import com.saltyfirm.saltyfirm.Models.Department;
+import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
-import com.saltyfirm.saltyfirm.Repositories.DepartmentRepository;
-import com.saltyfirm.saltyfirm.Repositories.DepartmentRepositoryImpl;
-import com.saltyfirm.saltyfirm.Repositories.FirmRepositoryImpl;
-import com.saltyfirm.saltyfirm.Repositories.UserRepositoryImpl;
+import com.saltyfirm.saltyfirm.Repositories.*;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -40,5 +38,9 @@ public class Test {
 
         // FirmRepositoryImpl f = new FirmRepositoryImpl();
         // System.out.println(f.searchFirms("alle").toString());
+
+        //ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
+        // Review review = new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 )
+          //      rr.createReview(new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 ), 1, 3);
     }
 }

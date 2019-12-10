@@ -18,8 +18,8 @@ public class ReviewRepositoryImpl implements ReviewRepository{
 
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.review (post, salary, position, pension_scheme, benifits" +
-                    "management, work_enviroment, flexibility, employment_time, user_fk_id, department_fk_id) " +
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.review (post, salary, position, pension_scheme, benefits," +
+                    "management, work_environment, flexibility, employment_time, user_fk_id, department_fk_id) " +
                     "VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
             preparedStatement.setString(1, review.getPost());
@@ -46,7 +46,13 @@ public class ReviewRepositoryImpl implements ReviewRepository{
 
     public int editReview(Review review, int userId, int departmentId) {
 
-
+       /* try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review")
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
 
         return 0;
     }

@@ -13,8 +13,7 @@ public class Review {
     private int flexibility;
     private int employmentTime;
 
-    public Review(int reviewId, String post, int salary, String position, int pentionScheme, int benefits, int management, int workEnvironment, int flexibility) {
-        this.reviewId = reviewId;
+    public Review(String post, int salary, String position, int pentionScheme, int benefits, int management, int workEnvironment, int flexibility, int employmentTime) {
         this.post = post;
         this.salary = salary;
         this.position = position;
@@ -23,6 +22,7 @@ public class Review {
         this.management = management;
         this.workEnvironment = workEnvironment;
         this.flexibility = flexibility;
+        this.employmentTime = employmentTime;
     }
 
     public Review() {
