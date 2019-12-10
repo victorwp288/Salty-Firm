@@ -12,16 +12,33 @@ import java.util.List;
 public class DepartmentRepositoryImpl implements DepartmentRepository {
 
 
-    public int findDepartmentById(int departmentId) {
+    public Department findDepartmentById(int departmentId) {
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.department WHERE department_id = ?");
+            preparedStatement.setInt(1,departmentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Department department = new Department();
+                department.setDepartmentId(resultSet.getInt("department_id"));
+                department.setDepartmentName(resultSet.getString("department_name"));
+                department.setDepartmentAddress(resultSet.getString("department_address"));
+                department.setDepartmentScore(resultSet.getDouble("department_score"));
+                return department;
+            }
 
-        return 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public List<Department> getDepartments(int firmId) {
         List<Department> departmentsList = new ArrayList<>();
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.department WHERE firm_fk_id LIKE ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.department WHERE firm_fk_id = ?");
             preparedStatement.setInt(1, firmId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -36,12 +53,13 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
                 departmentsList.add(currentDepartment);
             }
+            connection.close();
+            return departmentsList;
 
-            preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return departmentsList;
+        return null;
     }
 
     public int deleteDepartment(int departmentId) {
@@ -58,14 +76,52 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
-    public int editDepartment(int departmentId, String departmentName, String departmentAddress, double departmentScore) {
+    public int editDepartment(Department department) {
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department SET department_name = ?, department_address = ? WHERE department_id = ?");
+            preparedStatement.setString(1, department.getDepartmentName());
+            preparedStatement.setString(2, department.getDepartmentAddress());
+            preparedStatement.setInt(3, department.getDepartmentId());
+            preparedStatement.executeUpdate();
+            connection.close();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
-    public double calculateDepartmentScore(int departmentId) {
+    public List<Double> calculateDepartmentScore(int departmentId) {
+        List<Double> scores = new ArrayList<>();
+        int pensionScheme = 0; int benefits = 0; int management = 0; int workEnvironment = 0; int flexibility = 0; int counter = 0;
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
+            preparedStatement.setInt(1,departmentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        return 0;
+            while (resultSet.next()) {
+                pensionScheme += resultSet.getInt("pension_scheme");
+                benefits += resultSet.getInt("benefits");
+                management += resultSet.getInt("management");
+                workEnvironment += resultSet.getInt("work_environment");
+                flexibility += resultSet.getInt("flexibility");
+                counter++;
+            }
+            connection.close();
+            scores.add( (double) pensionScheme / counter);
+            scores.add( (double) benefits / counter);
+            scores.add( (double) management / counter);
+            scores.add( (double) workEnvironment / counter);
+            scores.add( (double) flexibility / counter);
+            scores.add( (double) (pensionScheme+benefits+management+workEnvironment+flexibility) / (counter*5));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return scores;
     }
 
 }

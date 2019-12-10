@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface DepartmentRepository {
 
-    int findDepartmentById(int departmentId);
+    Department findDepartmentById(int departmentId);
     List<Department> getDepartments(int firmId);
     int deleteDepartment(int departmentId);
-    int editDepartment(int departmentId, String departmentName, String departmentAddress, double departmentScore);
-    double calculateDepartmentScore(int departmentId);
+    int editDepartment(Department department);
+    List<Double> calculateDepartmentScore(int departmentId);
 }

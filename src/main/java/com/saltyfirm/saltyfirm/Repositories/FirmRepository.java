@@ -12,5 +12,5 @@ public interface FirmRepository {
 
     int deleteFirm(int firmId);
 
-    void editFirm(String firmName, String firmType, String description, String logourl, int firmId);
+    int editFirm(Firm firm);
 }
