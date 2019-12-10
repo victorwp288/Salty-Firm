@@ -1,6 +1,7 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Department;
+import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.springframework.stereotype.Service;
 
@@ -122,6 +123,37 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         }
 
         return scores;
+    }
+
+    public List<Review> getAllReviews(int departmentId) {
+        List<Review> reviews = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
+            preparedStatement.setInt(1,departmentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Review review = new Review();
+                review.setReviewId(resultSet.getInt("review_id"));
+                review.setPost(resultSet.getString("post"));
+                review.setSalary(resultSet.getInt("salary"));
+                review.setPosition(resultSet.getString("position"));
+                review.setPensionScheme(resultSet.getInt("pension_scheme"));
+                review.setBenefits(resultSet.getInt("benefits"));
+                review.setManagement(resultSet.getInt("management"));
+                review.setWorkEnvironment(resultSet.getInt("work_environment"));
+                review.setFlexibility(resultSet.getInt("flexibility"));
+                review.setEmploymentTime(resultSet.getInt("employment_time"));
+                reviews.add(review);
+            }
+            connection.close();
+            return reviews;
+
+        } catch (SQLException e) {
+             e.printStackTrace();
+        }
+        return null;
     }
 
 }
