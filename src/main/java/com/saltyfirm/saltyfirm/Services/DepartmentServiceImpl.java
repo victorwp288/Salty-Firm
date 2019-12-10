@@ -14,7 +14,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     DepartmentRepository departmentRepository;
 
     @Override
-    public int findDepartmentById(int departmentId) {
+    public Department findDepartmentById(int departmentId) {
 
         return departmentRepository.findDepartmentById(departmentId);
     }
@@ -32,13 +32,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public int editDepartment(int departmentId, String departmentName, String departmentAddress, double departmentScore) {
+    public int editDepartment(Department department) {
 
-        return departmentRepository.editDepartment(departmentId, departmentName, departmentAddress, departmentScore);
+        return departmentRepository.editDepartment(department);
     }
 
     @Override
-    public double calculateDepartmentScore(int departmentId) {
+    public List<Double> calculateDepartmentScore(int departmentId) {
 
         return departmentRepository.calculateDepartmentScore(departmentId);
     }

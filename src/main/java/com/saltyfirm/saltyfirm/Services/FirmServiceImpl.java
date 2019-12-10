@@ -30,7 +30,7 @@ public class FirmServiceImpl implements FirmService {
     }
 
     @Override
-    public void editFirm(String firmName, String firmType, String description, String logourl, int firmId) {
-        firmRepository.editFirm(firmName, firmType, description, logourl, firmId);
+    public void editFirm(Firm firm) {
+        firmRepository.editFirm(firm);
     }
 }

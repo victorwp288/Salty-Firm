@@ -98,20 +98,22 @@ public class FirmRepositoryImpl implements FirmRepository {
     }
 
     @Override
-    public void editFirm(String firmName, String firmType, String description, String logourl, int firmId) {
+    public int editFirm(Firm firm) {
 
         try{
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET firm_name = ?, firm_type = ?, description = ?, logo_url = ? WHERE firm_id = ?");
-            preparedStatement.setString(1, firmName);
-            preparedStatement.setString(2, firmType);
-            preparedStatement.setString(3, description);
-            preparedStatement.setString(4, logourl);
-            preparedStatement.setInt(5, firmId);
+            preparedStatement.setString(1, firm.getFirmName());
+            preparedStatement.setString(2, firm.getFirmType());
+            preparedStatement.setString(3, firm.getDescription());
+            preparedStatement.setString(4, firm.getLogoURL());
+            preparedStatement.setInt(5, firm.getFirmId());
 
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate();
+
         } catch (SQLException e){
             log.info("he");
         }
+        return 0;
     }
 }
