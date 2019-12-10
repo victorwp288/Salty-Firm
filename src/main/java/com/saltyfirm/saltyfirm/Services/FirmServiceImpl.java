@@ -33,4 +33,8 @@ public class FirmServiceImpl implements FirmService {
     public void editFirm(Firm firm) {
         firmRepository.editFirm(firm);
     }
+
+    public double getFirmTotalScore(int firmId) {
+        return firmRepository.getFirmTotalScore(firmId);
+    }
 }

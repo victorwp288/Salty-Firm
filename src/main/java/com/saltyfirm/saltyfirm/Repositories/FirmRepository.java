@@ -13,4 +13,6 @@ public interface FirmRepository {
     int deleteFirm(int firmId);
 
     int editFirm(Firm firm);
+
+    double getFirmTotalScore(int firmId);
 }

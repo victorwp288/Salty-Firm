@@ -128,14 +128,18 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     }
 
     public int updateDepartmentScore(int departmentId) {
+        List<Double> scores = getDepartmentScores(departmentId);
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department SET department_score = ? WHERE department_id = ?");
+            preparedStatement.setDouble(1, scores.get(5));
+            preparedStatement.setInt(2, departmentId);
+            preparedStatement.executeUpdate();
+            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
         return 0;
     }
 

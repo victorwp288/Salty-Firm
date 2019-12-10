@@ -13,4 +13,6 @@ public interface FirmService {
     int deleteFirm(int firmId);
 
     void editFirm(Firm firm);
+
+    double getFirmTotalScore(int firmId);
 }
