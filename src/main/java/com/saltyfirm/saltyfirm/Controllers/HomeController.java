@@ -11,6 +11,6 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model){
 
-        return "";
+        return "home";
     }
 }

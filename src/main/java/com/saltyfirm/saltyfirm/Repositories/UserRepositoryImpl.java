@@ -1,7 +1,6 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.User;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.DatabaseHandler;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +11,7 @@ import java.util.List;
 
 @Service
 public class UserRepositoryImpl implements UserRepository {
-
-    @Autowired
-    DatabaseHandler databaseHandler;
+    
 
     @Override
     public int createUser(User user) {
