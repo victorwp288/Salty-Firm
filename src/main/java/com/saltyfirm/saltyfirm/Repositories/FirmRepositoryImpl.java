@@ -91,9 +91,8 @@ public class FirmRepositoryImpl implements FirmRepository {
             log.info("Executed deleteFirm");
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            log.info("fangede en exeption");
+            e.printStackTrace();
         }
-        log.info("Lortet virkede ikke");
         return 0;
     }
 
@@ -111,7 +110,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             return preparedStatement.executeUpdate();
 
         } catch (SQLException e){
-            log.info("he");
+            e.printStackTrace();
         }
         return 0;
     }
