@@ -12,9 +12,7 @@ import java.sql.SQLException;
 @Service
 public class ReviewRepositoryImpl implements ReviewRepository{
 
-
     public int createReview(Review review, int userId, int departmentId) {
-
 
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
@@ -68,7 +66,6 @@ public class ReviewRepositoryImpl implements ReviewRepository{
             e.printStackTrace();
         }
 
-
         return 0;
     }
 
@@ -86,8 +83,6 @@ public class ReviewRepositoryImpl implements ReviewRepository{
             e.printStackTrace();
         }
 
-
         return 0;
     }
-
 }

@@ -118,9 +118,24 @@ public class FirmRepositoryImpl implements FirmRepository {
     }
 
     public double getFirmTotalScore(int firmId) {
+        int amount = 0; int counter = 0;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE review_fk_id = department_pk_id IS");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT department_score FROM saltyfirm.department WHERE firm_fk_id = ?");
+            preparedStatement.setInt(1, firmId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                double current = resultSet.getInt(1);
+                if (current > 0) {
+                    amount += current;
+                    counter++;
+                }
+
+            }
+
+            return ((double) amount/counter);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
