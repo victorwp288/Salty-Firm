@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Search</title>
 </head>
 <body>
+
+    <div class="topNavigationsbar">
+        <a class="active" th:href="@{'/'}">Salty Firm</a>
+        <!-- Indsæt  th:field="${}" til højre for password og username -->
+        <!-- <td> <input type="password"> th:field="${}" </td> -->
+
+        <p>Username</p>
+        <input type="username" placeholder="email@example.com">
+        <p>Password</p>
+        <input type="password" placeholder="password1234">
+
+        <button type="button">Login</button>
+        <button type="button">Opret bruger</button>
+    </div>
+
+    <div class="info">
+        <h1>Søgeresultat</h1>
+        <h3>Din søgning: ... fandt </h3>
+    </div>
+
+    <div class="søgereasultat">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Firma logo</th>
+                    <th>Firma navn</th>
+                    <th>Overall rating</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!--
+            <tr th:each="Indæst firms: ${Indsæt liste af frims}">
+                   <td th:text="${Indsæt firma logo}"/>
+                    <td th:text="${indsæt firma navn}"/>
+                    <td th:text="${Indsæt firmaets rating}"/>
+               -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 
 </body>
 </html>
