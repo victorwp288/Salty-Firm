@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class VoteRepositoryImpl implements VoteRepository {
 
+    @Override
     public int voteReview(boolean vote, int reviewId, int userId) {
         List<Vote> votes = new ArrayList<>();
         int counter = 0;
@@ -27,6 +28,7 @@ public class VoteRepositoryImpl implements VoteRepository {
         return 0;
     }
 
+    @Override
     public int removeVote(int reviewId, int userId) {
 
         return 0;

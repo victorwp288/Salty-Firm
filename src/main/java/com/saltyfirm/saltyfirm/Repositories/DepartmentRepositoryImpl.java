@@ -13,6 +13,7 @@ import java.util.List;
 public class DepartmentRepositoryImpl implements DepartmentRepository {
 
 
+    @Override
     public Department findDepartmentById(int departmentId) {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
@@ -35,6 +36,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return null;
     }
 
+    @Override
     public List<Department> getDepartments(int firmId) {
         List<Department> departmentsList = new ArrayList<>();
         try {
@@ -63,6 +65,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return null;
     }
 
+    @Override
     public int deleteDepartment(int departmentId) {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
@@ -77,6 +80,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
+    @Override
     public int editDepartment(Department department) {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
@@ -93,6 +97,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
+    @Override
     public List<Double> getDepartmentScores(int departmentId) {
         List<Double> scores = new ArrayList<>();
         int pensionScheme = 0; int benefits = 0; int management = 0; int workEnvironment = 0; int flexibility = 0; int counter = 0;
@@ -127,6 +132,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return scores;
     }
 
+    @Override
     public int updateDepartmentScore(int departmentId) {
         List<Double> scores = getDepartmentScores(departmentId);
         try {
@@ -143,6 +149,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
+    @Override
     public List<Review> getAllReviews(int departmentId) {
         List<Review> reviews = new ArrayList<>();
         try {
