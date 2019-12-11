@@ -103,14 +103,14 @@ CREATE TABLE IF NOT EXISTS vote
 INSERT INTO saltyfirm.privileges
 (access_level)
 VALUE  ('admin'),
-       ('user'),
-       ('visitor');
+       ('user');
 
 INSERT INTO saltyfirm.user
 (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id)
-VALUES ('test3', 'test3', 'C#', 'Strap', 64037621, 'm', '1990-02-04', 'Tjener', 'test3@kea.dk', 'Sverige', 3),
-       ('test2', 'test2', 'Java', 'Boot', 12345678, 'f', '1991-12-04', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
-       ('test1', 'test1', 'Python', 'Spring', 98765432, 'm', '1990-06-23', 'Skraldemand', 'test1@kea.dk', 'Tyskland', 1);
+VALUES ('test1', 'test1', 'Nicholas', 'Tureczek', 64037621, 'm', '1990-02-04', 'Tjener', 'test1@kea.dk', 'Sverige', 1),
+       ('test2', 'test2', 'Martin', 'Holmqvist', 12345678, 'f', '1991-12-04', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
+       ('test3', 'test3', 'Patrick', 'Jønnson', 98765432, 'm', '1990-06-23', 'Skraldemand', 'test3@kea.dk', 'Tyskland', 1);
+       ('test4', 'test4', 'Victor', 'Petersen', 56453535, 'm', '1990-06-23', 'Skraldemand', 'test4@kea.dk', 'Holland', 2);
 
 INSERT INTO saltyfirm.firm
 (firm_name, firm_type, `description`, logo_url)
