@@ -10,33 +10,35 @@
 </head>
 <body>
 
-    <div class="topNavigationsbar">
-        <a class="active" th:href="@{'/'}">Salty Firm</a>
+<div class="topNavigationsbar">
+    <a class="active" th:href="@{'/'}">Salty Firm</a>
 
-        <!-- Indsæt  th:field="${}" til højre for password og username -->
-        <!-- <td> <input type="password"> th:field="${}" </td> -->
-            <p>Username</p>
-            <input type="username" placeholder="email@example.com">
-            <p>Password</p>
-            <input type="password" placeholder="password1234">
-            <button type="button">Login</button>
-            <button type="button">Opret bruger</button>
-    </div>
+    <!-- Indsæt  th:field="${}" til højre for password og username -->
+    <!-- <td> <input type="password"> th:field="${}" </td> -->
+    <form th:action="@{/}"  method="post">
+        <p>Username</p>
+        <input type="text" placeholder="Username" th:field="${user.username}">
+        <p>Password</p>
+        <input type="password" placeholder="password1234" th:field="${user.password}">
+        <input type="submit" th:value="Login"/><br></p>
+        <button type="button">Opret bruger</button>
+    </form>
+</div>
 
-    <div class="maincontent">
+<div class="maincontent">
 
-        <h1>Velkommen til Salty Firm!</h1>
-        <h3>Stedet hvor du kan se anmeldelser fra medarbejdere og selv give anmeldelser ... </h3>
-        <b style="text-align: center"> Søg efter firma </b>
-        <input style="text-align: center" type="text" placeholder="Search...">
-    </div>
+    <h1>Velkommen til Salty Firm!</h1>
+    <h3>Stedet hvor du kan se anmeldelser fra medarbejdere og selv give anmeldelser ... </h3>
+    <b style="text-align: center"> Søg efter firma </b>
+    <input style="text-align: center" type="text" placeholder="Search...">
+</div>
 
 
-    <div class="bottomBar">
-        <b> Følg os på: <medi></medi></b>
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-twitter"></a>
-    </div>
+<div class="bottomBar">
+    <b> Følg os på: <medi></medi></b>
+    <a href="#" class="fa fa-facebook"></a>
+    <a href="#" class="fa fa-twitter"></a>
+</div>
 
 </body>
 <div>

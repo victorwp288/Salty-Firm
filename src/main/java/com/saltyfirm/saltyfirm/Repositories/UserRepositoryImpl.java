@@ -153,7 +153,7 @@ public class UserRepositoryImpl implements UserRepository {
                 user.setFirstname(resultSet.getString("firstname"));
                 user.setLastname(resultSet.getString("lastname"));
                 user.setPhoneNumber(resultSet.getInt("phone_number"));
-                user.setGender(resultSet.getString("sex"));
+                user.setGender(resultSet.getString("gender"));
                 user.setBirthdate(resultSet.getDate("birthdate"));
                 user.setEducation(resultSet.getString("education"));
                 user.setMail(resultSet.getString("mail"));
