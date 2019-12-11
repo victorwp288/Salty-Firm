@@ -11,25 +11,40 @@
 <body>
 
 <div class="topNavigationsbar">
-    <a class="active" th:href="@{'/'}">Salty Firm</a>
 
     <span th:if="${user.privileges == null}">
         <form th:action="@{/}"  method="post">
+            <a class="active" th:href="@{'/'}">Salty Firm</a>
             <p>Username</p>
-            <input type="text" placeholder="Username" th:field="${user.username}">
+            <input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" required>
             <p>Password</p>
-            <input type="password" placeholder="password1234" th:field="${user.password}">
+            <input type="password" placeholder="password1234" th:field="${user.password}" autocomplete="off" required>
             <input type="submit" th:value="Login"/><br></p>
             <button type="button">Opret bruger</button>
         </form>
     </span>
 
     <span th:if="${user.privileges == 'user'}">
-        <h1>user may not masterbait</h1>
+        <a class="active" th:href="@{'/'}">Salty Firm</a>
+        <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Profil</a>
+        <a th:href="@{'/createReview'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Opret Anmeldelse</a>
+
+        <td  th:text="'Logget ind som: '" ></td>
+        <td ></td>
+        <td th:text="${user.username}" ></td>
+        <a th:href="@{'/'}" class="btn btn-lg btn-default">Log ud</a>
     </span>
 
     <span th:if="${user.privileges == 'admin'}">
-        <h1>Admin must masterbait</h1>
+        <a class="active" th:href="@{'/'}">Salty Firm</a>
+        <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Profil</a>
+        <a th:href="@{'/editUser'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Brugerliste</a>
+
+        <td  th:text="'Logget ind som: '" ></td>
+        <td ></td>
+        <td th:text="${user.username}" ></td>
+
+        <a th:href="@{'/'}" class="btn btn-lg btn-default">Log ud</a>
     </span>
 </div>
 

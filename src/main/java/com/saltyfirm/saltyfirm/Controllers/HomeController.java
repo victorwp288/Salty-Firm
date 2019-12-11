@@ -37,19 +37,19 @@ public class HomeController {
 
     @GetMapping("/{currentUserId}")
     public String index2(@PathVariable int currentUserId, Model model){
-        User currentUser = userService.findUserById(currentUserId);
-        model.addAttribute(currentUser);
+        User user = userService.findUserById(currentUserId);
+        model.addAttribute(user);
         String word = "";
         model.addAttribute(word);
         return "home";
     }
 
     @PostMapping("/")
-    public String postIndexLogin(@ModelAttribute User user, Model model) {
-        User loginUser = userService.checkLogin(user.getUsername(), user.getPassword());
-        if (loginUser != null) {
-            model.addAttribute(loginUser);
-            return "redirect:/"+loginUser.getUserId();
+    public String postIndexLogin(@ModelAttribute User loginUser, Model model) {
+        User user = userService.checkLogin(loginUser.getUsername(), loginUser.getPassword());
+        if (user != null) {
+            model.addAttribute(user);
+            return "redirect:/"+user.getUserId();
         } else {
             return "redirect:/";
         }
