@@ -57,7 +57,6 @@ public class FirmRepositoryImpl implements FirmRepository {
             preparedStatement.setInt(1, firmId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            log.info("before if");
             if(resultSet.next()) {
                 Firm firm = new Firm();
 
@@ -76,14 +75,14 @@ public class FirmRepositoryImpl implements FirmRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        log.info("fandt ingen firm");
+        log.info("No firm found");
         return null;
     }
 
     @Override
     public int deleteFirm(int id) {
         try {
-            log.info("Køre deleteFirm");
+            log.info("Executing deleteFirm");
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.firm WHERE firm_id = ?");
             preparedStatement.setInt(1, id);
