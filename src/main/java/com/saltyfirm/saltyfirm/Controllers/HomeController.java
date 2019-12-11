@@ -30,8 +30,8 @@ public class HomeController {
     public String index1(Model model){
         User user = new User();
         model.addAttribute(user);
-        String word = "";
-        model.addAttribute(word);
+        String searchWord = "";
+        model.addAttribute(searchWord);
         return "home";
     }
 
@@ -55,12 +55,17 @@ public class HomeController {
         }
     }
 
-    @PostMapping("/{searchWord}")
-    public String searchIndex(@PathVariable String searchWord, Model model) {
+    @PostMapping("/search")
+    public String searchIndex(@ModelAttribute String searchWord, Model model) {
+
+        return "redirect:/search/"+searchWord;
+    }
+
+    @GetMapping("/search/{searchWord}")
+    public String searchResult(Model model, @PathVariable String searchWord) {
+        String word = searchWord;
         List<Firm> searchResult = firmService.searchFirms(searchWord);
         model.addAttribute(searchResult);
         return "search";
     }
-
-
 }
