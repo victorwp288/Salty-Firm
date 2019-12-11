@@ -50,7 +50,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.updateDepartmentScore(departmentId);
     }
 
-
     @Override
     public List<Review> getAllReviews(int departmentId) {
 

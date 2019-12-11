@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class DepartmentRepositoryImpl implements DepartmentRepository {
 
-
     @Override
     public Department findDepartmentById(int departmentId) {
         try {

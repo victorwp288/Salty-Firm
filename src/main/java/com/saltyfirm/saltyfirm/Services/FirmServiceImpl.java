@@ -30,10 +30,11 @@ public class FirmServiceImpl implements FirmService {
     }
 
     @Override
-    public void editFirm(Firm firm) {
-        firmRepository.editFirm(firm);
+    public int editFirm(Firm firm) {
+        return firmRepository.editFirm(firm);
     }
 
+    @Override
     public double getFirmTotalScore(int firmId) {
         return firmRepository.getFirmTotalScore(firmId);
     }

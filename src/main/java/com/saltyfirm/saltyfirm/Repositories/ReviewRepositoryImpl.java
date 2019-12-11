@@ -12,7 +12,7 @@ import java.sql.SQLException;
 @Service
 public class ReviewRepositoryImpl implements ReviewRepository{
 
-
+    @Override
     public int createReview(Review review, int userId, int departmentId) {
 
 
@@ -44,6 +44,7 @@ public class ReviewRepositoryImpl implements ReviewRepository{
         return 0;
     }
 
+    @Override
     public int editReview(Review review) {
 
         try {
@@ -72,6 +73,7 @@ public class ReviewRepositoryImpl implements ReviewRepository{
         return 0;
     }
 
+    @Override
     public int deleteReview(int reviewId) {
 
         try {

@@ -99,7 +99,6 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public int editFirm(Firm firm) {
-
         try{
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET firm_name = ?, firm_type = ?, description = ?, logo_url = ? WHERE firm_id = ?");
@@ -117,6 +116,7 @@ public class FirmRepositoryImpl implements FirmRepository {
         return 0;
     }
 
+    @Override
     public double getFirmTotalScore(int firmId) {
         int amount = 0; int counter = 0;
         try {
