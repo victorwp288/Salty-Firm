@@ -65,11 +65,11 @@
 
             <tbody>
             <tr th:each="departmentScore : ${department}">
-                <td><p th:text="${departmentScore.pensionScheme}"></p></td>
-                <td><p th:text="${departmentScore.benefits}"></p></td>
-                <td><p th:text="${departmentScore.management}"></p></td>
-                <td><p th:text="${departmentScore.workEnvironment}"></p></td>
-                <td><p th:text="${departmentScore.flexibility}"></p></td>
+                <td><p th:text="${departmentScore.pensionScheme} + ' / 10'"></p></td>
+                <td><p th:text="${departmentScore.benefits} + ' / 10'"></p></td>
+                <td><p th:text="${departmentScore.management} + ' / 10'"></p></td>
+                <td><p th:text="${departmentScore.workEnvironment} + ' / 10'"></p></td>
+                <td><p th:text="${departmentScore.flexibility} + ' / 10'"></p></td>
             </tr>
             </tbody>
         </table>

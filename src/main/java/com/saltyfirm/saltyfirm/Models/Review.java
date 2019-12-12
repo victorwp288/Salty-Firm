@@ -6,18 +6,18 @@ public class Review {
     private String post;
     private int salary;
     private String position;
-    private int pensionScheme;
-    private int benefits;
-    private int management;
-    private int workEnvironment;
-    private int flexibility;
+    private double pensionScheme;
+    private double benefits;
+    private double management;
+    private double workEnvironment;
+    private double flexibility;
     private int employmentTime;
 
-    public Review(String post, int salary, String position, int pentionScheme, int benefits, int management, int workEnvironment, int flexibility, int employmentTime) {
+    public Review(String post, int salary, String position, double pensionScheme, double benefits, double management, double workEnvironment, double flexibility, int employmentTime) {
         this.post = post;
         this.salary = salary;
         this.position = position;
-        this.pensionScheme = pentionScheme;
+        this.pensionScheme = pensionScheme;
         this.benefits = benefits;
         this.management = management;
         this.workEnvironment = workEnvironment;
@@ -60,43 +60,43 @@ public class Review {
         this.position = position;
     }
 
-    public int getPensionScheme() {
+    public double getPensionScheme() {
         return pensionScheme;
     }
 
-    public void setPensionScheme(int pentionScheme) {
-        this.pensionScheme = pentionScheme;
+    public void setPensionScheme(double pensionScheme) {
+        this.pensionScheme = pensionScheme;
     }
 
-    public int getBenefits() {
+    public double getBenefits() {
         return benefits;
     }
 
-    public void setBenefits(int benefits) {
+    public void setBenefits(double benefits) {
         this.benefits = benefits;
     }
 
-    public int getManagement() {
+    public double getManagement() {
         return management;
     }
 
-    public void setManagement(int management) {
+    public void setManagement(double management) {
         this.management = management;
     }
 
-    public int getWorkEnvironment() {
+    public double getWorkEnvironment() {
         return workEnvironment;
     }
 
-    public void setWorkEnvironment(int workEnvironment) {
+    public void setWorkEnvironment(double workEnvironment) {
         this.workEnvironment = workEnvironment;
     }
 
-    public int getFlexibility() {
+    public double getFlexibility() {
         return flexibility;
     }
 
-    public void setFlexibility(int flexibility) {
+    public void setFlexibility(double flexibility) {
         this.flexibility = flexibility;
     }
 

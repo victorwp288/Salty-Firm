@@ -24,11 +24,11 @@ public class ReviewRepositoryImpl implements ReviewRepository{
             preparedStatement.setString(1, review.getPost());
             preparedStatement.setInt(2, review.getSalary());
             preparedStatement.setString(3, review.getPosition());
-            preparedStatement.setInt(4, review.getPensionScheme());
-            preparedStatement.setInt(5, review.getBenefits());
-            preparedStatement.setInt(6, review.getManagement());
-            preparedStatement.setInt(7, review.getWorkEnvironment());
-            preparedStatement.setInt(8, review.getFlexibility());
+            preparedStatement.setDouble(4, review.getPensionScheme());
+            preparedStatement.setDouble(5, review.getBenefits());
+            preparedStatement.setDouble(6, review.getManagement());
+            preparedStatement.setDouble(7, review.getWorkEnvironment());
+            preparedStatement.setDouble(8, review.getFlexibility());
             preparedStatement.setInt(9, review.getEmploymentTime());
             preparedStatement.setInt(10, userId);
             preparedStatement.setInt(11, departmentId);
@@ -54,11 +54,11 @@ public class ReviewRepositoryImpl implements ReviewRepository{
             preparedStatement.setString(1, review.getPost());
             preparedStatement.setInt(2, review.getSalary());
             preparedStatement.setString(3, review.getPosition());
-            preparedStatement.setInt(4, review.getPensionScheme());
-            preparedStatement.setInt(5, review.getBenefits());
-            preparedStatement.setInt(6, review.getManagement());
-            preparedStatement.setInt(7, review.getWorkEnvironment());
-            preparedStatement.setInt(8, review.getFlexibility());
+            preparedStatement.setDouble(4, review.getPensionScheme());
+            preparedStatement.setDouble(5, review.getBenefits());
+            preparedStatement.setDouble(6, review.getManagement());
+            preparedStatement.setDouble(7, review.getWorkEnvironment());
+            preparedStatement.setDouble(8, review.getFlexibility());
             preparedStatement.setInt(9, review.getEmploymentTime());
 
             preparedStatement.executeUpdate();
