@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<form action="#" th:action="@{/users/newUser}" method="post">
+    <table style="margin-left: 25%">
+        <tr>
+            <th><p style="text-align: right;font-family: Bahnschrift,serif;text-shadow:1px 1px 1px #000;color: aliceblue;font-size: large;margin-top: 15px">Brugernavn</p></th>
+            <td><input type="text" th:field="${user.userName}" placeholder="Brugernavn" onfocus="this.placeholder=''" onblur="this.placeholder='Brugernavn'" style="height: 35px;font-family: Bahnschrift,serif;font-size: large;margin-left: 20px" required/></td>
+        </tr>
+        <tr>
+            <th><p style="text-align: right;font-family: Bahnschrift,serif;text-shadow:1px 1px 1px #000;color: aliceblue;font-size: large;margin-top: 15px">Adgangskode</p></th>
+            <td><input type="password" th:field="${user.passWord}" placeholder="Adgangskode" onfocus="this.placeholder=''" onblur="this.placeholder='Adgangskode'" style="height: 35px;font-family: Bahnschrift,serif;font-size: large;margin-left: 20px" required/></td>
+        </tr>
+        <tr>
+            <th><p style="text-align: right;font-family: Bahnschrift,serif;text-shadow:1px 1px 1px #000;color: aliceblue;font-size: large;margin-top: 15px">Fornavn</p></th>
+            <td><input type="text" th:field="${user.firstName}" placeholder="Fornavn" onfocus="this.placeholder=''" onblur="this.placeholder='Adgangskode'" style="height: 35px;font-family: Bahnschrift,serif;font-size: large;margin-left: 20px" required/></td>
+        </tr>
+        <tr>
+            <th><p style="text-align: right;font-family: Bahnschrift,serif;text-shadow:1px 1px 1px #000;color: aliceblue;font-size: large;margin-top: 15px">Efternavn</p></th>
+            <td><input type="text" th:field="${user.lastName}" placeholder="Efternavn" onfocus="this.placeholder=''" onblur="this.placeholder='Adgangskode'" style="height: 35px;font-family: Bahnschrift,serif;font-size: large;margin-left: 20px" required/></td>
+        </tr>
+    </table>
+    <br><br>
+    <p><input type="submit" value="Opret" style="width: 150px;height: 30px; text-align: center;background-color: royalblue;color: aliceblue;font-family: Bahnschrift,serif;font-size: medium"/></p>
+</form>
+<div style="text-align: center">
+    <a th:href="${'/'}"><button style="background-color: slategrey;width: 150px;height: 30px;color: aliceblue;font-family: Bahnschrift,serif;font-size: medium">Annuller</button></a>
+</div>
 </body>
 </html>

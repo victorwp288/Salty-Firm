@@ -15,7 +15,6 @@ public class ReviewRepositoryImpl implements ReviewRepository{
     @Override
     public int createReview(Review review, int userId, int departmentId) {
 
-
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.review (post, salary, position, pension_scheme, benefits," +
