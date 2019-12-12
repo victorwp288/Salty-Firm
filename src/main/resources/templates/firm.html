@@ -14,18 +14,46 @@
                 <tr>
                     <th>Firma logo</th>
                     <th>Firma navn</th>
+                    <th>Firma type</th>
                     <th>Overall rating</th>
+                    <th>Beskrivelse</th>
+
                 </tr>
                 </thead>
 
                 <tbody>
 
                     <td><img th:src="${firms.logoURL}" alt="LOGO"/></td>
-                    <td> <a th:text="${firms.firmName}"></a></td>
-                    <td><a th:text="${firms.overallScore}"></a></td>
-                </tr>
+                    <td> <p th:text="${firms.firmName}"></p></td>
+                    <td><p th:text="${firms.firmType}"></p></td>
+                    <td><p th:text="${firms.overallScore}"></p></td>
+                    <td><p th:text="${firms.description}"></p></td>
+
+                    </tr>
                 </tbody>
             </table>
+
+
+    </div>
+    <div>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>Afdelings navn</th>
+                <th>Afdelings score</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="department : ${departments}">
+            <td><p th:text="${department.departmentName}"></p></td>
+            <td><p th:text="${department.departmentScore}"></p></td>
+
+            </tr>
+            </tbody>
+        </table>
+
 
 
     </div>
