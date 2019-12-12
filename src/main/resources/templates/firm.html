@@ -47,7 +47,7 @@
             <tbody>
 
             <tr th:each="department : ${departments}">
-            <td><p th:text="${department.departmentName}"></p></td>
+            <td><a th:text="${department.departmentName}" th:href="'/department/'+${firms.firmId}+'/'+${department.departmentId}"></a></td>
             <td><p th:text="${department.departmentScore}"></p></td>
 
             </tr>

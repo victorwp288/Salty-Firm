@@ -132,6 +132,31 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     }
 
     @Override
+    public Review getRealDepartmentScores(int departmentId){
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT AVG(pension_scheme), AVG(benefits), AVG(management), AVG(work_environment), AVG(flexibility)\n" +
+                                                                                    "FROM saltyfirm.review\n" +
+                                                                                    "WHERE department_fk_id = ?;");
+            preparedStatement.setInt(1, departmentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Review review = new Review();
+            review.setPensionScheme(resultSet.getInt(1));
+            review.setBenefits(resultSet.getInt(2));
+            review.setManagement(resultSet.getInt(3));
+            review.setWorkEnvironment(resultSet.getInt(4));
+            review.setFlexibility(resultSet.getInt(5));
+
+            return review;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @Override
     public int updateDepartmentScore(int departmentId) {
         List<Double> scores = getDepartmentScores(departmentId);
         try {

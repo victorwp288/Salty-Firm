@@ -1,10 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/Topnavigationsbar.css}" href="static/css/Topnavigationsbar.css" rel="stylesheet" type="text/css" media="screen"/>
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>SaltyFirm</title>
 </head>
 <body>
+    <div>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>Firma logo</th>
+                <th>Firma navn</th>
+                <th>Firma type</th>
+                <th>Overall rating</th>
+                <th>Beskrivelse</th>
+            </tr>
+            </thead>
 
+            <tbody>
+            <td><img th:src="${firms.logoURL}" alt="LOGO"/></td>
+            <td> <p th:text="${firms.firmName}"></p></td>
+            <td><p th:text="${firms.firmType}"></p></td>
+            <td><p th:text="${firms.overallScore}"></p></td>
+            <td><p th:text="${firms.description}"></p></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>Afdelings navn</th>
+                <th>Afdelings addresse</th>
+                <th>afdelings samlet score</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="department : ${departments}">
+                <td><p th:text="${department.departmentName}"></p></td>
+                <td><p th:text="${department.departmentAddress}"></p></td>
+                <td><p th:text="${department.departmentScore}"></p></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>Afdelings samlet pension</th>
+                <th>Afdelings samlet fordele</th>
+                <th>Afdelings samlet ledelse</th>
+                <th>Afdelings samlet arbejds miljø</th>
+                <th>Afdelings samlet flexibilitet</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="departmentScore : ${department}">
+                <td><p th:text="${departmentScore.pensionScheme}"></p></td>
+                <td><p th:text="${departmentScore.benefits}"></p></td>
+                <td><p th:text="${departmentScore.management}"></p></td>
+                <td><p th:text="${departmentScore.workEnvironment}"></p></td>
+                <td><p th:text="${departmentScore.flexibility}"></p></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>kommentar</th>
+                <th>Løn</th>
+                <th>Tid</th>
+                <th>Stilling</th>
+                <th>Pension</th>
+                <th>Fordele</th>
+                <th>Ledelse</th>
+                <th>Arbejds miljø</th>
+                <th>Flexibilitet</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="review : ${reviews}">
+                <td><p th:text="${review.post}"></p></td>
+                <td><p th:text="${review.salary}"></p></td>
+                <td><p th:text="${review.employmentTime}"></p></td>
+                <td><p th:text="${review.position}"></p></td>
+                <td><p th:text="${review.PensionScheme} + ' / 10'"></p></td>
+                <td><p th:text="${review.benefits} + ' / 10'"></p></td>
+                <td><p th:text="${review.management} + ' / 10'"></p></td>
+                <td><p th:text="${review.workEnvironment} + ' / 10'"></p></td>
+                <td><p th:text="${review.flexibility} + ' / 10'"></p></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+<div>
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+</div>
 </html>
