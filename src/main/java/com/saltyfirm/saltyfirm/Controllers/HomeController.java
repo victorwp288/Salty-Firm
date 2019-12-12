@@ -39,8 +39,8 @@ public class HomeController {
     public String index2(@PathVariable int currentUserId, Model model){
         User user = userService.findUserById(currentUserId);
         model.addAttribute(user);
-        String word = "";
-        model.addAttribute(word);
+        String searchWord = "";
+        model.addAttribute(searchWord);
         return "home";
     }
 
