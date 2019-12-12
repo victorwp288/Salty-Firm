@@ -54,7 +54,7 @@
     <h3>Stedet hvor du kan se anmeldelser fra medarbejdere og selv give anmeldelser ... </h3>
     <b style="text-align: center"> Søg efter firma <br></b>
     <form th:action="@{/search}" method="post">
-        <input type="text" th:text="${searchWord}" placeholder="Search...">
+        <input type="text" th:field="${firm.firmName}" placeholder="Search...">
         <input type="submit" value="Søg">
     </form>
 </div>
