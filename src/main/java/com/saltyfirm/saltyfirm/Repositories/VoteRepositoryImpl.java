@@ -19,7 +19,13 @@ public class VoteRepositoryImpl implements VoteRepository {
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.vote WHERE saltyfirm.review_fk_id = ?");
+
+            Vote currentVote = new Vote();
+
+
+
+
 
 
         } catch (SQLException e) {
@@ -33,4 +39,29 @@ public class VoteRepositoryImpl implements VoteRepository {
 
         return 0;
     }
+
+    public int voteOnReview(boolean vote, int reviewId, int userId) {
+        List<Vote> votes = new ArrayList<>();
+        int counter = 0;
+
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.vote WHERE saltyfirm.review_fk_id = ?");
+
+            Vote currentVote = new Vote();
+
+
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
+
 }

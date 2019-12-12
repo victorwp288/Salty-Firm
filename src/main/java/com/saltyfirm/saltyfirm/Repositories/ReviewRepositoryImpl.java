@@ -4,13 +4,12 @@ import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class ReviewRepositoryImpl implements ReviewRepository{
+public class ReviewRepositoryImpl implements ReviewRepository {
 
     @Override
     public int createReview(Review review, int userId, int departmentId) {
@@ -126,5 +125,73 @@ public class ReviewRepositoryImpl implements ReviewRepository{
 
         return 0;
     }
+
+    // Denne metode ligger også i DepartmentRepository
+    public List<Review> getAllReviews(int departmentId) {
+        List<Review> reviews = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
+            preparedStatement.setInt(1, departmentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Review review = new Review();
+                review.setReviewId(resultSet.getInt("review_id"));
+                review.setPost(resultSet.getString("post"));
+                review.setSalary(resultSet.getInt("salary"));
+                review.setPosition(resultSet.getString("position"));
+                review.setPensionScheme(resultSet.getInt("pension_scheme"));
+                review.setBenefits(resultSet.getInt("benefits"));
+                review.setManagement(resultSet.getInt("management"));
+                review.setWorkEnvironment(resultSet.getInt("work_environment"));
+                review.setFlexibility(resultSet.getInt("flexibility"));
+                review.setEmploymentTime(resultSet.getInt("employment_time"));
+                reviews.add(review);
+            }
+            connection.close();
+            return reviews;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public List<Review> fetchUserReview(int userId) {
+        List<Review> userReviews = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT review_id, post, salary, position, pension_scheme, benefits, management, work_environment, \n" +
+                    "flexibility, employment_time, user_fk_id FROM saltyfirm.review " +
+                    "WHERE user_fk_id = ?;");
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Review review = new Review();
+
+                review.setBenefits(resultSet.getInt("benefits"));
+                review.setEmploymentTime(resultSet.getInt("employment_time"));
+                review.setFlexibility(resultSet.getInt("flexibility"));
+                review.setManagement(resultSet.getInt("management"));
+                review.setPensionScheme(resultSet.getInt("pension_scheme"));
+                review.setWorkEnvironment(resultSet.getInt("work_environment"));
+                review.setPosition(resultSet.getString("position"));
+                review.setPost(resultSet.getString("post"));
+                review.setReviewId(resultSet.getInt("review_id"));
+                userReviews.add(review);
+            }
+            connection.close();
+
+            return userReviews;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

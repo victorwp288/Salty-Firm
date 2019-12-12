@@ -1,6 +1,7 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
+import com.saltyfirm.saltyfirm.Models.SearchOverview;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -133,4 +134,37 @@ public class FirmRepositoryImpl implements FirmRepository {
         }
         return 0;
     }
+
+    @Override
+    public List<SearchOverview> searchFirms2(String word) {
+        List<SearchOverview> currentSearch = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, logo_url, overall_score FROM saltyfirm.firm WHERE firm_name LIKE ?");
+
+            preparedStatement.setString(1,"%" + word + "%");
+            ResultSet resultset = preparedStatement.executeQuery();
+
+            while (resultset.next()){
+                SearchOverview searchOverview = new SearchOverview();
+
+                searchOverview.setFirmName(resultset.getString("firm_name"));
+                searchOverview.setFirmLogoUrl(resultset.getString("logo_url"));
+                searchOverview.setTotalScore(resultset.getDouble("overall_score"));
+
+                currentSearch.add(searchOverview);
+            }
+
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return currentSearch;
+    }
+
+
 }

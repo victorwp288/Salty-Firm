@@ -11,6 +11,8 @@ public class SearchOverview {
         this.totalScore = totalScore;
     }
 
+    public SearchOverview(){}
+
     public String getFirmName() {
         return firmName;
     }
@@ -33,5 +35,14 @@ public class SearchOverview {
 
     public void setTotalScore(double totalScore) {
         this.totalScore = totalScore;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchOverview{" +
+                "firmName='" + firmName + '\'' +
+                ", firmLogoUrl='" + firmLogoUrl + '\'' +
+                ", totalScore=" + totalScore +
+                '}';
     }
 }
