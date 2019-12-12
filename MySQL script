@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `user`
     lastname            VARCHAR(75)                  NOT NULL,
     phone_number        INT                          NOT NULL    UNIQUE,
     gender              VARCHAR(15),
-    birthdate           DATE                         NOT NULL,
+    birthdate           VARCHAR(10)                  NOT NULL,
     education           VARCHAR(45),
     mail                VARCHAR(100)                 NOT NULL    UNIQUE,
     nationality         VARCHAR(45),
@@ -107,10 +107,10 @@ VALUE  ('admin'),
 
 INSERT INTO saltyfirm.user
 (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id)
-VALUES ('test1', 'test1', 'Nicholas', 'Tureczek', 64037621, 'm', '1990-02-04', 'Tjener', 'test1@kea.dk', 'Sverige', 1),
-       ('test2', 'test2', 'Martin', 'Holmqvist', 12345678, 'f', '1991-12-04', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
-       ('test3', 'test3', 'Patrick', 'Jønnson', 98765432, 'm', '1990-06-23', 'Skraldemand', 'test3@kea.dk', 'Tyskland', 1),
-       ('test4', 'test4', 'Victor', 'Petersen', 56453535, 'm', '1990-06-23', 'Skraldemand', 'test4@kea.dk', 'Holland', 2);
+VALUES ('test1', 'test1', 'Nicholas', 'Tureczek', 64037621, 'm', '04-02-1986', 'Tjener', 'test1@kea.dk', 'Sverige', 1),
+       ('test2', 'test2', 'Martin', 'Holmqvist', 12345678, 'f', '23-07-1988', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
+       ('test3', 'test3', 'Patrick', 'Jønnson', 98765432, 'm', '17-11-1986', 'Skraldemand', 'test3@kea.dk', 'Tyskland', 1),
+       ('test4', 'test4', 'Victor', 'Petersen', 56453535, 'm', '11-02-1991', 'Skraldemand', 'test4@kea.dk', 'Holland', 2);
 
 INSERT INTO saltyfirm.firm
 (firm_name, firm_type, `description`, logo_url)

@@ -24,7 +24,7 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(4, user.getLastname());
             preparedStatement.setInt(5, user.getPhoneNumber());
             preparedStatement.setString(6, user.getGender());
-            preparedStatement.setDate(7, new java.sql.Date(user.getBirthdate().getTime()));
+            preparedStatement.setString(7, user.getBirthdate());
             preparedStatement.setString(8, user.getEducation());
             preparedStatement.setString(9, user.getMail());
             preparedStatement.setString(10, user.getNationality());
@@ -52,7 +52,7 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(4, user.getLastname());
             preparedStatement.setInt(5, user.getPhoneNumber());
             preparedStatement.setString(6, user.getGender());
-            preparedStatement.setDate(7, new java.sql.Date(user.getBirthdate().getTime()));
+            preparedStatement.setString(7, user.getBirthdate());
             preparedStatement.setString(8, user.getEducation());
             preparedStatement.setString(9, user.getMail());
             preparedStatement.setString(10, user.getNationality());
@@ -108,7 +108,7 @@ public class UserRepositoryImpl implements UserRepository {
                 current.setLastname(resultSet.getString("lastname"));
                 current.setPhoneNumber(resultSet.getInt("phone_number"));
                 current.setGender(resultSet.getString("gender"));
-                current.setBirthdate(resultSet.getDate("birthdate"));
+                current.setBirthdate(resultSet.getString("birthdate"));
                 current.setEducation(resultSet.getString("education"));
                 current.setMail(resultSet.getString("mail"));
                 current.setNationality(resultSet.getString("nationality"));
@@ -154,7 +154,7 @@ public class UserRepositoryImpl implements UserRepository {
                 user.setLastname(resultSet.getString("lastname"));
                 user.setPhoneNumber(resultSet.getInt("phone_number"));
                 user.setGender(resultSet.getString("gender"));
-                user.setBirthdate(resultSet.getDate("birthdate"));
+                user.setBirthdate(resultSet.getString("birthdate"));
                 user.setEducation(resultSet.getString("education"));
                 user.setMail(resultSet.getString("mail"));
                 user.setNationality(resultSet.getString("nationality"));

@@ -11,13 +11,13 @@ public class User {
     private String lastname;
     private int phoneNumber;
     private String gender;
-    private Date birthdate;
+    private String birthdate;
     private String education;
     private String mail;
     private String nationality;
     private String privileges;
 
-    public User(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
+    public User(int userId, String username, String password, String firstname, String lastname, int phoneNumber, String gender, String birthdate, String education, String mail, String nationality, String privileges) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -32,7 +32,7 @@ public class User {
         this.privileges = privileges;
     }
 
-    public User(String username, String password, String firstname, String lastname, int phoneNumber, String gender, Date birthdate, String education, String mail, String nationality, String privileges) {
+    public User(String username, String password, String firstname, String lastname, int phoneNumber, String gender, String birthdate, String education, String mail, String nationality, String privileges) {
         this.username = username;
         this.password = password;
         this.firstname = firstname;
@@ -105,11 +105,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

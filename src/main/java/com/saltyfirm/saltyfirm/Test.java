@@ -14,9 +14,9 @@ public class Test {
     public static void main(String[] args) {
 
         UserRepositoryImpl ur = new UserRepositoryImpl();
-        User user = new User("Frækfyr","1234", "Peter", "Sørensen", 76859485, "m", new Date(01-02-1985),"Leder","frækfyr@hotmail.com","Danmark","1");
+        User user = new User("Frækfyr","1234", "Peter", "Sørensen", 76859485, "m", "01-02-1985","Leder","frækfyr@hotmail.com","Danmark","1");
         ur.createUser(user);
-        System.out.println(user.getBirthdate().getTime());
+        System.out.println(user.getBirthdate());
         // System.out.println(user.getPrivileges());
         System.out.println(ur.getAllUsers().toString());
         // User user1 = ur.findUserById(3);
