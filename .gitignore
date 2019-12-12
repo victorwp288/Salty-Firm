@@ -41,3 +41,4 @@ DatabaseHelper/
 ./DatabaseHelper/*
 /DatabaseHelper/*MySqlConnectionSingleton.java
 ProjectVariables.java
+Aes.java
