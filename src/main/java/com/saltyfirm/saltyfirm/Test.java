@@ -13,10 +13,10 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
 
-         UserRepositoryImpl ur = new UserRepositoryImpl();
-         User user = new User("Frækfyr","1234", "Peter", "Sørensen", 76859485, "m", new Date(1985-01-02),"Leder","frækfyr@hotmail.com","Danmark","1");
-         ur.createUser(user);
-         System.out.println(user.getPrivileges());
+        // UserRepositoryImpl ur = new UserRepositoryImpl();
+        // User user = new User("Frækfyr","1234", "Peter", "Sørensen", 76859485, "m", new Date(1985-01-02),"Leder","frækfyr@hotmail.com","Danmark","1");
+        // ur.createUser(user);
+        // System.out.println(user.getPrivileges());
         // System.out.println(ur.getAllUsers().toString());
         // User user1 = ur.findUserById(3);
         // user1.setFirstname("TESTER");
@@ -39,8 +39,8 @@ public class Test {
         // System.out.println("Total Score = "+dr.getDepartmentScores(1).get(5));
         // System.out.println(dr.findDepartmentById(2).toString());
 
-        // FirmRepositoryImpl f = new FirmRepositoryImpl();
-        // System.out.println(f.searchFirms("alle").toString());
+        FirmRepositoryImpl f = new FirmRepositoryImpl();
+        System.out.println(f.searchFirms("alle").toString());
 
         //ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
         // Review review = new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 )

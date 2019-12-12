@@ -31,7 +31,7 @@ public class HomeController {
         User user = new User();
         model.addAttribute(user);
         String searchWord = "";
-        model.addAttribute(searchWord);
+        model.addAttribute("searchWord", searchWord);
         return "home";
     }
 
@@ -63,9 +63,8 @@ public class HomeController {
 
     @GetMapping("/search/{searchWord}")
     public String searchResult(Model model, @PathVariable String searchWord) {
-        String word = searchWord;
         List<Firm> searchResult = firmService.searchFirms(searchWord);
-        model.addAttribute(searchResult);
+        model.addAttribute("list", searchResult);
         return "search";
     }
 }
