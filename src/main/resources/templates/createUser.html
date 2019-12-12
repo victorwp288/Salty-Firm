@@ -37,15 +37,21 @@
         </tr>
         <tr>
             <th><p>Telefon nummer</p></th>
-            <td><input type="number" th:field="${user.phoneNumber}" placeholder="Telefon Nummer" onfocus="this.placeholder=''" onblur="this.placeholder='Tlf nummer'" required/></td>
+            <td><input type="text" minlength="8" maxlength="8" pattern="[0-9]{8}" th:field="${user.phoneNumber}" placeholder="Telefon Nummer" onfocus="this.placeholder=''" onblur="this.placeholder='Tlf nummer'" required/></td>
         </tr>
         <tr>
             <th><p>Køn</p></th>
-            <td><input type="text" th:field="${user.gender}" placeholder="Køn" onfocus="this.placeholder=''" onblur="this.placeholder='Køn'" required/></td>
+            <td>
+                <select th:field="${user.gender}">
+                    <option value="Ikke oplyst">Ikke oplyst</option>
+                    <option value="Mand">Mand</option>
+                    <option value="Kvinde">Kvinde</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <th><p>Fødselsdato</p></th>
-            <td><input type="Date" th:field="${user.birthdate}" placeholder="Fødselsdato" onfocus="this.placeholder=''" onblur="this.placeholder='Fødselsdato'" required/></td>
+            <td><input type="text" th:field="${user.birthdate}" minlength="10" maxlength="10" placeholder="dd-mm-yyyy" onfocus="this.placeholder=''" onblur="this.placeholder='dd-mm-yyyy'" required/></td>
         </tr>
 
     </table>
