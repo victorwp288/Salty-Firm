@@ -141,14 +141,16 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             preparedStatement.setInt(1, departmentId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            Review review = new Review();
-            review.setPensionScheme(resultSet.getInt(1));
-            review.setBenefits(resultSet.getInt(2));
-            review.setManagement(resultSet.getInt(3));
-            review.setWorkEnvironment(resultSet.getInt(4));
-            review.setFlexibility(resultSet.getInt(5));
+            if(resultSet.next()) {
+                Review review = new Review();
+                review.setPensionScheme(resultSet.getDouble(1));
+                review.setBenefits(resultSet.getDouble(2));
+                review.setManagement(resultSet.getDouble(3));
+                review.setWorkEnvironment(resultSet.getDouble(4));
+                review.setFlexibility(resultSet.getDouble(5));
 
-            return review;
+                return review;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
