@@ -28,7 +28,7 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(8, user.getEducation());
             preparedStatement.setString(9, user.getMail());
             preparedStatement.setString(10, user.getNationality());
-            preparedStatement.setString(11, user.getPrivileges());
+            preparedStatement.setString(11, "2");
 
             preparedStatement.executeUpdate();
             connection.close();
