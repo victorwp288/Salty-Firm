@@ -17,12 +17,12 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public int editReview(Review review) {
-        return reviewRepository.editReview(review);
+    public int editReview(Review review, int departmentId) {
+        return reviewRepository.editReview(review, departmentId);
     }
 
     @Override
-    public int deleteReview(int reviewId) {
-        return reviewRepository.deleteReview(reviewId);
+    public int deleteReview(int reviewId, int departmentId) {
+        return reviewRepository.deleteReview(reviewId, departmentId);
     }
 }
