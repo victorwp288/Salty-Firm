@@ -34,6 +34,17 @@ public class ReviewRepositoryImpl implements ReviewRepository{
             preparedStatement.setInt(11, departmentId);
 
             preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department \n" +
+                                                                "SET department_score = \n" +
+                                                                "  (SELECT\n" +
+                                                                "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /\n" +
+                                                                "    (SELECT COUNT(benefits)) AS total_total_score\n" +
+                                                                "    FROM review\n" +
+                                                                "    WHERE department_fk_id = department_id) \n" +
+                                                                "WHERE department_id = ?;");
+            preparedStatement.setInt(1, departmentId);
+            preparedStatement.executeUpdate();
             connection.close();
 
         } catch (SQLException e) {
@@ -44,7 +55,7 @@ public class ReviewRepositoryImpl implements ReviewRepository{
     }
 
     @Override
-    public int editReview(Review review) {
+    public int editReview(Review review, int departmentId) {
 
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
@@ -62,6 +73,19 @@ public class ReviewRepositoryImpl implements ReviewRepository{
             preparedStatement.setInt(9, review.getEmploymentTime());
 
             preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department \n" +
+                                                                "SET department_score = \n" +
+                                                                "  (SELECT\n" +
+                                                                "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /\n" +
+                                                                "    (SELECT COUNT(benefits)) AS total_total_score\n" +
+                                                                "    FROM review\n" +
+                                                                "    WHERE department_fk_id = department_id) \n" +
+                                                                "WHERE department_id = ?;");
+
+            preparedStatement.setInt(1, departmentId);
+            preparedStatement.executeUpdate();
+
             connection.close();
 
         } catch (SQLException e) {
@@ -73,13 +97,25 @@ public class ReviewRepositoryImpl implements ReviewRepository{
     }
 
     @Override
-    public int deleteReview(int reviewId) {
+    public int deleteReview(int reviewId, int departmentId) {
 
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.review WHERE review_id = ?");
 
             preparedStatement.setInt(1, reviewId);
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department \n" +
+                                                                "SET department_score = \n" +
+                                                                "  (SELECT\n" +
+                                                                "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /\n" +
+                                                                "    (SELECT COUNT(benefits)) AS total_total_score\n" +
+                                                                "    FROM review\n" +
+                                                                "    WHERE department_fk_id = department_id) \n" +
+                                                                "WHERE department_id = ?;");
+
+            preparedStatement.setInt(1, departmentId);
             preparedStatement.executeUpdate();
             connection.close();
 
