@@ -4,6 +4,6 @@ import com.saltyfirm.saltyfirm.Models.Review;
 
 public interface ReviewService {
     int createReview(Review review, int userId, int departmentId);
-    int editReview(Review review);
-    int deleteReview(int reviewId);
+    int editReview(Review review, int departmentId);
+    int deleteReview(int reviewId, int departmentId);
 }

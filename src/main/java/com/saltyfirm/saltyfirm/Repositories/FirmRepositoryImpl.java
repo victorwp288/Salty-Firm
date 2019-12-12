@@ -1,6 +1,7 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
+import com.saltyfirm.saltyfirm.Models.SearchOverview;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -116,27 +117,54 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public double getFirmTotalScore(int firmId) {
-        int amount = 0; int counter = 0;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT department_score FROM saltyfirm.department WHERE firm_fk_id = ?");
             preparedStatement.setInt(1, firmId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                double current = resultSet.getInt(1);
-                if (current > 0) {
-                    amount += current;
-                    counter++;
-                }
+            if(resultSet.next()){
+                double totalFirmScore = resultSet.getInt(1);
 
+                return totalFirmScore;
             }
 
-            return ((double) amount/counter);
+            }catch (SQLException e){
+                e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<SearchOverview> searchFirms2(String word) {
+        List<SearchOverview> currentSearch = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, logo_url, overall_score FROM saltyfirm.firm WHERE firm_name LIKE ?");
+
+            preparedStatement.setString(1,"%" + word + "%");
+            ResultSet resultset = preparedStatement.executeQuery();
+
+            while (resultset.next()){
+                SearchOverview searchOverview = new SearchOverview();
+
+                searchOverview.setFirmName(resultset.getString("firm_name"));
+                searchOverview.setFirmLogoUrl(resultset.getString("logo_url"));
+                searchOverview.setTotalScore(resultset.getDouble("overall_score"));
+
+                currentSearch.add(searchOverview);
+            }
+
+            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+
+
+        return currentSearch;
     }
+
+
 }
