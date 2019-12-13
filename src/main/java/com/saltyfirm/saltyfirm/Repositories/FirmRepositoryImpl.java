@@ -166,5 +166,29 @@ public class FirmRepositoryImpl implements FirmRepository {
         return currentSearch;
     }
 
+    public List<Firm> getAllFirms(){
+        List<Firm> firmList = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * from saltyfirm.firm");
+
+            while(resultSet.next()){
+                Firm firm = new Firm();
+                firm.setFirmId(resultSet.getInt("firm_id"));
+                firm.setFirmName(resultSet.getString("firm_name"));
+                firm.setFirmType(resultSet.getString("firm_type"));
+                firm.setOverallScore(resultSet.getDouble("overall_score"));
+                firm.setDescription(resultSet.getString("description"));
+                firm.setLogoURL(resultSet.getString("logo_url"));
+                firmList.add(firm);
+
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return firmList;
+    }
 
 }
