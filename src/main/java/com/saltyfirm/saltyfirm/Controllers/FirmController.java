@@ -105,10 +105,12 @@ public class FirmController {
 
     }
 
-    @GetMapping("/departmentList/{userId}")
+    @GetMapping("firmList/departmentList/{firmId}/{userId}")
     public String departmentList(Model model, @PathVariable int userId, @PathVariable int firmId) {
         List<Department> departments = departmentService.getDepartments(firmId);
+        User user = userService.findUserById(userId);
 
+        model.addAttribute("user", user);
         model.addAttribute("departmentList", departments);
         return "departmentList";
 
