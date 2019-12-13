@@ -10,7 +10,7 @@
     <br>
     <h3>Er du sikker på at du vil slette: </h3>
 
-    <form th:action="@{/firmList/deleteFirm/}+${firm.firmId}" method="post">
+    <form th:action="@{/firmList/deleteFirm/}+ ${firm.firmId} + '/' + ${user.userId}" method="post">
 
         <p th:text="${firm.firmName+ ' ' +  firm.firmType}"> </p>
         <input type="hidden" th:field="${firm.firmId}"/>
@@ -18,7 +18,7 @@
         <p><input type="submit" value="Slet Firma" /></p>
     </form>
     <br>
-    <a th:href="@{'/user'} + '/' + ${user.userId}"><button>Annuller</button></a>
+    <a th:href="@{'/firmList'} + '/' + ${user.userId}"><button>Annuller</button></a>
     <br>
 </div>
 </body>

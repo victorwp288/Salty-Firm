@@ -68,7 +68,7 @@ public class FirmController {
         return "department";
     }
 
-    @GetMapping("/firms/{firmId}/{userId}")
+    @GetMapping("/firmList/deleteFirm/{firmId}/{userId}")
     public String deleteForm(@PathVariable int userId, @PathVariable int firmId, Model model) {
 
         User user = userService.findUserById(userId);
@@ -80,8 +80,8 @@ public class FirmController {
         return "deleteFirm";
     }
 
-    @PostMapping("/firms/{firmId}/{userId}")
-    public String delete(Model model, @PathVariable int userId, @PathVariable int firmId) {
+    @PostMapping("/firmList/deleteFirm/{firmId}/{userId}")
+    public String postDeleteForm(Model model, @PathVariable int userId, @PathVariable int firmId) {
 
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
@@ -97,6 +97,8 @@ public class FirmController {
     @GetMapping("/firmList/{userId}")
     public String firmList(Model model, @PathVariable int userId) {
         List<Firm> firm = firmService.getAllFirms();
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
 
         model.addAttribute("firmlist", firm);
         return "firmList";

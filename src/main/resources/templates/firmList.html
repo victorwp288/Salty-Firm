@@ -34,8 +34,8 @@
                 <td><p th:text="${firm.description}"></p></td>
                 <td><p th:text="${firm.logoURL}"></p></td>
                 <td>
-                    <a class="glyphicon glyphicon-edit" th:href="${'editFirm/' + firm.firmId}"/>
-                    <a class="glyphicon glyphicon-remove" th:href="${'deleteFirm/' + firm.firmId}"/>
+                    <a class="glyphicon glyphicon-edit" th:href="${'editFirm/' + firm.firmId + '/' + user.userId}"/>
+                    <a class="glyphicon glyphicon-remove" th:href="${'deleteFirm/' + firm.firmId + '/' + user.userId}"/>
                 </td>
 
             </tr>
