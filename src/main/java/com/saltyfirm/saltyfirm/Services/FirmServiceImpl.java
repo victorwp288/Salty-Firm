@@ -38,4 +38,9 @@ public class FirmServiceImpl implements FirmService {
     public double getFirmTotalScore(int firmId) {
         return firmRepository.getFirmTotalScore(firmId);
     }
+
+    @Override
+    public List<Firm> getAllFirms(){
+        return firmRepository.getAllFirms();
+    }
 }

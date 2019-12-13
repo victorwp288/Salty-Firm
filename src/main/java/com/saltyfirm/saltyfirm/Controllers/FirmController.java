@@ -94,4 +94,11 @@ public class FirmController {
         return "redirect:/";
     }
 
+    @GetMapping("/firmList/{userId}")
+    public String firmList(Model model, @PathVariable int userId){
+        List<Firm> firm = firmService.getAllFirms();
+
+        model.addAttribute("firmlist", firm);
+        return "firmList";
+
 }
