@@ -164,15 +164,17 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT review_id, post, salary, position, pension_scheme, benefits, management, work_environment, \n" +
-                    "flexibility, employment_time, user_fk_id FROM saltyfirm.review " +
-                    "WHERE user_fk_id = ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time\n" +
+                    "\t\tFROM saltyfirm.review, saltyfirm.department, saltyfirm.firm\n" +
+                    "\t\tWHERE user_fk_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id;");
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 Review review = new Review();
-
+                review.setFirmName(resultSet.getString("firm_name"));
+                review.setDepartmentName(resultSet.getString("department_name"));
+                review.setReviewId(resultSet.getInt("review_id"));
                 review.setBenefits(resultSet.getInt("benefits"));
                 review.setSalary(resultSet.getInt("salary"));
                 review.setEmploymentTime(resultSet.getInt("employment_time"));
@@ -182,7 +184,6 @@ public class ReviewRepositoryImpl implements ReviewRepository {
                 review.setWorkEnvironment(resultSet.getInt("work_environment"));
                 review.setPosition(resultSet.getString("position"));
                 review.setPost(resultSet.getString("post"));
-                review.setReviewId(resultSet.getInt("review_id"));
                 userReviews.add(review);
             }
             connection.close();

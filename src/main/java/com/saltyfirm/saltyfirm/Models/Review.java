@@ -3,6 +3,8 @@ package com.saltyfirm.saltyfirm.Models;
 public class Review {
 
     private int reviewId;
+    private String departmentName;
+    private String firmName;
     private String post;
     private int salary;
     private String position;
@@ -34,6 +36,22 @@ public class Review {
 
     public void setReviewId(int reviewId) {
         this.reviewId = reviewId;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getFirmName() {
+        return firmName;
+    }
+
+    public void setFirmName(String firmName) {
+        this.firmName = firmName;
     }
 
     public String getPost() {
