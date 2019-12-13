@@ -38,7 +38,9 @@
     <span th:if="${user.privileges == 'admin'}">
         <a class="active" th:href="@{'/'}">Salty Firm</a>
         <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Profil</a>
-        <a th:href="@{'/editUser'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Brugerliste</a>
+        <a th:href="@{'/userList'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Brugerliste</a>
+        <a th:href="@{'/firmList'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Firmliste</a>
+
 
         <td  th:text="'Logget ind som: '" ></td>
         <td ></td>

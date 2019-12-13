@@ -4,7 +4,7 @@ import com.saltyfirm.saltyfirm.Models.Department;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.*;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.Aes;
+
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -44,10 +44,10 @@ public class Test {
         // FirmRepositoryImpl f = new FirmRepositoryImpl();
         // System.out.println(f.searchFirms("alle").toString());
 
-        Aes a = new Aes();
+        //Aes a = new Aes();
         //System.out.println(a.hashPassword("mypassword"));
        // System.out.println(a.passwordExists(user));
-        System.out.println(a.usernameExists("frækfyr"));
+      //  System.out.println(a.usernameExists("frækfyr"));
 
 
         UserRepositoryImpl urr = new UserRepositoryImpl();
