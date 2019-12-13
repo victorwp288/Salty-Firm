@@ -1,5 +1,6 @@
 package com.saltyfirm.saltyfirm.Controllers;
 
+import com.saltyfirm.saltyfirm.Models.Firm;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.DepartmentRepository;
@@ -38,6 +39,7 @@ public class ReviewController {
 
         log.info("Getting review form in " + this.getClass());
         User user = userRepository.findUserById(userId);
+
 
         model.addAttribute("user", user);
         model.addAttribute("review", new Review());
