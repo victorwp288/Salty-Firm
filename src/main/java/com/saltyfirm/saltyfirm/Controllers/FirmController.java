@@ -109,7 +109,9 @@ public class FirmController {
     public String departmentList(Model model, @PathVariable int userId, @PathVariable int firmId) {
         List<Department> departments = departmentService.getDepartments(firmId);
         User user = userService.findUserById(userId);
+        Firm firm = firmService.findFirmById(firmId);
 
+        model.addAttribute("firm", firm);
         model.addAttribute("user", user);
         model.addAttribute("departmentList", departments);
         return "departmentList";
