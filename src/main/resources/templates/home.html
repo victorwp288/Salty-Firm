@@ -14,7 +14,7 @@
 
     <span th:if="${user.privileges == null}">
         <form th:action="@{/}"  method="post">
-            <a class="active" th:href="@{'/'}">Salty Firm</a>
+            <a class="Logo" th:href="@{'/'}">Salty Firm</a>
             <p>Username</p>
             <input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" required>
             <p>Password</p>
