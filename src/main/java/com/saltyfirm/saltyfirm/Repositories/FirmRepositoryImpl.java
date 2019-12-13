@@ -166,6 +166,7 @@ public class FirmRepositoryImpl implements FirmRepository {
         return currentSearch;
     }
 
+    @Override
     public List<Firm> getAllFirms(){
         List<Firm> firmList = new ArrayList<>();
         try {

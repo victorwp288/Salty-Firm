@@ -13,5 +13,6 @@ public interface FirmRepository {
     int editFirm(Firm firm);
     double getFirmTotalScore(int firmId);
     List<SearchOverview> searchFirms2(String word);
+    List<Firm> getAllFirms();
 
 }

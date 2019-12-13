@@ -4,6 +4,7 @@ import com.saltyfirm.saltyfirm.Models.Department;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.*;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.Aes;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ public class Test {
 
         UserRepositoryImpl ur = new UserRepositoryImpl();
         User user = new User("Frækfyr","1234", "Peter", "Sørensen", 76859485, "m", "01-02-1985","Leder","frækfyr@hotmail.com","Danmark","1");
-        ur.createUser(user);
-        System.out.println(user.getBirthdate());
+        //ur.createUser(user);
+        //System.out.println(user.getBirthdate());
         // System.out.println(user.getPrivileges());
-        System.out.println(ur.getAllUsers().toString());
+        //System.out.println(ur.getAllUsers().toString());
         // User user1 = ur.findUserById(3);
         // user1.setFirstname("TESTER");
         // ur.editUser(user1);
@@ -43,9 +44,18 @@ public class Test {
         // FirmRepositoryImpl f = new FirmRepositoryImpl();
         // System.out.println(f.searchFirms("alle").toString());
 
-        ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
+        Aes a = new Aes();
+        //System.out.println(a.hashPassword("mypassword"));
+       // System.out.println(a.passwordExists(user));
+        System.out.println(a.usernameExists("frækfyr"));
+
+
+        UserRepositoryImpl urr = new UserRepositoryImpl();
+        System.out.println(urr.getAllUsers().toString());
+
+       // ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
         // Review review = new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 )
           //      rr.createReview(new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 ), 1, 3);
-        System.out.println(rr.fetchUserReview(2));
+        //System.out.println(rr.fetchUserReview(2));
     }
 }
