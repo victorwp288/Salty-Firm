@@ -5,6 +5,8 @@ import com.saltyfirm.saltyfirm.Repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
@@ -24,5 +26,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public int deleteReview(int reviewId, int departmentId) {
         return reviewRepository.deleteReview(reviewId, departmentId);
+    }
+
+    @Override
+    public List<Review> fetchUserReview(int userId) {
+        return reviewRepository.fetchUserReview(userId);
     }
 }

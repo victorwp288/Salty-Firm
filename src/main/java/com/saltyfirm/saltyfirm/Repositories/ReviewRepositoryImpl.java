@@ -174,6 +174,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
                 Review review = new Review();
 
                 review.setBenefits(resultSet.getInt("benefits"));
+                review.setSalary(resultSet.getInt("salary"));
                 review.setEmploymentTime(resultSet.getInt("employment_time"));
                 review.setFlexibility(resultSet.getInt("flexibility"));
                 review.setManagement(resultSet.getInt("management"));

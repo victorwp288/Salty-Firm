@@ -43,8 +43,9 @@ public class Test {
         // FirmRepositoryImpl f = new FirmRepositoryImpl();
         // System.out.println(f.searchFirms("alle").toString());
 
-        //ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
+        ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
         // Review review = new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 )
           //      rr.createReview(new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 ), 1, 3);
+        System.out.println(rr.fetchUserReview(2));
     }
 }

@@ -93,8 +93,19 @@
             <tbody>
             <tr th:each="review : ${reviews}">
                 <td><p th:text="${review.post}"></p></td>
-                <td><p th:text="${review.salary}"></p></td>
-                <td><p th:text="${review.employmentTime}"></p></td>
+                <td th:switch="${review.salary}">
+                    <span th:case="'1'">Under 10.000 kr.</span>
+                    <span th:case="'2'">10.000 - 15.000 kr.</span>
+                    <span th:case="'3'">15.000 - 20.000 kr.</span>
+                    <span th:case="'4'">20.000 - 25.000 kr.</span>
+                    <span th:case="'5'">25.000 - 30.000 kr.</span>
+                    <span th:case="'6'">30.000 - 35.000 kr.</span>
+                    <span th:case="'7'">35.000 - 40.000 kr.</span>
+                    <span th:case="'8'">40.000 - 45.000 kr.</span>
+                    <span th:case="'9'">45.000 - 50.000 kr.</span>
+                    <span th:case="'10'">Over 50.000 kr.</span>
+                </td>
+                <td><p th:text="${review.employmentTime}+' måneder'"></p></td>
                 <td><p th:text="${review.position}"></p></td>
                 <td><p th:text="${review.PensionScheme} + ' / 10'"></p></td>
                 <td><p th:text="${review.benefits} + ' / 10'"></p></td>

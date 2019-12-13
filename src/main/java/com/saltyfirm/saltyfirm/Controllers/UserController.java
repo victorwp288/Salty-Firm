@@ -1,6 +1,8 @@
 package com.saltyfirm.saltyfirm.Controllers;
 
+import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
+import com.saltyfirm.saltyfirm.Services.ReviewService;
 import com.saltyfirm.saltyfirm.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +12,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    ReviewService reviewService;
 
     @GetMapping("/createUser")
     public String newUser(Model model) {
@@ -33,6 +39,8 @@ public class UserController {
     public String userProfile(Model model, @PathVariable int userId) {
         User user = userService.findUserById(userId);
         model.addAttribute(user);
+        List<Review> review = reviewService.fetchUserReview(userId);
+        model.addAttribute("reviews", review);
         return "user";
     }
 
