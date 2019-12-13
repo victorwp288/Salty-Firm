@@ -58,4 +58,13 @@ public class FirmController {
         model.addAttribute("department", departmentScore);
         return "department";
     }
+
+    @GetMapping("/firmList/{userId}")
+    public String firmList(Model model, @PathVariable int userId){
+        List<Firm> firm = firmRepository.getAllFirms();
+
+        model.addAttribute("firmlist", firm);
+        return "firmList";
+    }
+
 }
