@@ -1,5 +1,6 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
+import com.saltyfirm.saltyfirm.Models.Firm;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,44 @@ import java.util.List;
 
 @Service
 public class ReviewRepositoryImpl implements ReviewRepository {
+
+    @Override
+    public Review findReviewById(int reviewId) {
+
+        try {
+            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, "+
+                            "review_id, post, salary, position, pension_scheme, benefits, management, work_environment, "+
+                            "flexibility, employment_time FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm" +
+                            "WHERE review_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id;");
+
+            preparedStatement.setInt(1, reviewId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                Review review = new Review();
+
+                review.setReviewId(resultSet.getInt("review_id"));
+                review.setDepartmentName(resultSet.getString("department_name"));
+                review.setFirmName(resultSet.getString("firm_name"));
+                review.setPost(resultSet.getString("post"));
+                review.setSalary(resultSet.getInt("salary"));
+                review.setPosition(resultSet.getString("position"));
+                review.setPensionScheme(resultSet.getInt("pension_scheme"));
+                review.setBenefits(resultSet.getInt("benefits"));
+                review.setManagement(resultSet.getInt("management"));
+                review.setWorkEnvironment(resultSet.getInt("work_environment"));
+                review.setFlexibility(resultSet.getInt("flexibility"));
+                review.setEmploymentTime(resultSet.getInt("employment_time"));
+                return review;
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public int createReview(Review review, int userId, int departmentId) {
@@ -109,7 +148,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
                                                                 "SET department_score = \n" +
                                                                 "  (SELECT\n" +
                                                                 "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /\n" +
-                                                                "    (SELECT COUNT(benefits)) AS total_total_score\n" +
+                                                                "    (SELECT COUNT(review_id)) AS total_total_score\n" +
                                                                 "    FROM review\n" +
                                                                 "    WHERE department_fk_id = department_id) \n" +
                                                                 "WHERE department_id = ?;");

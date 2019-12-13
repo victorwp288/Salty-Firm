@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ReviewRepository {
 
+    Review findReviewById(int reviewId);
     int createReview(Review review, int userId, int departmentId);
     int editReview(Review review, int departmentId);
     int deleteReview(int reviewId, int departmentId);

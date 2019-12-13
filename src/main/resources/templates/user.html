@@ -47,8 +47,16 @@
             <span th:case="'null'">Ikke oplyst</span>
         </td>
     </tr>
+    <tr>
+        <td><p>Instillinger</p></td>
+        <td>
+            <a th:href="@{/user/editUser/}+${user.userId}"><button type="button">Rediger bruger</button></a>
+            <a th:href="@{/user/deleteUser/}+${user.userId}"><button type="button" >Slet bruger</button></a>
+        </td>
+    </tr>
 </table>
 <h1>Oversigt over anmeldelser</h1>
+
 <table class="table table-striped table-hover table-bordered">
     <thead>
     <tr>
@@ -56,12 +64,12 @@
         <th>Afdeling</th>
         <th>Kommentar</th>
         <th>Løntrin</th>
-        <th>Tid</th>
+        <th>Arbejdstider</th>
         <th>Stilling</th>
-        <th>Pension</th>
-        <th>Fordele</th>
-        <th>Ledelse</th>
-        <th>Arbejds miljø</th>
+        <th>Pensionsordning</th>
+        <th>Personale goder</th>
+        <th>Ledelsen</th>
+        <th>Arbejdsmiljø</th>
         <th>Flexibilitet</th>
         <th>Instillinger</th>
     </tr>

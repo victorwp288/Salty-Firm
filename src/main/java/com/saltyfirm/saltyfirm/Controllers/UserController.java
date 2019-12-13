@@ -44,14 +44,14 @@ public class UserController {
         return "user";
     }
 
-    @GetMapping("/editUser/{userId}")
+    @GetMapping("/user/editUser/{userId}")
     public String editUser(Model model, @PathVariable int userId) {
         User user = userService.findUserById(userId);
         model.addAttribute("user",user);
         return "editUser";
     }
 
-    @PostMapping("/editUser/")
+    @PostMapping("/user/editUser/")
     public String updateUser(@ModelAttribute User user, Model model) {
         userService.editUser(user);
         return "redirect:/user/{userId}";
@@ -60,21 +60,16 @@ public class UserController {
 
     @GetMapping("/user/deleteUser/{userId}")
     public String deleteForm(@PathVariable int userId, Model model) {
-
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-
         return "deleteUser";
     }
 
     @PostMapping("/user/deleteUser/{userId}")
     public String delete(Model model, @PathVariable int userId){
-
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-
         userService.deleteUser(userId);
-
         return "redirect:/";
     }
 
@@ -86,4 +81,34 @@ public class UserController {
         model.addAttribute("userlist", users);
         return "userList";
     }
+    @GetMapping("/userList/deleteUser/{userId}/{adminId}")
+    public String deleteForm(@PathVariable int userId, @PathVariable int adminId, Model model) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        User admin = userService.findUserById(adminId);
+        model.addAttribute("admin", admin);
+        return "deleteUser";
+    }
+
+    @PostMapping("/userList/deleteUser/{userId}/{adminId}")
+    public String delete(Model model, @PathVariable int userId, @PathVariable int adminId){
+        userService.deleteUser(userId);
+        User admin = userService.findUserById(adminId);
+        model.addAttribute("admin", admin);
+        return "redirect:/userList/{adminId}";
+    }
+
+    @GetMapping("/userList/editUser/{userId}")
+    public String editAdminForm(@PathVariable int userId, Model model) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        return "editUser";
+    }
+
+    @PostMapping("/userList/editUser/{userId}")
+    public String updateUser(@ModelAttribute User user){
+        userService.editUser(user);
+        return "redirect:/user/{userId}";
+    }
+
 }

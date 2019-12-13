@@ -65,4 +65,20 @@ public class ReviewController {
         // Ikke færdig!!
         return "editReview";
     }
+
+    @GetMapping("/deleteReview/{userId}/{reviewId}")
+    public String deleteReview(Model model, @PathVariable int userId, @PathVariable int reviewId) {
+        User user = userRepository.findUserById(userId);
+        model.addAttribute("user", user);
+        Review review = reviewRepository.findReviewById(reviewId);
+        return "deleteReview";
+    }
+
+    @PostMapping("/deleteReview/{userId}/{reviewId}")
+    public String reviewdeleted(Model model, @PathVariable int userId, @PathVariable int reviewId) {
+        User user = userRepository.findUserById(userId);
+        model.addAttribute("user", user);
+        // reviewRepository.deleteReview(reviewId, departmentId);
+        return "deleteReview";
+    }
 }
