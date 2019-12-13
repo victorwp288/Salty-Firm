@@ -168,3 +168,18 @@ VALUES (true, 1, 1),
        (false, 1, 11),
        (false, 1, 12),
        (false, 1, 12);
+
+UPDATE saltyfirm.department
+SET department_score =
+	(SELECT
+		(SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /
+		(SELECT COUNT(benefits)) AS total_total_score
+		FROM review
+		WHERE department_fk_id = department_id)
+WHERE department_id > 0;
+
+UPDATE saltyfirm.firm
+SET overall_score = (SELECT AVG(department_score)
+							FROM department
+							WHERE firm_fk_id = firm_id)
+WHERE firm_id > 0;
