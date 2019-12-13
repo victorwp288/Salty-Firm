@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Delete User</title>
 </head>
 <body>
+<h1>SLET BRUGER</h1>
 
+<div class="delete">
+    <br>
+    <h3>Er du sikker på at du vil slette: </h3>
+
+    <form th:action="@{/user/deleteUser/}+${user.userId}" method="post">
+        <b th:text="${user.username}"></b>
+        <p th:text="${user.firstname + ' ' +  user.lastname}"> </p>
+        <input type="hidden" th:field="${user.userId}"/>
+        <br>
+        <p><input type="submit" value="JA" /></p>
+    </form>
+    <br>
+    <a th:href="@{'/users'}+ '/' + ${user.userId}"><button>Annuller</button></a>
+    <br>
+</div>
 </body>
 </html>

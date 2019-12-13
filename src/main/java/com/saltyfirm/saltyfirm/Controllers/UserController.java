@@ -56,4 +56,25 @@ public class UserController {
         userService.editUser(user);
         return "redirect:/user/{userId}";
     }
+
+
+    @GetMapping("/user/deleteUser/{userId}")
+    public String deleteForm(@PathVariable int userId, Model model) {
+
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+
+        return "deleteUser";
+    }
+
+    @PostMapping("/user/deleteUser/{userId}")
+    public String delete(Model model, @PathVariable int userId){
+
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+
+        userService.deleteUser(userId);
+
+        return "redirect:/";
+    }
 }
