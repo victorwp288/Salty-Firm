@@ -28,7 +28,7 @@
             <tbody>
             <tr th:each="firm : ${firmlist}">
                 <td><p th:text="${firm.firmId}"></p></td>
-                <td><a th:text="${firm.firmName}"></a></td>
+                <td><a th:text="${firm.firmName}" th:href="@{departmentList/} + ${firm.firmId} + '/' + ${user.userId}"></a></td>
                 <td><p th:text="${firm.firmType}"></p></td>
                 <td><p th:text="${firm.overallScore}"></p></td>
                 <td><p th:text="${firm.description}"></p></td>
