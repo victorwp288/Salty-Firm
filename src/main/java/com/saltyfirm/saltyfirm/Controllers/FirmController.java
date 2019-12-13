@@ -33,7 +33,7 @@ public class FirmController {
 
 
     @GetMapping("/firms/{firmId}")
-    public String firms(@PathVariable int firmId, Model model){
+    public String firms(@PathVariable int firmId, Model model) {
 
         List<Department> department = departmentService.getDepartments(firmId);
 
@@ -54,7 +54,7 @@ public class FirmController {
      */
 
     @GetMapping("/department/{firmId}/{departmentId}")
-    public String departments(@PathVariable int departmentId, @PathVariable int firmId, Model model){
+    public String departments(@PathVariable int departmentId, @PathVariable int firmId, Model model) {
 
         Department department = departmentService.findDepartmentById(departmentId);
         Firm firms = firmService.findFirmById(firmId);
@@ -69,7 +69,7 @@ public class FirmController {
     }
 
     @GetMapping("/firms/{firmId}/{userId}")
-    public String deleteForm(@PathVariable int userId,@PathVariable int firmId , Model model) {
+    public String deleteForm(@PathVariable int userId, @PathVariable int firmId, Model model) {
 
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
@@ -81,7 +81,7 @@ public class FirmController {
     }
 
     @PostMapping("/firms/{firmId}/{userId}")
-    public String delete(Model model, @PathVariable int userId, @PathVariable int firmId){
+    public String delete(Model model, @PathVariable int userId, @PathVariable int firmId) {
 
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
@@ -95,10 +95,11 @@ public class FirmController {
     }
 
     @GetMapping("/firmList/{userId}")
-    public String firmList(Model model, @PathVariable int userId){
+    public String firmList(Model model, @PathVariable int userId) {
         List<Firm> firm = firmService.getAllFirms();
 
         model.addAttribute("firmlist", firm);
         return "firmList";
 
+    }
 }
