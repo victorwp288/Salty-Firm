@@ -14,13 +14,17 @@
 
     <span th:if="${user.privileges == null}">
         <form th:action="@{/}"  method="post">
-            <a class="Logo" th:href="@{'/'}">Salty Firm</a>
-            <p>Username</p>
-            <input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" required>
-            <p>Password</p>
-            <input type="password" placeholder="password1234" th:field="${user.password}" autocomplete="off" required>
-            <input type="submit" th:value="Login"/><br></p>
-            <a th:href="${'/createUser'}"><button type="button">Opret bruger</button></a>
+            <tr>
+                <td><a class="Logo" th:href="@{'/'}" th:text="'Salty Firm'"></a></td>
+                <div style="text-align: right">
+                    <td th:text="'Username'"></td>
+                    <td><input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" required></td>
+                    <td th:text="'Password'"></td>
+                    <td><input type="password" placeholder="password1234" th:field="${user.password}" autocomplete="off" required></td>
+                    <td><input type="submit" th:value="Login"/></td>
+                    <td><a th:href="${'/createUser'}"><button type="button">Opret bruger</button></a></td>
+                </div>
+            </tr>
         </form>
     </span>
 
