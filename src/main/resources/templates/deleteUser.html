@@ -16,10 +16,10 @@
         <p th:text="${user.firstname + ' ' +  user.lastname}"> </p>
         <input type="hidden" th:field="${user.userId}"/>
         <br>
-        <p><input type="submit" value="JA" /></p>
+        <p><input type="submit" value="Delete user" /></p>
     </form>
     <br>
-    <a th:href="@{'/users'}+ '/' + ${user.userId}"><button>Annuller</button></a>
+    <a th:href="@{'/user'} + '/' + ${user.userId}"><button>Annuller</button></a>
     <br>
 </div>
 </body>

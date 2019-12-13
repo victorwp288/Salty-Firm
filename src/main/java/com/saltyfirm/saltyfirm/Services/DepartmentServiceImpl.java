@@ -55,4 +55,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         return departmentRepository.getAllReviews(departmentId);
     }
+
+    public Review getRealDepartmentScores(int departmentId) {
+        return departmentRepository.getRealDepartmentScores(departmentId);
+    }
 }
