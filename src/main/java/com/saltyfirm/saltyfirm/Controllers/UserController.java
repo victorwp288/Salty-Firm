@@ -77,4 +77,13 @@ public class UserController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/userList/{userId}")
+    public String userList(Model model, @PathVariable int userId) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("userlist", users);
+        return "userList";
+    }
 }

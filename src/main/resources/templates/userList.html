@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/Topnavigationsbar.css}" href="static/css/Topnavigationsbar.css" rel="stylesheet" type="text/css" media="screen"/>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>SaltyFirm</title>
 </head>
 <body>
+<h1>Oversigt over brugere</h1>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>Brugernavn</th>
+        <th>Navn</th>
+        <th>Telefon Nummer</th>
+        <th>Fødselsdag</th>
+        <th>Email</th>
+        <th>Uddannelse</th>
+        <th>Nationalitet</th>
+        <th>Brugertype</th>
+        <th>Instillinger</th>
+    </tr>
+    </thead>
 
+    <tbody>
+    <tr th:each="current : ${userlist}">
+        <td><p th:text="${current.username}"></p></td>
+        <td><p th:text="${current.firstname}+' '+${current.lastname}"></p></td>
+        <td><p th:text="${current.phoneNumber}"></p></td>
+        <td><p th:text="${current.birthdate}"></p></td>
+        <td><p th:text="${current.mail}"></p></td>
+        <td><p th:text="${current.education}"></p></td>
+        <td><p th:text="${current.nationality}"></p></td>
+        <td><p th:text="${current.privileges}"></p></td>
+        <td>
+            <a th:href="@{/editUser/}+${user.userId}+'/'+${current.userId}"><button type="button">Rediger</button></a>
+            <a th:href="@{/deleteUser/}+${user.userId}+'/'+${current.userId}"><button type="button" >Slet</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
 </body>
 </html>
