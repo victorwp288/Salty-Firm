@@ -102,4 +102,13 @@ public class FirmController {
         return "firmList";
 
     }
+
+    @GetMapping("/departmentList/{userId}")
+    public String departmentList(Model model, @PathVariable int userId, @PathVariable int firmId) {
+        List<Department> departments = departmentService.getDepartments(firmId);
+
+        model.addAttribute("departmentList", departments);
+        return "departmentList";
+
+    }
 }
