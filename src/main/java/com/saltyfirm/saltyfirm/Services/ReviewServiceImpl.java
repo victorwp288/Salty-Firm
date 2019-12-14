@@ -29,8 +29,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public int deleteReview(int reviewId, int departmentId) {
-        return reviewRepository.deleteReview(reviewId, departmentId);
+    public int deleteReview(int reviewId) {
+        return reviewRepository.deleteReview(reviewId);
     }
 
     @Override

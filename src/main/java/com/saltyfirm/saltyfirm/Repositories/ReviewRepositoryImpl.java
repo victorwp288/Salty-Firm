@@ -135,12 +135,16 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public int deleteReview(int reviewId, int departmentId) {
-
+    public int deleteReview(int reviewId) {
+        int departmentId;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.review WHERE review_id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT department_id FROM saltyfirm.department, saltyfirm.review WHERE department_id = department_fk_id AND review_id = ?");
+            preparedStatement.setInt(1, reviewId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            departmentId = resultSet.getInt(1);
 
+            preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.review WHERE review_id = ?");
             preparedStatement.setInt(1, reviewId);
             preparedStatement.executeUpdate();
 

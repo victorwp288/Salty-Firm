@@ -53,7 +53,7 @@ public class ReviewController {
 
         reviewRepository.createReview(review, userId, departmentId);
 
-        return "redirect:/{userId}/{departmentId}";
+        return "redirect:/{userId}/";
     }
 
     @GetMapping("/editreview/{userId}/{reviewId}")
@@ -78,7 +78,7 @@ public class ReviewController {
     public String reviewdeleted(Model model, @PathVariable int userId, @PathVariable int reviewId) {
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
-        // reviewRepository.deleteReview(reviewId, departmentId);
+        reviewRepository.deleteReview(reviewId);
         return "deleteReview";
     }
 }
