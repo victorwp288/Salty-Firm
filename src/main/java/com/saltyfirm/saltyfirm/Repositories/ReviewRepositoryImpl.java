@@ -252,9 +252,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time\n" +
-                    "\t\tFROM saltyfirm.review, saltyfirm.department, saltyfirm.firm\n" +
-                    "\t\tWHERE user_fk_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time " +
+                    "FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm "+
+                    "WHERE user_fk_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id");
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 

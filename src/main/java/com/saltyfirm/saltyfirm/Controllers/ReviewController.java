@@ -44,8 +44,10 @@ public class ReviewController {
     }
 
     @PostMapping("/createReview/{userId}")
-    public String createReview(@ModelAttribute Review review, @PathVariable int userId){
+    public String createReview(Model model, @ModelAttribute Review review, @PathVariable int userId){
         log.info("Submitting review in " + this.getClass());
+        User user = userRepository.findUserById(userId);
+        model.addAttribute("user", user);
         reviewRepository.createReview(review, userId);
         return "redirect:/{userId}/";
     }
