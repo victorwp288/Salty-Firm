@@ -19,8 +19,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public int createReview(Review review, int userId, int departmentId) {
-        return reviewRepository.createReview(review, userId, departmentId);
+    public int createReview(Review review, int userId) {
+        return reviewRepository.createReview(review, userId);
     }
 
     @Override

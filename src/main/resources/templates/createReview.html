@@ -7,7 +7,6 @@
 </head>
 <body>
 
-
     <span th:if="${user.privileges == 'user'}">
         <a class="active" th:href="@{'/'}">Salty Firm</a>
         <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Profil</a>
@@ -18,138 +17,82 @@
         <a th:href="@{'/'}" class="btn btn-lg btn-default">Log ud</a>
     </span>
 
-<table>
-    <tr>
-        <th><p>Firma Navn</p></th>
-        <td><input type="text" th:field="${user.username}" placeholder="Firma navn" onfocus="this.placeholder=''" onblur="this.placeholder='Firma navn'" required/></td>
-    </tr>
-    <tr>
-        <th><p>Afdeling</p></th>
-        <td><input type="password" th:field="${user.password}" placeholder="Afdeling" onfocus="this.placeholder=''" onblur="this.placeholder='Afdeling'" required/></td>
-    </tr>
-    <tr>
-        <th><p>Stilling</p></th>
-        <td><input type="text" th:field="${user.firstname}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" required/></td>
-    </tr>
+    <form th:action="@{/createReview/}+${user.userId}" method="post">
+        <table>
+            <tr>
+                <th><p>Firmaets Navn</p></th>
+                <td><input type="text" th:field="${review.firmName}" placeholder="Firma navn" onfocus="this.placeholder=''" onblur="this.placeholder='Firma navn'" required/></td>
+            </tr>
+            <tr>
+                <th><p>Afdelingens Navn</p></th>
+                <td><input type="text" th:field="${review.departmentName}" placeholder="Afdeling" onfocus="this.placeholder=''" onblur="this.placeholder='Afdeling'" required/></td>
+            </tr>
+            <tr>
+                <th><p>Stilling</p></th>
+                <td><input type="text" th:field="${review.position}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" required/></td>
+            </tr>
+            <tr>
+                <th><p>Ansættelsesperiode (I antal måneder)</p></th>
+                <td><input type="text" th:field="${review.employmentTime}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" required/></td>
+            </tr>
+            <tr>
+                <th><p>Løn</p></th>
+                <td>
+                    <select th:field="${review.salary}">
+                        <option value="1">10.000 eller mindre </option>
+                        <option value="2">10.000 - 15.000</option>
+                        <option value="3">15.000 - 20.000</option>
+                        <option value="4">20.000 - 25.000</option>
+                        <option value="5">25.000 - 30.000</option>
+                        <option value="6">30.000 - 35.000</option>
+                        <option value="7">35.000 - 40.000</option>
+                        <option value="8">40.000 - 45.000</option>
+                        <option value="9">50.000 - 55.000</option>
+                        <option value="10">60.000 eller mere</option>
+                    </select>
+                </td>
+            </tr>
+            <th><b>Bedømmelser:</b></th>
+            <tr>
+                <th><p>Pensionsordning</p></th>
+                <td>
+                    <input th:field="${review.pensionScheme}" type="number" name="rating" min="1" max="10" step="1" value="5" required/>
+                </td>
+            </tr>
+            <tr>
+                <th><p>Arbejdsmiljø</p></th>
+                <td>
+                    <input th:field="${review.workEnvironment}" type="number" name="rating" min="1" max="10" step="1" required/>
+                </td>
+            </tr>
 
-
-    <h1>Indsæt ansættelses periode</h1>
-
-    <tr>
-        <th><p>Løn</p></th>
-        <td>
-            <select th:field="${user.gender}">
-                <option value="Ikke oplyst">Ikke oplyst</option>
-                <option value="1">10.000 eller mindre </option>
-                <option value="2">10.000 - 15.000</option>
-                <option value="3">15.000 - 20.000</option>
-                <option value="4">20.000 - 25.000</option>
-                <option value="5">25.000 - 30.000</option>
-                <option value="6">30.000 - 35.000</option>
-                <option value="7">35.000 - 40.000</option>
-                <option value="8">40.000 - 45.000</option>
-                <option value="9">50.000 - 55.000</option>
-                <option value="10">60.000 eller mere</option>
-            </select>
-        </td>
-    </tr>
-    <th><b>Rating:</b></th>
-    <tr>
-        <th><p>Pensions ordning</p></th>
-        <td>
-            <select th:field="${user.gender}">
-                <option value="Ikke oplyst">Ikke oplyst</option>
-                <option value="1">Har ingen</option>
-                <option value="2"></option>
-                <option value="3">Pensions ordningen er dårlig</option>
-                <option value="4"></option>
-                <option value="5">Hverken god eller dårlig</option>
-                <option value="6">Rimelig</option>
-                <option value="7"></option>
-                <option value="8">Bedre end de flestes</option>
-                <option value="9"></option>
-                <option value="10">Virkelig god</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <th><p>Arbejdsmiljø</p></th>
-        <td>
-            <select th:field="${user.gender}">
-                <option value="Ikke oplyst">Ikke oplyst</option>
-                <option value="1">Virkelig dårlig</option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5">Hverken god eller dårlig</option>
-                <option value="6"></option>
-                <option value="7"></option>
-                <option value="8"></option>
-                <option value="9"></option>
-                <option value="10">Virkelig god</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <th><p>Arbejdsfordele</p></th>
-        <td>
-            <select th:field="${user.gender}">
-                <option value="Ikke oplyst">Ikke oplyst</option>
-                <option value="1">Har ingen</option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5">Hverken god eller dårlig</option>
-                <option value="6"></option>
-                <option value="7"></option>
-                <option value="8"></option>
-                <option value="9"></option>
-                <option value="10">Virkelig gode arbejdsfordele</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <th><p>Arbejds flexibilitet</p></th>
-        <td>
-            <select th:field="${user.gender}">
-                <option value="Ikke oplyst">Ikke oplyst</option>
-                <option value="1">Virkelig dårlig</option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5">Hverken god eller dårlig</option>
-                <option value="6"></option>
-                <option value="7"></option>
-                <option value="8"></option>
-                <option value="9"></option>
-                <option value="10">Virkelig god</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <th><p>Ledelsen</p></th>
-        <td>
-            <select th:field="${user.gender}">
-                <option value="Ikke oplyst">Ikke oplyst</option>
-                <option value="1">Virkelig dårlig</option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5">Hverken god eller dårlig</option>
-                <option value="6"></option>
-                <option value="7"></option>
-                <option value="8"></option>
-                <option value="9"></option>
-                <option value="10">Virkelig god</option>
-            </select>
-        </td>
-    </tr>
-
-</table>
-
+            <tr>
+                <th><p>Personalegoder</p></th>
+                <td>
+                    <input th:field="${review.benefits}" type="number" name="rating" min="1" max="10" step="1" required/>
+                </td>
+            </tr>
+            <tr>
+                <th><p>Flexibilitet</p></th>
+                <td>
+                    <input th:field="${review.flexibility}" type="number" name="rating" min="1" max="10" step="1" required/>
+                </td>
+            </tr>
+            <tr>
+                <th><p>Ledelsen</p></th>
+                <td>
+                    <input th:field="${review.management}" type="number" name="rating" min="1" max="10" step="1" required/>
+                </td>
+            </tr>
+            <tr>
+                <th><p>Uddybbende kommentarer</p></th>
+                <td>
+                    <textarea th:field="${review.post}" rows="4" cols="50"></textarea>
+                </td>
+            </tr>
+        </table>
+        <p><input type="submit" value="Opret Anmeldelse" /></p>
+    </form>
+    <a th:href="'/'+${user.userId}"><button>Annuller</button></a>
 </body>
 </html>

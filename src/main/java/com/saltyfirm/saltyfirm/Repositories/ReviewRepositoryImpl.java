@@ -27,7 +27,6 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
             if(resultSet.next()) {
                 Review review = new Review();
-
                 review.setReviewId(resultSet.getInt("review_id"));
                 review.setDepartmentName(resultSet.getString("department_name"));
                 review.setFirmName(resultSet.getString("firm_name"));
@@ -51,11 +50,57 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public int createReview(Review review, int userId, int departmentId) {
-
+    public int createReview(Review review, int userId) {
+        int departmentId = 0;
+        int firmId = 0;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.review (post, salary, position, pension_scheme, benefits," +
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_id FROM saltyfirm.firm WHERE firm_name = ?");
+            preparedStatement.setString(1,review.getFirmName());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                firmId = resultSet.getInt("firm_id");
+                preparedStatement = connection.prepareStatement("SELECT department_id FROM saltyfirm.department WHERE department_name = ?");
+                preparedStatement.setString(1,review.getDepartmentName());
+                resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    departmentId = resultSet.getInt("department_id");
+                } else {
+                    preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.department (department_name, firm_fk_id) VALUES (?,?)");
+                    preparedStatement.setString(1, review.getDepartmentName());
+                    preparedStatement.setInt(2, firmId);
+                    preparedStatement.executeUpdate();
+                    preparedStatement = connection.prepareStatement("SELECT department_id FROM saltyfirm.department WHERE department_name = ?");
+                    preparedStatement.setString(1, review.getDepartmentName());
+                    resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()) {
+                        departmentId = resultSet.getInt("department_id");
+                    }
+                }
+            } else {
+                preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.firm (firm_name) VALUES (?)");
+                preparedStatement.setString(1, review.getFirmName());
+                preparedStatement.executeUpdate();
+                preparedStatement = connection.prepareStatement("SELECT firm_id FROM saltyfirm.firm WHERE firm_name = ?");
+                preparedStatement.setString(1,review.getFirmName());
+                resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()) {
+                    firmId = resultSet.getInt("firm_id");
+                    preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.department (department_name, firm_fk_id) VALUES (?,?)");
+                    preparedStatement.setString(1, review.getDepartmentName());
+                    preparedStatement.setInt(2,firmId);
+                    preparedStatement.executeUpdate();
+                    preparedStatement = connection.prepareStatement("SELECT department_id FROM saltyfirm.department, saltyfirm.firm WHERE department_name = ? AND firm_fk_id = ?;");
+                    preparedStatement.setString(1,review.getDepartmentName());
+                    preparedStatement.setInt(2,firmId);
+                    resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()) {
+                        departmentId = resultSet.getInt("department_id");
+                    }
+                }
+            }
+            resultSet.close();
+            preparedStatement = connection.prepareStatement("INSERT INTO saltyfirm.review (post, salary, position, pension_scheme, benefits," +
                     "management, work_environment, flexibility, employment_time, user_fk_id, department_fk_id) " +
                     "VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
@@ -70,18 +115,18 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             preparedStatement.setInt(9, review.getEmploymentTime());
             preparedStatement.setInt(10, userId);
             preparedStatement.setInt(11, departmentId);
-
             preparedStatement.executeUpdate();
 
-            preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department \n" +
-                                                                "SET department_score = \n" +
-                                                                "  (SELECT\n" +
-                                                                "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /\n" +
-                                                                "    (SELECT COUNT(benefits)) AS total_total_score\n" +
-                                                                "    FROM review\n" +
-                                                                "    WHERE department_fk_id = department_id) \n" +
-                                                                "WHERE department_id = ?;");
+            preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department SET department_score = " +
+                                                                "  (SELECT" +
+                                                                "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /" +
+                                                                "    (SELECT COUNT(review_id)) AS total_total_score" +
+                                                                "    FROM saltyfirm.review WHERE department_fk_id = department_id) " +
+                                                                "WHERE department_id = ?");
             preparedStatement.setInt(1, departmentId);
+            preparedStatement.executeUpdate();
+            preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET overall_score = (SELECT AVG(department_score) FROM saltyfirm.department WHERE firm_fk_id = firm_id) WHERE firm_id = ?");
+            preparedStatement.setInt(1, firmId);
             preparedStatement.executeUpdate();
             connection.close();
 

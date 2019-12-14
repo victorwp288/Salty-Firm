@@ -36,30 +36,23 @@ public class ReviewController {
 
     @GetMapping("/createReview/{userId}")
     public String reviewForm(Model model, @PathVariable int userId){
-
         log.info("Getting review form in " + this.getClass());
         User user = userRepository.findUserById(userId);
-
-
         model.addAttribute("user", user);
         model.addAttribute("review", new Review());
         return "createReview";
     }
 
-    @PostMapping("/createReview/{userId}/{departmentId}/")
-    public String createReview(@ModelAttribute Review review, @PathVariable int userId, @PathVariable int departmentId){
-
+    @PostMapping("/createReview/{userId}")
+    public String createReview(@ModelAttribute Review review, @PathVariable int userId){
         log.info("Submitting review in " + this.getClass());
-
-        reviewRepository.createReview(review, userId, departmentId);
-
+        reviewRepository.createReview(review, userId);
         return "redirect:/{userId}/";
     }
 
     @GetMapping("/user/editReview/{userId}/{reviewId}")
     public String editReviewForm(Model model, @PathVariable int userId, @PathVariable int reviewId){
         log.info("Getting edit review form in " + this.getClass());
-
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
         // Ikke færdig!!
