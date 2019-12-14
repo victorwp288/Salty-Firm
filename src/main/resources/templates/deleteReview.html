@@ -14,10 +14,11 @@
         <p th:text="${review.post}"> </p>
         <p th:text="${review.position}"> </p>
 
+
         <p><input type="submit" value="Slet Anmeldelse" /></p>
     </form>
     <br>
-    <a th:href="@{'/user'} + '/' + ${user.userId}"><button>Annuller</button></a>
+    <a th:href="@{'/user/'}+${user.userId}"><button>Annuller</button></a>
     <br>
 </div>
 </body>
