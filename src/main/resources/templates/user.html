@@ -99,8 +99,8 @@
         <td><p th:text="${review.workEnvironment} + ' / 10'"></p></td>
         <td><p th:text="${review.flexibility} + ' / 10'"></p></td>
         <td>
-            <a th:href="@{/editReview/}+${user.userId}+'/'+${review.reviewId}"><button type="button">Rediger</button></a>
-            <a th:href="@{/deleteReview/}+${user.userId}+'/'+${review.reviewId}"><button type="button" >Slet</button></a>
+            <a th:href="@{/user/editReview/}+${user.userId}+'/'+${review.reviewId}"><button type="button">Rediger</button></a>
+            <a th:href="@{/user/deleteReview/}+${user.userId}+'/'+${review.reviewId}"><button type="button" >Slet</button></a>
         </td>
     </tr>
     </tbody>

@@ -56,7 +56,7 @@ public class ReviewController {
         return "redirect:/{userId}/";
     }
 
-    @GetMapping("/editreview/{userId}/{reviewId}")
+    @GetMapping("/user/editReview/{userId}/{reviewId}")
     public String editReviewForm(Model model, @PathVariable int userId, @PathVariable int reviewId){
         log.info("Getting edit review form in " + this.getClass());
 
@@ -66,19 +66,20 @@ public class ReviewController {
         return "editReview";
     }
 
-    @GetMapping("/deleteReview/{userId}/{reviewId}")
+    @GetMapping("/user/deleteReview/{userId}/{reviewId}")
     public String deleteReview(Model model, @PathVariable int userId, @PathVariable int reviewId) {
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
         Review review = reviewRepository.findReviewById(reviewId);
+        model.addAttribute("review", review);
         return "deleteReview";
     }
 
-    @PostMapping("/deleteReview/{userId}/{reviewId}")
-    public String reviewdeleted(Model model, @PathVariable int userId, @PathVariable int reviewId) {
+    @PostMapping("/user/deleteReview/{userId}/{reviewId}")
+    public String reviewDeleted(Model model, @PathVariable int userId, @PathVariable int reviewId) {
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
         reviewRepository.deleteReview(reviewId);
-        return "deleteReview";
+        return "redirect:/user/{userId}";
     }
 }
