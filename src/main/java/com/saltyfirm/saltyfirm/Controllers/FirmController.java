@@ -119,4 +119,23 @@ public class FirmController {
         model.addAttribute("departmentList", departments);
         return "departmentList";
     }
+
+    @GetMapping("/firmList/departmentList/{firmId}/editDepartment/{departmentId}/{userId}")
+    public String editDepartment(Model model, @PathVariable int firmId, @PathVariable int departmentId, @PathVariable int userId) {
+        Department department = departmentService.findDepartmentById(departmentId);
+        model.addAttribute("department", department);
+        Firm firm = firmService.findFirmById(firmId);
+        model.addAttribute("firm", firm);
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        return "editDepartment";
+    }
+
+    @PostMapping("/firmList/departmentList/{firmId}/editDepartment/{departmentId}/{userId}")
+    public String doneEditingDepartment(Model model, @PathVariable int firmId, @ModelAttribute Department department, @PathVariable int userId) {
+        departmentService.editDepartment(department);
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        return "redirect:/firmList/departmentList/{firmId}/{userId}";
+    }
 }

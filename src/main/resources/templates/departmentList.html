@@ -8,6 +8,7 @@
     <title>SaltyFirm</title>
 </head>
 <body>
+<h1 th:text="'Oversigt over '+${firm.firmName}+'´s afdelinger'"></h1>
 <div>
     <table class="table table-striped table-hover table-bordered">
         <thead>
@@ -29,8 +30,8 @@
             <td><p th:text="${department.departmentScore}"></p></td>
 
             <td>
-                <a class="glyphicon glyphicon-edit" th:href="${'editDepartment/' + firm.firmId}"/>
-                <a class="glyphicon glyphicon-remove" th:href="${'deleteDepartment/' + firm.firmId}"/>
+                <a class="glyphicon glyphicon-edit" th:href="${'editDepartment/' + department.departmentId +'/'+ user.userId}"/>
+                <a class="glyphicon glyphicon-remove" th:href="${'deleteDepartment/' + department.departmentId +'/'+ user.userId}"/>
             </td>
 
         </tr>

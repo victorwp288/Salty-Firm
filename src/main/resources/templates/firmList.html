@@ -17,6 +17,7 @@
                 <th>Firma type</th>
                 <th>Firma overall score</th>
                 <th>Firma beskrivelse</th>
+                <th>Firma logo URL</th>
                 <th>Firma logo</th>
                 <th>Firma options</th>
 
@@ -33,9 +34,10 @@
                 <td><p th:text="${firm.overallScore}"></p></td>
                 <td><p th:text="${firm.description}"></p></td>
                 <td><p th:text="${firm.logoURL}"></p></td>
+                <td><img th:src="${firm.logoURL}" style="height: 100px;display: block;margin-left: auto;margin-right: auto"></td>
                 <td>
-                    <a class="glyphicon glyphicon-edit" th:href="${'editFirm/' + firm.firmId + '/' + user.userId}"/>
-                    <a class="glyphicon glyphicon-remove" th:href="${'deleteFirm/' + firm.firmId + '/' + user.userId}"/>
+                    <a class="glyphicon glyphicon-edit" th:href="${'editFirm/' + firm.firmId + '/' + user.userId}"></a>
+                    <a class="glyphicon glyphicon-remove" th:href="${'deleteFirm/' + firm.firmId + '/' + user.userId}"></a>
                 </td>
 
             </tr>
