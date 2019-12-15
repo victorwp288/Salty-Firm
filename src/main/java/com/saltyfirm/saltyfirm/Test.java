@@ -4,6 +4,7 @@ import com.saltyfirm.saltyfirm.Models.Department;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.*;
+import com.saltyfirm.saltyfirm.Services.DepartmentService;
 
 
 import java.sql.SQLOutput;
@@ -25,8 +26,8 @@ public class Test {
         // ur.editUser(user1);
         // System.out.println(ur.getAllUsers().toString());
 
-        // DepartmentRepositoryImpl dr = new DepartmentRepositoryImpl();
-        // System.out.println(dr.getAllReviews(2));
+         DepartmentRepositoryImpl dr = new DepartmentRepositoryImpl();
+
         // List<Department> departmentList = dr.getDepartments(2);
         // System.out.println(departmentList.toString());
         // dr.updateDepartmentScore(2);
@@ -50,12 +51,14 @@ public class Test {
       //  System.out.println(a.usernameExists("frækfyr"));
 
 
-        UserRepositoryImpl urr = new UserRepositoryImpl();
-        System.out.println(urr.getAllUsers().toString());
+        // UserRepositoryImpl urr = new UserRepositoryImpl();
+        // System.out.println(urr.getAllUsers().toString());
 
        // ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
         // Review review = new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 )
           //      rr.createReview(new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 ), 1, 3);
         //System.out.println(rr.fetchUserReview(2));
+
+
     }
 }

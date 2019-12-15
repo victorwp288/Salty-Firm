@@ -60,6 +60,7 @@
                 <th>Afdelings samlet ledelse</th>
                 <th>Afdelings samlet arbejds miljø</th>
                 <th>Afdelings samlet flexibilitet</th>
+                <th>Afdelingens samlet vurdering</th>
             </tr>
             </thead>
 
@@ -70,6 +71,8 @@
                 <td><p th:text="${departmentScore.management} + ' / 10'"></p></td>
                 <td><p th:text="${departmentScore.workEnvironment} + ' / 10'"></p></td>
                 <td><p th:text="${departmentScore.flexibility} + ' / 10'"></p></td>
+                <td><p th:text="${departmentScore.departmentOverallScore} + ' / 10'"></p></td>
+
             </tr>
             </tbody>
         </table>

@@ -65,6 +65,7 @@ public class FirmController {
         model.addAttribute("departments", department);
         model.addAttribute("reviews", review);
         model.addAttribute("department", departmentScore);
+
         return "department";
     }
 

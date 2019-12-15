@@ -14,8 +14,9 @@ public class Review {
     private double workEnvironment;
     private double flexibility;
     private int employmentTime;
+    private double departmentOverallScore;
 
-    public Review(String post, int salary, String position, double pensionScheme, double benefits, double management, double workEnvironment, double flexibility, int employmentTime) {
+    public Review(String post, int salary, String position, double pensionScheme, double benefits, double management, double workEnvironment, double flexibility, int employmentTime, double departmentOverallScore) {
         this.post = post;
         this.salary = salary;
         this.position = position;
@@ -25,6 +26,7 @@ public class Review {
         this.workEnvironment = workEnvironment;
         this.flexibility = flexibility;
         this.employmentTime = employmentTime;
+        this.departmentOverallScore = departmentOverallScore;
     }
 
     public Review() {
@@ -126,10 +128,20 @@ public class Review {
         this.employmentTime = employmentTime;
     }
 
+    public double getDepartmentOverallScore() {
+        return departmentOverallScore;
+    }
+
+    public void setDepartmentOverallScore(double departmentOverallScore) {
+        this.departmentOverallScore = departmentOverallScore;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "reviewId=" + reviewId +
+                ", departmentName='" + departmentName + '\'' +
+                ", firmName='" + firmName + '\'' +
                 ", post='" + post + '\'' +
                 ", salary=" + salary +
                 ", position='" + position + '\'' +
@@ -139,6 +151,7 @@ public class Review {
                 ", workEnvironment=" + workEnvironment +
                 ", flexibility=" + flexibility +
                 ", employmentTime=" + employmentTime +
-                '\n';
+                ", departmentOverallScore=" + departmentOverallScore +
+                '}';
     }
 }

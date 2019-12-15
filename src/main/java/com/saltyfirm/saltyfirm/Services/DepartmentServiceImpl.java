@@ -59,4 +59,5 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Review getRealDepartmentScores(int departmentId) {
         return departmentRepository.getRealDepartmentScores(departmentId);
     }
+
 }
