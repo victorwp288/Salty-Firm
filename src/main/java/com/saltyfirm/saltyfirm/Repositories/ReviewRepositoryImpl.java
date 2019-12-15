@@ -138,7 +138,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
     @Override
     public int editReview(Review review) {
-        int departmentId;
+        int departmentId = 0;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review SET post, salary, position, pension_scheme, benefits, " +
@@ -159,7 +159,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             preparedStatement = connection.prepareStatement("SELECT department_fk_id FROM saltyfirm.review WHERE review_id = ?");
             preparedStatement.setInt(1, review.getReviewId());
             ResultSet resultset = preparedStatement.executeQuery();
-            departmentId = resultset.getInt(1);
+            if (resultset.next()) {
+                departmentId = resultset.getInt(1);
+            }
 
             preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department \n" +
                                                                 "SET department_score = \n" +
@@ -185,13 +187,15 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
     @Override
     public int deleteReview(int reviewId) {
-        int departmentId;
+        int departmentId = 0;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT department_id FROM saltyfirm.department, saltyfirm.review WHERE department_id = department_fk_id AND review_id = ?");
             preparedStatement.setInt(1, reviewId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            departmentId = resultSet.getInt(1);
+            if (resultSet.next()) {
+                departmentId = resultSet.getInt(1);
+            }
 
             preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.review WHERE review_id = ?");
             preparedStatement.setInt(1, reviewId);
