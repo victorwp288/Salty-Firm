@@ -17,10 +17,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, "+
-                            "review_id, post, salary, position, pension_scheme, benefits, management, work_environment, "+
-                            "flexibility, employment_time FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm" +
-                            "WHERE review_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time " +
+                                                                                   "FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm " +
+                                                                                   "WHERE firm_fk_id = firm_id AND department_fk_id = department_id AND review_id = ?;");
 
             preparedStatement.setInt(1, reviewId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -138,8 +137,8 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public int editReview(Review review, int departmentId) {
-
+    public int editReview(Review review) {
+        int departmentId;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review SET post, salary, position, pension_scheme, benefits, " +
@@ -156,6 +155,11 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             preparedStatement.setInt(9, review.getEmploymentTime());
 
             preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("SELECT department_fk_id FROM saltyfirm.review WHERE review_id = ?");
+            preparedStatement.setInt(1, review.getReviewId());
+            ResultSet resultset = preparedStatement.executeQuery();
+            departmentId = resultset.getInt(1);
 
             preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department \n" +
                                                                 "SET department_score = \n" +

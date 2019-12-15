@@ -56,8 +56,17 @@ public class ReviewController {
         log.info("Getting edit review form in " + this.getClass());
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
-        // Ikke færdig!!
+        Review review = reviewRepository.findReviewById(reviewId);
+        model.addAttribute(review);
         return "editReview";
+    }
+
+    @PostMapping("/user/editReview/{userId}/{reviewId}")
+    public String doneEditingReview(Model model, @PathVariable int reviewId, @PathVariable int userId) {
+        log.info("Post editing Review in " + this.getClass());
+        Review review = reviewRepository.findReviewById(reviewId);
+        reviewRepository.editReview(review);
+        return "redirect:/user/{userId}";
     }
 
     @GetMapping("/user/deleteReview/{userId}/{reviewId}")

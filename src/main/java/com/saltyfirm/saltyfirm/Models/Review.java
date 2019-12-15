@@ -16,6 +16,8 @@ public class Review {
     private int employmentTime;
     private double departmentOverallScore;
 
+
+
     public Review(String post, int salary, String position, double pensionScheme, double benefits, double management, double workEnvironment, double flexibility, int employmentTime, double departmentOverallScore) {
         this.post = post;
         this.salary = salary;

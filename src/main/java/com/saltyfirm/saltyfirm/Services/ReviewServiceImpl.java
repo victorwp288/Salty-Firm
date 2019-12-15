@@ -24,8 +24,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public int editReview(Review review, int departmentId) {
-        return reviewRepository.editReview(review, departmentId);
+    public int editReview(Review review) {
+        return reviewRepository.editReview(review);
     }
 
     @Override
