@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<form th:action="@{/firmList/departmentList/}+${department.departmentId}+'/'+${user.userId}" method="post">
+    <table>
+        <tr>
+            <th><p>Firmaets Navn</p></th>
+            <td><input type="text" th:field="${firm.firmName}" placeholder="Firma navn" onfocus="this.placeholder=''" onblur="this.placeholder='Firma navn'" required/></td>
+        </tr>
+        <tr>
+            <th><p>Firma type</p></th>
+            <td><input type="text" th:field="${firm.firmType}" placeholder="Firmatype" onfocus="this.placeholder=''" onblur="this.placeholder='Firmatype'" required/></td>
+        </tr>
+        <tr>
+            <th><p>Beskrivelse af firmaet</p></th>
+            <td>
+                <textarea th:field="${firm.description}" rows="4" cols="50"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th><p>URL til firmaets logo</p></th>
+            <td><input type="text" th:field="${firm.logoURL}" placeholder="Firma logo URL" onfocus="this.placeholder=''" onblur="this.placeholder='Firma logo URL'" required/></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Opdater Firma" /></p>
+</form>
+<a th:href="'/firmList/'+${user.userId}"><button>Annuller</button></a>
 </body>
 </html>

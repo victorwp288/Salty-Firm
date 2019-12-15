@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -34,10 +35,7 @@ public class FirmController {
 
     @GetMapping("/firms/{firmId}")
     public String firms(@PathVariable int firmId, Model model) {
-
         List<Department> department = departmentService.getDepartments(firmId);
-
-
         Firm firm = firmService.findFirmById(firmId);
         model.addAttribute("firms", firm);
         model.addAttribute("departments", department);
@@ -55,43 +53,50 @@ public class FirmController {
 
     @GetMapping("/department/{firmId}/{departmentId}")
     public String departments(@PathVariable int departmentId, @PathVariable int firmId, Model model) {
-
         Department department = departmentService.findDepartmentById(departmentId);
         Firm firms = firmService.findFirmById(firmId);
         List<Review> review = departmentService.getAllReviews(departmentId);
         Review departmentScore = departmentService.getRealDepartmentScores(departmentId);
-
         model.addAttribute("firms", firms);
         model.addAttribute("departments", department);
         model.addAttribute("reviews", review);
         model.addAttribute("department", departmentScore);
-
         return "department";
+    }
+
+    @GetMapping("/firmList/editFirm/{firmId}/{userId}")
+    public String editFirm(@PathVariable int userId, @PathVariable int firmId, Model model) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        Firm firm = firmService.findFirmById(firmId);
+        model.addAttribute("firm", firm);
+        return "editFirm";
+    }
+
+    @PostMapping("/firmList/editFirm/{firmId}/{userId}")
+    public String doneEditingFirm(@PathVariable int userId, @ModelAttribute Firm firm, Model model) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        firmService.editFirm(firm);
+        return "redirect:/firmList/{userId}";
     }
 
     @GetMapping("/firmList/deleteFirm/{firmId}/{userId}")
     public String deleteForm(@PathVariable int userId, @PathVariable int firmId, Model model) {
-
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-
         Firm firm = firmService.findFirmById(firmId);
         model.addAttribute("firm", firm);
-
         return "deleteFirm";
     }
 
     @PostMapping("/firmList/deleteFirm/{firmId}/{userId}")
     public String postDeleteForm(Model model, @PathVariable int userId, @PathVariable int firmId) {
-
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-
         Firm firm = firmService.findFirmById(firmId);
         model.addAttribute("firm", firm);
-
         firmService.deleteFirm(firmId);
-
         return "redirect:/";
     }
 
@@ -100,10 +105,8 @@ public class FirmController {
         List<Firm> firm = firmService.getAllFirms();
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-
         model.addAttribute("firmlist", firm);
         return "firmList";
-
     }
 
     @GetMapping("firmList/departmentList/{firmId}/{userId}")
@@ -111,11 +114,9 @@ public class FirmController {
         List<Department> departments = departmentService.getDepartments(firmId);
         User user = userService.findUserById(userId);
         Firm firm = firmService.findFirmById(firmId);
-
         model.addAttribute("firm", firm);
         model.addAttribute("user", user);
         model.addAttribute("departmentList", departments);
         return "departmentList";
-
     }
 }

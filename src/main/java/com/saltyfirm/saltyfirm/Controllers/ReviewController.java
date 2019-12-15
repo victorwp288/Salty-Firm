@@ -1,6 +1,5 @@
 package com.saltyfirm.saltyfirm.Controllers;
 
-import com.saltyfirm.saltyfirm.Models.Firm;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.DepartmentRepository;
@@ -35,7 +34,7 @@ public class ReviewController {
     ReviewRepository reviewRepository;
 
     @GetMapping("/createReview/{userId}")
-    public String reviewForm(Model model, @PathVariable int userId){
+    public String reviewForm(Model model, @PathVariable int userId) {
         log.info("Getting review form in " + this.getClass());
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
@@ -44,7 +43,7 @@ public class ReviewController {
     }
 
     @PostMapping("/createReview/{userId}")
-    public String createReview(Model model, @ModelAttribute Review review, @PathVariable int userId){
+    public String createReview(Model model, @ModelAttribute Review review, @PathVariable int userId) {
         log.info("Submitting review in " + this.getClass());
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
@@ -53,7 +52,7 @@ public class ReviewController {
     }
 
     @GetMapping("/user/editReview/{userId}/{reviewId}")
-    public String editReviewForm(Model model, @PathVariable int userId, @PathVariable int reviewId){
+    public String editReviewForm(Model model, @PathVariable int userId, @PathVariable int reviewId) {
         log.info("Getting edit review form in " + this.getClass());
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
