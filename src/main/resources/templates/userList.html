@@ -34,7 +34,6 @@
         <td><p th:text="${current.nationality}"></p></td>
         <td><p th:text="${current.privileges}"></p></td>
         <td>
-            <a th:href="@{/userList/editUser/}+${current.userId}+'/'+${user.userId}"><button type="button">Rediger</button></a>
             <a th:href="@{/userList/deleteUser/}+${current.userId}+'/'+${user.userId}"><button type="button" >Slet</button></a>
         </td>
     </tr>
