@@ -27,7 +27,7 @@
             <tbody>
 
             <tr th:each="firms: ${list}">
-                <td><img th:src="${firms.logoURL}" alt="LOGO"/></td>
+                <td><img th:src="${firms.logoURL}" alt="LOGO" height="200" width="400"/></td>
                 <td><a th:text="${firms.firmName}" th:href="'/firms/'+${firms.firmId}"></a></td>
                 <td><p th:text="${firms.overallScore}"></p></td>
             </tr>
