@@ -69,14 +69,14 @@ public class UserController {
         return "redirect:/user/{userId}";
     }
 
-    @GetMapping("/user/deleteUser/{userId}")
+    @GetMapping("/user/deleteBasicUser/{userId}")
     public String deleteForm(@PathVariable int userId, Model model) {
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-        return "deleteUser";
+        return "deleteBasicUser";
     }
 
-    @PostMapping("/user/deleteUser/{userId}")
+    @PostMapping("/user/deleteBasicUser/{userId}")
     public String delete(Model model, @PathVariable int userId){
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
@@ -92,6 +92,7 @@ public class UserController {
         model.addAttribute("userlist", users);
         return "userList";
     }
+
     @GetMapping("/userList/deleteUser/{userId}/{adminId}")
     public String deleteForm(@PathVariable int userId, @PathVariable int adminId, Model model) {
         User user = userService.findUserById(userId);
@@ -106,7 +107,12 @@ public class UserController {
         userService.deleteUser(userId);
         User admin = userService.findUserById(adminId);
         model.addAttribute("admin", admin);
-        return "redirect:/userList/{adminId}";
+        if (admin != null) {
+            return "redirect:/userList/{adminId}";
+        } else {
+            return "redirect:/";
+        }
+
     }
 
     @GetMapping("/userList/editUser/{userId}")

@@ -11,7 +11,7 @@
     <br>
     <h3>Er du sikker på at du vil slette: </h3>
 
-    <form th:action="@{/userList/deleteUser/}+${user.userId}+'/'+${admin.userId}" method="post">
+    <form th:action="@{/user/deleteBasicUser/}+${user.userId}" method="post">
         <b th:text="${user.username}"></b>
         <p th:text="${user.firstname + ' ' +  user.lastname}"> </p>
         <input type="hidden" th:field="${user.userId}"/>
