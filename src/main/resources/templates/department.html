@@ -8,6 +8,7 @@
     <title>SaltyFirm</title>
 </head>
 <body>
+<h1 th:text="'Oversigt over '+${firms.firmName}+' - '+${departments.departmentName}"></h1>
     <div>
         <table class="table table-striped table-hover table-bordered">
             <thead>
@@ -52,6 +53,7 @@
         </table>
     </div>
     <div>
+        <h2 th:text="'Oversigt over '+${firms.firmName}+'('+${departments.departmentName}+') - Anmeldelser'"></h2>
         <table class="table table-striped table-hover table-bordered">
             <thead>
             <tr>
@@ -77,6 +79,7 @@
             </tbody>
         </table>
     </div>
+<h2 th:text="'Anmeldelser for '+${firms.firmName}+'('+${departments.departmentName}+')'"></h2>
     <div>
         <table class="table table-striped table-hover table-bordered">
             <thead>
