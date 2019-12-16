@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Delete Firm</title>
 </head>
 <body>
 
+<div class="delete">
+    <br>
+    <h3>Er du sikker på at du vil slette: </h3>
+
+
+    <form th:action="@{/firmList/departmentList/} + ${firm.firmId} + '/deleteDepartment/' + ${departmentId} + '/' + ${user.userId}" method="post">
+
+        <p th:text="${firm.firmName+ ' ' + department.departmentName + ' ' +  firm.firmType}"> </p>
+        <input type="hidden" th:field="${department.departmentId}"/>
+        <br>
+        <p><input type="submit" value="Slet Afdeling" /></p>
+    </form>
+    <br>
+    <a th:href="@{'/firmList/departmentList/'} + ${firm.firmId} + '/' + ${user.userId}"><button>Annuller</button></a>
+    <br>
+</div>
 </body>
+<div>
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+</div>
 </html>

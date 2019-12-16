@@ -42,14 +42,6 @@ public class FirmController {
         return "firm";
     }
 
-    /*
-    @PostMapping("/firm")
-    public String postFrim(@ModelAttribute Firm firm, @ModelAttribute Department department, Model model) {
-
-        return "redirect:/department/"+firm.getFirmId() + "/" + department.getDepartmentId();
-    }
-
-     */
 
     @GetMapping("/department/{firmId}/{departmentId}")
     public String departments(@PathVariable int departmentId, @PathVariable int firmId, Model model) {
@@ -137,5 +129,28 @@ public class FirmController {
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
         return "redirect:/firmList/departmentList/{firmId}/{userId}";
+    }
+
+    @GetMapping("/firmList/departmentList/{firmId}/deleteDepartment/{departmentId}/{userId}")
+    public String deleteDepartment(@PathVariable int userId, @PathVariable int firmId, @PathVariable int departmentId, Model model) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        Firm firm = firmService.findFirmById(firmId);
+        model.addAttribute("firm", firm);
+        Department department = departmentService.findDepartmentById(departmentId);
+        model.addAttribute("department", department);
+        return "deleteDepartment";
+    }
+
+    @PostMapping("/firmList/departmentList/{firmId}/deleteDepartment/{departmentId}/{userId}")
+    public String postDeleteDarptmetn(Model model, @PathVariable int userId, @PathVariable int firmId, @PathVariable int departmentId) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        Firm firm = firmService.findFirmById(firmId);
+        model.addAttribute("firm", firm);
+        Department department = departmentService.findDepartmentById(departmentId);
+        model.addAttribute("department", department);
+        departmentService.deleteDepartment(departmentId);
+        return "redirect:/";
     }
 }
