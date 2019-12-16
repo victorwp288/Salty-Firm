@@ -53,6 +53,7 @@ body {
 }
 .button {
     height: 20px;
+    width: 100px;
 }
 .searchBar {
     position: relative;

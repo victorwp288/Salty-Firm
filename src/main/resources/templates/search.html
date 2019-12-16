@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link th:href="@{/css/Stylesheet.css}" href="static/css/Stylesheet.css" rel="stylesheet" type="text/css" media="screen"/>
+<link th:href="@{/css/Stylesheet.css}" href="/css/Stylesheet.css" rel="stylesheet" type="text/css" media="screen"/>
 <link th:href="@{/img/business-wallpaper.jpg}" href="/static/img/" rel="stylesheet" media="screen"/>
 
 <head>
@@ -12,7 +11,7 @@
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
     <div class="info">
         <h1>Søgeresultat</h1>
-        <h3>Din søgning: ... fandt </h3>
+        <h3>Din søgning på<span style="color: red;font-style: italic" th:text="'*'+${searchWord}+'*'"></span> <span th:text="' fandt:'"></span></h3>
     </div>
 
     <div class="container" style="text-align: center">

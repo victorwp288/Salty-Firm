@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link th:href="@{/css/Stylesheet.css}" href="static/css/Stylesheet.css" rel="stylesheet" type="text/css" media="screen"/>
+<link th:href="@{/css/Stylesheet.css}" href="/css/Stylesheet.css" rel="stylesheet" type="text/css" media="screen"/>
 <link th:href="@{/img/business-wallpaper.jpg}" href="/static/img/" rel="stylesheet" media="screen"/>
 
 
@@ -12,7 +12,6 @@
 </head>
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
 
-<div class="overlay"></div>
 <div class="topNavigationsbar">
     <span th:if="${user.privileges == null}">
         <form th:action="@{/}"  method="post">
@@ -69,9 +68,6 @@
     <a href="#" class="fa fa-facebook" style="margin-right: 10px;font-size: 150%"></a>
     <a href="#" class="fa fa-twitter" style="font-size: 150%"></a>
 </div>
-
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
 </body>
-<div>
-    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
-</div>
 </html>

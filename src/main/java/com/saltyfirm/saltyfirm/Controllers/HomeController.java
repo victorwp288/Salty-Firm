@@ -67,6 +67,8 @@ public class HomeController {
         model.addAttribute("list", searchResult);
         Firm firm = new Firm();
         model.addAttribute("firm", firm);
+        String word = "searchWord";
+        model.addAttribute("searchWord", searchWord);
         return "search";
     }
 }
