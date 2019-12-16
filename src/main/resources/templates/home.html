@@ -16,21 +16,19 @@
     <span th:if="${user.privileges == null}">
         <form th:action="@{/}"  method="post">
             <tr>
-                <div>
-                    <td><a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit">SALTY<span style="color: dodgerblue;">FIRM</span></a></td>
-                    <td th:text="'Username'" ></td>
-                    <td><input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" required></td>
-                    <td th:text="'Password'"></td>
-                    <td><input type="password" placeholder="password" th:field="${user.password}" autocomplete="off" required></td>
-                    <td><input style="margin-right: 10px" type="submit" th:value="Login"/></td>
-                    <td><a style="margin-right: 15px" th:href="${'/createUser'}"><button type="button">Opret bruger</button></a></td>
-                </div>
+                <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
+                <td th:text="'Username'" ></td>
+                <td><input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" required></td>
+                <td th:text="'Password'"></td>
+                <td><input type="password" placeholder="password" th:field="${user.password}" autocomplete="off" required></td>
+                <td><input style="margin-right: 10px" type="submit" th:value="Login"/></td>
+                <td><a style="margin-right: 15px" th:href="${'/createUser'}"><button type="button">Opret bruger</button></a></td>
             </tr>
         </form>
     </span>
 
     <span th:if="${user.privileges == 'user'}">
-        <a class="active" th:href="@{'/'}">Salty Firm</a>
+        <a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit">SALTY<span style="color: dodgerblue">FIRM</span></a>
         <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Profil</a>
         <a th:href="@{'/createReview'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Opret Anmeldelse</a>
 
@@ -41,7 +39,7 @@
     </span>
 
     <span th:if="${user.privileges == 'admin'}">
-        <a class="active" th:href="@{'/'}">Salty Firm</a>
+        <a class="active" th:href="@{'/'}+${user.userId}">Salty Firm</a>
         <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Profil</a>
         <a th:href="@{'/userList'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Brugerliste</a>
         <a th:href="@{'/firmList'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Firmliste</a>
@@ -57,20 +55,23 @@
 
 <div class="maincontent">
 
-    <h1>Velkommen til Salty Firm!</h1>
+    <br><br><br><br>
+    <h1 class="header" style="font-weight: bold">VELKOMMEN TIL SALTY<span style="color: dodgerblue;font-weight: bold">FIRM</span></h1>
     <h3>Stedet hvor du kan se anmeldelser fra medarbejdere og selv give anmeldelser ... </h3>
-    <b style="text-align: center"> Søg efter firma <br></b>
-    <form th:action="@{/search}" method="post">
-        <input type="text" th:field="${firm.firmName}" placeholder="Search...">
-        <input type="submit" value="Søg">
-    </form>
+    <br>
+    <h4> Søg efter firma</h4>
+    <div class="container" style="text-align: center">
+        <form class="searchBar" th:action="@{/search}" method="post">
+            <input type="text" th:field="${firm.firmName}" placeholder="Søg på firma..." style="width: 50%" required/>
+            <input type="submit" value="Søg" style="width: 10%">
+        </form>
+    </div>
 </div>
 
-
-<div class="bottomBar">
-    <b> Følg os på: <medi></medi></b>
-    <a href="#" class="fa fa-facebook"></a>
-    <a href="#" class="fa fa-twitter"></a>
+<div class="bottomBar" style="text-align: right;margin-right: 20px">
+    <b style="font-size: large;margin-right: 10px">Følg os på:</b>
+    <a href="#" class="fa fa-facebook" style="margin-right: 10px;font-size: 150%"></a>
+    <a href="#" class="fa fa-twitter" style="font-size: 150%"></a>
 </div>
 
 </body>

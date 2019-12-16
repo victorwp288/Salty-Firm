@@ -4,6 +4,8 @@
     color: white;
     line-height: 20px;
     border-bottom: 2px solid black;
+    position: fixed;
+    width: 100%;
 }
 
 .topNavigationsbar input {
@@ -14,10 +16,11 @@
 
 .Logo {
     font-size: xx-large;
-    height: 40px;
+    font-weight: bold;
     cursor:pointer;
     text-decoration:none;
     color: inherit;
+    margin-top: 10px;
 }
 .login {
     text-align: right;
@@ -27,9 +30,9 @@
     border: 3px solid black;
 }
 h1,h2,h3,h4,h5,h6 {
-    border: 1px black;
     text-align: center;
-    color: black;
+    color: white;
+    text-shadow:2px 2px 2px #000;
 }
 body {
     font-family: Bahnschrift, serif;
@@ -38,4 +41,16 @@ body {
 }
 .button {
     height: 20px;
+}
+.searchBar {
+    margin-top: 10px;
+    text-align: center;
+    line-height: 30px;
+    font-size: large;
+}
+.header {
+    font-size: 70px;
+}
+.bottomBar {
+    margin-top: 570px;
 }
