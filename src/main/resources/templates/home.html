@@ -12,6 +12,7 @@
 </head>
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
 
+<div class="overlay"></div>
 <div class="topNavigationsbar">
     <span th:if="${user.privileges == null}">
         <form th:action="@{/}"  method="post">
@@ -56,7 +57,7 @@
 <div class="maincontent">
 
     <br><br><br><br>
-    <h1 class="header" style="font-weight: bold">VELKOMMEN TIL SALTY<span style="color: dodgerblue;font-weight: bold">FIRM</span></h1>
+    <h1 class="header" style="font-weight: bold; z-index: 1;">VELKOMMEN TIL SALTY<span style="color: dodgerblue;font-weight: bold">FIRM</span></h1>
     <h3>Stedet hvor du kan se anmeldelser fra medarbejdere og selv give anmeldelser ... </h3>
     <br>
     <h4> Søg efter firma</h4>
