@@ -20,7 +20,7 @@ public class TwilloSms {
         Message message = Message
                 .creator(new PhoneNumber( "+45" + phoneNumber), // to
                         new PhoneNumber("(205) 557-4328"), // from
-                        "Congratulations! You have createt a user on wwww.saltyfirm.com")
+                        "Congratulations! You have created a user on wwww.saltyfirm.com")
                 .create();
     }
 }
