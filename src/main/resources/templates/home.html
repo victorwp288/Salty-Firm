@@ -23,7 +23,7 @@
                     <td th:text="'Username'" ></td>
                     <td><input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" required></td>
                     <td th:text="'Password'"></td>
-                    <td><input type="password" placeholder="password1234" th:field="${user.password}" autocomplete="off" required></td>
+                    <td><input type="password" placeholder="password" th:field="${user.password}" autocomplete="off" required></td>
                     <td><input style="margin-right: 10px" type="submit" th:value="Login"/></td>
                     <td><a style="margin-right: 15px" th:href="${'/createUser'}"><button type="button">Opret bruger</button></a></td>
                 </div>
