@@ -17,8 +17,8 @@ public class TwilloSms {
     public void SMS(String phoneNumber) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-        Message message = Message
-                .creator(new PhoneNumber( "+45" + phoneNumber), // to
+        Message
+                .creator(new PhoneNumber("+45" + phoneNumber), // to
                         new PhoneNumber("(205) 557-4328"), // from
                         "Congratulations! You have created a user on wwww.saltyfirm.com")
                 .create();
