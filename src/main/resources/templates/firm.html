@@ -3,8 +3,42 @@
 <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 <link th:href="@{/css/Stylesheet.css}" href="/css/Stylesheet.css" rel="stylesheet" type="text/css" media="screen"/>
 <link th:href="@{/img/business-wallpaper.jpg}" href="/static/img/" rel="stylesheet" media="screen"/>
-
-
+<div class="topNavigationsbar">
+    <span th:if="${user.privileges == null}">
+        <form th:action="@{/}"  method="post">
+            <tr>
+                <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none;margin-right: 23%;">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
+                <td th:text="'Username'" style="margin-left: 5px"></td>
+                <td><input type="text" placeholder="Username" th:field="${user.username}" autocomplete="off" style="line-height: 30px;height: 30px" required></td>
+                <td th:text="' Password'" style="margin-right: 20px"></td>
+                <td><input type="password" placeholder="Password" th:field="${user.password}" autocomplete="off" style="line-height: 30px;height: 30px" required></td>
+                <td><button th:value="Login" type="submit" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px" >Login</button></td>
+                <td><a style="margin-right: 25px;margin-left: 23%;height: 30px;line-height: 10px" th:href="${'/createUser'}" class="btn btn-lg btn-default">Opret bruger</a></td>
+            </tr>
+        </form>
+    </span>
+    <span th:if="${user.privileges == 'user'}">
+        <tr>
+                <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit;margin-right: 29%;">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
+            <td><a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Se Profil</a></td>
+            <td><a th:href="@{'/createReview'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin: 10px;height: 30px;line-height: 10px">Opret Anmeldelse</a></td>
+            <td><span style="margin-top: 5px;margin-bottom: 5px"></span></td>
+            <td><b th:text="'Logget ind som: '" style="margin-left: 24%"></b></td>
+            <td><b th:text="${user.username}" style="color: dodgerblue;margin-left: 5px"></b></td>
+            <td><a th:href="@{'/'}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Log ud</a></td>
+        </tr>
+    </span>
+    <span th:if="${user.privileges == 'admin'}">
+        <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit;margin-right: 25%;">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
+        <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Se Profil</a>
+        <a th:href="@{'/userList'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Se Brugerliste</a>
+        <a th:href="@{'/firmList'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin: 10px;height: 30px;line-height: 10px">Se Firmliste</a>
+        <td><span style="margin-top: 5px;margin-bottom: 5px"></span></td>
+        <td><b th:text="'Logget ind som: '" style="margin-left: 20%"></b></td>
+        <td><b th:text="${user.username}" style="color: dodgerblue;margin-left: 5px"></b></td>
+        <td><a th:href="@{'/'}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Log ud</a></td>
+    </span>
+</div>
 <head>
     <meta charset="UTF-8">
     <title>SaltyFirm</title>

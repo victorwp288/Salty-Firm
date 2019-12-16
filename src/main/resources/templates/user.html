@@ -11,48 +11,48 @@
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
 <h1>Profil for <td th:text="${user.firstname}+' '+${user.lastname}"></td></h1>
 <div class="container">
-<table class="table table-bordered table-hover">
+<table class="table table-bordered">
     <tr>
-        <td><p>Brugernavn</p></td>
-        <td th:text="${user.username}"></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Brugernavn</p></th>
+        <td th:text="${user.username}" style="margin-top: 5px"></td>
     </tr>
     <tr>
-        <td><p>Navn</p></td>
-        <td th:text="${user.firstname}+' '+${user.lastname}"></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Navn</p></th>
+        <td th:text="${user.firstname}+' '+${user.lastname}" style="margin-top: 5px"></td>
     </tr>
     <tr>
-        <td><p>Telefon nummer</p></td>
-        <td th:text="${user.phoneNumber}"></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Telefon nummer</p></th>
+        <td th:text="${user.phoneNumber}" style="margin-top: 5px"></td>
     </tr>
     <tr>
-        <td><p>Email adresse</p></td>
-        <td th:text="${user.mail}"></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Email adresse</p></th>
+        <td th:text="${user.mail}" style="margin-top: 5px"></td>
     </tr>
     <tr>
-        <td><p>Fødselsdag</p></td>
-        <td th:text="${user.birthdate}"></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Fødselsdag</p></th>
+        <td th:text="${user.birthdate}" style="margin-top: 5px"></td>
     </tr>
     <tr>
-        <td><p>Nationalitet</p></td>
-        <td th:text="${user.nationality}"></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Nationalitet</p></th>
+        <td th:text="${user.nationality}" style="margin-top: 5px"></td>
     </tr>
     <tr>
-        <td><p>Uddannelse</p></td>
-        <td th:text="${user.education}"></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Uddannelse</p></th>
+        <td th:text="${user.education}" style="margin-top: 5px"></td>
     </tr>
     <tr>
-        <td><p>Køn</p></td>
-        <td th:switch="${user.gender}">
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Køn</p></th>
+        <td th:switch="${user.gender}" style="margin-top: 5px">
             <span th:case="'f'">Kvinde</span>
             <span th:case="'m'">Mand</span>
             <span th:case="'null'">Ikke oplyst</span>
         </td>
     </tr>
     <tr>
-        <td><p>Instillinger</p></td>
+        <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 5px">Instillinger</p></th>
         <td>
-            <a th:href="@{/user/editUser/}+${user.userId}"><button type="button">Rediger bruger</button></a>
-            <a th:href="@{/user/deleteBasicUser/}+${user.userId}"><button type="button" >Slet bruger</button></a>
+            <a th:href="@{/user/editUser/}+${user.userId}" class="glyphicon glyphicon-cog" style="font-size: 150%;margin-right: 5px;margin-left: 5px;margin-top: 5px"></a>
+            <a th:href="@{/user/deleteBasicUser/}+${user.userId}" class="glyphicon glyphicon-trash" style="font-size: 150%;margin-top: 5px"></a>
         </td>
     </tr>
 </table>
@@ -101,8 +101,8 @@
         <td><p th:text="${review.workEnvironment} + ' / 10'"></p></td>
         <td><p th:text="${review.flexibility} + ' / 10'"></p></td>
         <td>
-            <a th:href="@{/user/editReview/}+${user.userId}+'/'+${review.reviewId}"><button type="button">Rediger</button></a>
-            <a th:href="@{/user/deleteReview/}+${user.userId}+'/'+${review.reviewId}"><button type="button" >Slet</button></a>
+            <a th:href="@{/user/editReview/}+${user.userId}+'/'+${review.reviewId}" class="glyphicon glyphicon-cog" style="font-size: 150%;margin-right: 5px;margin-left: 5px"></a>
+            <a th:href="@{/user/deleteReview/}+${user.userId}+'/'+${review.reviewId}" class="glyphicon glyphicon-trash" style="font-size: 150%"></a>
         </td>
     </tr>
     </tbody>

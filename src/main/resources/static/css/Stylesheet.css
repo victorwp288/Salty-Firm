@@ -25,12 +25,13 @@
 
 .Logo {
     font-weight: bold;
-    font-size: large;
+    font-size: 25px;
     cursor:pointer;
     text-decoration:none;
     color: inherit;
     margin-left: 10px;
-    margin-right: 25%;
+    line-height: 50px;
+    margin-top: 5px;
 }
 .login {
     text-align: right;
@@ -48,11 +49,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 body {
     font-family: Bahnschrift, serif;
-    background-image: url(static/img/business-wallpaper.jpg);
+    background-image: url(/img/business-wallpaper.jpg);
     background-size: 100% 100%;
+    background-attachment: fixed;
 }
 .button {
-    height: 20px;
     width: 100px;
 }
 .searchBar {

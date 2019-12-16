@@ -6,42 +6,40 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Create review</title>
-    <h1>Create a Review</h1>
+    <title>Opret anmeldelse</title>
+
 </head>
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
-    <span th:if="${user.privileges == 'user'}">
-        <a class="active" th:href="@{'/'}">Salty Firm</a>
-        <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default">Se Profil</a>
-
-        <a  th:text="'Logget ind som: '" ></a>
-        <a ></a>
-        <a th:text="${user.username}" ></a>
-        <a th:href="@{'/'}" class="btn btn-lg btn-default">Log ud</a>
-    </span>
-
+<br><br>
+<h1>Opret anmeldelse</h1>
+<br>
+<div class="container" style="width: 50%">
     <form th:action="@{/createReview/}+${user.userId}" method="post">
-        <table>
+        <table class="table table-bordered">
             <tr>
-                <th><p>Firmaets Navn</p></th>
-                <td><input type="text" th:field="${review.firmName}" placeholder="Firma navn" onfocus="this.placeholder=''" onblur="this.placeholder='Firma navn'" required/></td>
+                <td style="text-align: right; width: 25%;background-color: #000;color: white;border-right: transparent"><p style="margin-top: 7px;font-size: large">Overordnet information:</p></td>
+                <td style="text-align: left;background-color: #000;color: white;border-left: transparent"><b style="margin-top: 5px"></b></td>
             </tr>
             <tr>
-                <th><p>Afdelingens Navn</p></th>
-                <td><input type="text" th:field="${review.departmentName}" placeholder="Afdeling" onfocus="this.placeholder=''" onblur="this.placeholder='Afdeling'" required/></td>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Firmaets Navn</p></th>
+                <td><input type="text" th:field="${review.firmName}" placeholder="Firma navn" onfocus="this.placeholder=''" onblur="this.placeholder='Firma navn'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
             </tr>
             <tr>
-                <th><p>Stilling</p></th>
-                <td><input type="text" th:field="${review.position}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" required/></td>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Afdelingens Navn</p></th>
+                <td><input type="text" th:field="${review.departmentName}" placeholder="Afdeling" onfocus="this.placeholder=''" onblur="this.placeholder='Afdeling'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
             </tr>
             <tr>
-                <th><p>Ansættelsesperiode (I antal måneder)</p></th>
-                <td><input type="number" th:field="${review.employmentTime}" placeholder="Ansættelsesperiode" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" required/></td>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Stilling</p></th>
+                <td><input type="text" th:field="${review.position}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
             </tr>
             <tr>
-                <th><p>Løn</p></th>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Ansættelsesperiode</p></th>
+                <td><input type="number" value="1" th:field="${review.employmentTime}" placeholder="Ansættelsesperiode" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" style="margin-top: 5px;margin-right: 10px;height: 30px;width: 30%;border: none" required/><span>(Angiv hvor mange måneder du har været ansat)</span></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Løn</p></th>
                 <td>
-                    <select th:field="${review.salary}">
+                    <select th:field="${review.salary}" style="margin-top: 5px;height: 30px;width: 100%;border: none">
                         <option value="1">Under 10.000 kr. </option>
                         <option value="2">10.000 - 15.000 kr.</option>
                         <option value="3">15.000 - 20.000 kr.</option>
@@ -55,48 +53,57 @@
                     </select>
                 </td>
             </tr>
-            <th><b>Bedømmelser:</b></th>
             <tr>
-                <th><p>Pensionsordning</p></th>
+                <td style="text-align: right; width: 25%;background-color: #000;color: white;border-right: transparent"><p style="margin-top: 7px;font-size: large">Bedømmelser:</p></td>
+                <td style="text-align: left;background-color: #000;color: white;border-left: transparent"><b style="margin-top: 5px"></b></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Pensionsordning</p></th>
                 <td>
-                    <input th:field="${review.pensionScheme}" type="number" name="rating" min="1" max="10" step="1" value="5" required/>
+                    <input th:field="${review.pensionScheme}" type="number" name="rating" min="1" max="10" step="1" value="5" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
                 </td>
             </tr>
             <tr>
-                <th><p>Arbejdsmiljø</p></th>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Arbejdsmiljø</p></th>
                 <td>
-                    <input th:field="${review.workEnvironment}" type="number" name="rating" min="1" max="10" step="1" required/>
+                    <input th:field="${review.workEnvironment}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
                 </td>
             </tr>
 
             <tr>
-                <th><p>Personalegoder</p></th>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Personalegoder</p></th>
                 <td>
-                    <input th:field="${review.benefits}" type="number" name="rating" min="1" max="10" step="1" required/>
+                    <input th:field="${review.benefits}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
                 </td>
             </tr>
             <tr>
-                <th><p>Flexibilitet</p></th>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Flexibilitet</p></th>
                 <td>
-                    <input th:field="${review.flexibility}" type="number" name="rating" min="1" max="10" step="1" required/>
+                    <input th:field="${review.flexibility}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
                 </td>
             </tr>
             <tr>
-                <th><p>Ledelsen</p></th>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Ledelsen</p></th>
                 <td>
-                    <input th:field="${review.management}" type="number" name="rating" min="1" max="10" step="1" required/>
+                    <input th:field="${review.management}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
                 </td>
             </tr>
             <tr>
-                <th><p>Uddybbende kommentarer</p></th>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Uddybbende kommentarer</p></th>
                 <td>
-                    <textarea th:field="${review.post}" rows="4" cols="50"></textarea>
+                    <textarea th:field="${review.post}" rows="4" cols="50" style="height: 100%;width: 100%;border: none"></textarea>
                 </td>
             </tr>
         </table>
-        <p><input type="submit" value="Opret Anmeldelse" /></p>
+        <div>
+            <p style="text-align: center"><input type="submit" style="height: 40px;width: 200px;font-size: large;color: green" value="Opret Anmeldelse" /></p>
+        </div>
     </form>
-    <a th:href="'/'+${user.userId}"><button>Annuller</button></a>
+    <div style="text-align: center">
+        <a th:href="'/'+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+    </div>
+    <br>
+</div>
 </body>
 <div>
     <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>

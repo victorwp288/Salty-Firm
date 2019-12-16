@@ -55,16 +55,21 @@ public class HomeController {
         }
     }
 
-    @PostMapping("/search")
-    public String searchIndex(@ModelAttribute Firm firm, Model model) {
-
-        return "redirect:/search/"+firm.getFirmName();
+    @PostMapping("/search/{userId}")
+    public String searchIndex(@PathVariable int userId, @ModelAttribute Firm firm, Model model) {
+        model.addAttribute("user",userService.findUserById(userId));
+        return "redirect:/search/{userId}/"+firm.getFirmName();
     }
 
-    @GetMapping("/search/{searchWord}")
-    public String searchResult(Model model, @PathVariable String searchWord) {
+    @GetMapping("/search/{userId}/{searchWord}")
+    public String searchResult(Model model, @PathVariable int userId, @PathVariable String searchWord) {
         List<Firm> searchResult = firmService.searchFirms(searchWord);
         model.addAttribute("list", searchResult);
+        User user = new User();
+        if (userId != 0) {
+            user = userService.findUserById(userId);
+        }
+        model.addAttribute("user",user);
         Firm firm = new Firm();
         model.addAttribute("firm", firm);
         String word = "searchWord";
