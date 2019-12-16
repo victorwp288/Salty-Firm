@@ -22,6 +22,6 @@
     </table>
     <p><input type="submit" value="Opdater Afdeling" /></p>
 </form>
-<a th:href="'/firmList/'+${user.userId}"><button>Annuller</button></a>
+<a th:href="'/firmList/departmentList/' + ${firm.firmId} + '/' + ${user.userId}"><button>Annuller</button></a>
 </body>
 </html>
