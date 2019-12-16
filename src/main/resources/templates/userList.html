@@ -8,8 +8,10 @@
     <title>SaltyFirm</title>
 </head>
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
+<br><br><br>
 <h1>Oversigt over brugere</h1>
-<table class="table table-striped table-hover table-bordered">
+<div class="container">
+<table class="table table-striped table-bordered">
     <thead>
     <tr>
         <th>Brugernavn</th>
@@ -40,7 +42,10 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{'/'}+${user.userId}"><button>Tilbage</button></a>
+</div>
+<div style="text-align: center">
+<a th:href="@{'/'}+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Tilbage</button></a>
+</div>
 <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
 </body>
 </html>

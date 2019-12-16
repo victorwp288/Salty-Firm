@@ -9,16 +9,18 @@
     <title>SaltyFirm</title>
 </head>
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
-    <div>
-        <table class="table table-striped table-hover table-bordered">
+<br><br><br>
+<h1>Oversigt over firmaer</h1>
+    <div class="container">
+        <table class="table table-striped table-bordered">
             <thead>
             <tr>
                 <th>Firma id</th>
                 <th>Firma navn</th>
                 <th>Firma type</th>
-                <th>Firma overall score</th>
+                <th style="width: 15%">Firma overall score</th>
                 <th>Firma beskrivelse</th>
-                <th>Firma logo URL</th>
+                <th style="width: 15%">Firma logo URL</th>
                 <th>Firma logo</th>
                 <th>Firma options</th>
             </tr>
@@ -42,7 +44,9 @@
             </tbody>
         </table>
     </div>
-    <a th:href="@{'/'}+${user.userId}"><button>Tilbage</button></a>
+    <div style="text-align: center">
+    <a th:href="@{'/'}+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Tilbage</button></a>
+    </div>
 </body>
 <div>
     <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
