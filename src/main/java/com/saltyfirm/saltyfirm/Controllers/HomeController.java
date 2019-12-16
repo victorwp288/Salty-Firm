@@ -65,6 +65,8 @@ public class HomeController {
     public String searchResult(Model model, @PathVariable String searchWord) {
         List<Firm> searchResult = firmService.searchFirms(searchWord);
         model.addAttribute("list", searchResult);
+        Firm firm = new Firm();
+        model.addAttribute("firm", firm);
         return "search";
     }
 }
