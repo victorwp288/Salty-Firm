@@ -37,15 +37,16 @@ public class Test {
         // FirmRepositoryImpl f = new FirmRepositoryImpl();
         // System.out.println(f.searchFirms("alle").toString());
 
-        Hashing a = new Hashing();
+        HashRepositoryImpl a = new HashRepositoryImpl();
         System.out.println(a.hashPassword("mypassword"));
-        System.out.println(a.passwordExists(user));
-        System.out.println(a.usernameExists(user));
+        //System.out.println(a.passwordExists(user));
+        //System.out.println(a.usernameExists(user));
+        System.out.println(a.getSalt());
 
 
 
-         UserRepositoryImpl urr = new UserRepositoryImpl();
-        System.out.println(urr.getAllUsers().toString());
+         //UserRepositoryImpl urr = new UserRepositoryImpl();
+        //System.out.println(urr.getAllUsers().toString());
 
        // ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
         // Review review = new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 )

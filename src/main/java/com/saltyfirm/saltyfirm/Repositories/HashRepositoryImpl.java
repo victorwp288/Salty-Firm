@@ -20,8 +20,7 @@ import java.util.List;
 public class HashRepositoryImpl implements HashRepository{
 
 
-    @Value("${spring.datasource.salt}")
-    private String salt;
+    private final String salt = "n0 H4Ck My p422W0rD";
 
     @Autowired
     UserRepository userRepository;
