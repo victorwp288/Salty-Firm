@@ -51,12 +51,13 @@ public class UserController {
         return "editUser";
     }
 
-    @PostMapping("/user/editUser/")
-    public String updateUser(@ModelAttribute User user, Model model) {
-        userService.editUser(user);
+    @PostMapping("/user/editUser/{userId}")
+    public String updateUser(@ModelAttribute User current, @PathVariable int userId, Model model) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", current);
+        userService.editUser(current);
         return "redirect:/user/{userId}";
     }
-
 
     @GetMapping("/user/deleteUser/{userId}")
     public String deleteForm(@PathVariable int userId, Model model) {
