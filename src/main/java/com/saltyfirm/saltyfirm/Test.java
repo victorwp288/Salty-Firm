@@ -2,7 +2,6 @@ package com.saltyfirm.saltyfirm;
 
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.*;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.Hashing;
 
 public class Test {
     public static void main(String[] args) {
