@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <th><p>Email adresse</p></th>
-            <td><input type="text" th:field="${user.mail}" placeholder="Email adresse" onfocus="this.placeholder=''" onblur="this.placeholder='Email adresse'" required/></td>
+            <td><input type="email" th:field="${user.mail}" placeholder="Email adresse" onfocus="this.placeholder=''" onblur="this.placeholder='Email adresse'" required/></td>
         </tr>
         <tr>
             <th><p>Uddannelse</p></th>
@@ -51,7 +51,7 @@
         </tr>
         <tr>
             <th><p>Fødselsdato</p></th>
-            <td><input type="text" th:field="${user.birthdate}" minlength="10" maxlength="10" placeholder="dd-mm-yyyy" onfocus="this.placeholder=''" onblur="this.placeholder='dd-mm-yyyy'" required/></td>
+            <td><input type="date" th:field="${user.birthdate}" minlength="10" maxlength="10" placeholder="dd-mm-yyyy" onfocus="this.placeholder=''" onblur="this.placeholder='dd-mm-yyyy'" required/></td>
         </tr>
 
     </table>
