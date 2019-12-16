@@ -44,30 +44,45 @@
     <title>SaltyFirm</title>
 </head>
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
+<br><br><br>
 <h1 th:text="'Oversigt over '+${firms.firmName}"></h1>
 <div class="container">
-    <table class="table table-hover table-bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>Firma logo</th>
             <th>Firma type</th>
-            <th>Overall rating</th>
+            <th style="width: 15%">Samlet SF score</th>
             <th>Beskrivelse</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td><img th:src="${firms.logoURL}" alt="LOGO" height="100"/></td>
-            <td><p th:text="${firms.firmType}"></p></td>
-            <td><p th:text="${firms.overallScore}+' / 10'"></p></td>
-            <td><p th:text="${firms.description}"></p></td>
+            <td><p th:text="${firms.firmType}" style="font-size: 20px;text-align: center"></p></td>
+            <td th:if="${firms.overallScore} < 3">
+                <p th:text="${firms.overallScore}+' / 10'" style="color: red;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${firms.overallScore} > 3 and ${firms.overallScore} < 7">
+                <p th:text="${firms.overallScore}+' / 10'" style="color: #FFC733;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${firms.overallScore} > 7">
+                <p th:text="${firms.overallScore}+' / 10'" style="color: green;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${firms.overallScore} == 7">
+                <p th:text="${firms.overallScore}+' / 10'" style="color: yellowgreen;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${firms.overallScore} == 3">
+                <p th:text="${firms.overallScore}+' / 10'" style="color: darkorange;font-size: 20px;text-align: center"></p>
+            </td>
+            <td><p th:text="${firms.description}" style="font-size: 15px"></p></td>
         </tr>
         </tbody>
     </table>
 </div>
 <h3 th:text="'Oversigt over afdelinger'"></h3>
 <div class="container">
-    <table class="table table-hover table-bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>Afdelings Navn</th>
@@ -77,9 +92,23 @@
         </thead>
         <tbody>
         <tr th:each="department : ${departments}">
-            <td><a th:text="${department.departmentName}" th:href="'/department/'+${firms.firmId}+'/'+${department.departmentId}"></a></td>
-            <td><p th:text="${department.departmentAddress}"></p></td>
-            <td><p th:text="${department.departmentScore}+' / 10'"></p></td>
+            <td><a th:text="${department.departmentName}" th:href="'/department/'+${user.userId}+'/'+${firms.firmId}+'/'+${department.departmentId}" style="font-size: 20px;text-align: center"></a></td>
+            <td><p th:text="${department.departmentAddress}" style="font-size: 20px"></p></td>
+            <td th:if="${department.departmentScore} < 3">
+                <p th:text="${department.departmentScore}+' / 10'" style="color: red;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${department.departmentScore} > 3 and ${department.departmentScore} < 7">
+                <p th:text="${department.departmentScore}+' / 10'" style="color: #FFC733;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${department.departmentScore} > 7">
+                <p th:text="${department.departmentScore}+' / 10'" style="color: green;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${department.departmentScore} == 7">
+                <p th:text="${department.departmentScore}+' / 10'" style="color: yellowgreen;font-size: 20px;text-align: center"></p>
+            </td>
+            <td th:if="${department.departmentScore} == 3">
+                <p th:text="${department.departmentScore}+' / 10'" style="color: darkorange;font-size: 20px;text-align: center"></p>
+            </td>
         </tr>
         </tbody>
     </table>

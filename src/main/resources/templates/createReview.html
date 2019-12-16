@@ -10,7 +10,7 @@
 
 </head>
 <body style="background-image: url(/img/business-wallpaper.jpg); background-attachment: fixed; background-size: 100% 100%">
-<br><br>
+<br><br><br>
 <h1>Opret anmeldelse</h1>
 <br>
 <div class="container" style="width: 50%">
@@ -91,7 +91,7 @@
             <tr>
                 <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Uddybbende kommentarer</p></th>
                 <td>
-                    <textarea th:field="${review.post}" rows="4" cols="50" style="height: 100%;width: 100%;border: none"></textarea>
+                    <textarea placeholder="Skriv øvrige kommentarer om arbejdspladsen her..." onfocus="this.placeholder=''" onblur="this.placeholder='Skriv øvrige kommentarer om arbejdspladsen her...'" th:field="${review.post}" rows="4" cols="50" style="height: 100%;width: 100%;border: none"></textarea>
                 </td>
             </tr>
         </table>

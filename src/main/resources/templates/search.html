@@ -59,7 +59,7 @@
     </div>
 <br>
     <div class="container">
-        <table class="table table-hover table-bordered">
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th>Firma navn</th>
@@ -71,9 +71,23 @@
             <tbody>
 
             <tr th:each="firms: ${list}">
-                <td><a th:text="${firms.firmName}" th:href="'/firms/'+${firms.firmId}" style="font-size: 20px"></a></td>
+                <td><a th:text="${firms.firmName}" th:href="'/firms/'+${user.userId}+'/'+${firms.firmId}" style="font-size: 20px"></a></td>
                 <td><img th:src="${firms.logoURL}" alt="LOGO" height="100" style=""/></td>
-                <td><p th:text="${firms.overallScore}+' / 10'" style="font-size: 20px;text-align: center"></p></td>
+                <td th:if="${firms.overallScore} < 3">
+                    <p th:text="${firms.overallScore}+' / 10'" style="color: red;font-size: 20px;text-align: center"></p>
+                </td>
+                <td th:if="${firms.overallScore} > 3 and ${firms.overallScore} < 7">
+                    <p th:text="${firms.overallScore}+' / 10'" style="color: #FFC733;font-size: 20px;text-align: center"></p>
+                </td>
+                <td th:if="${firms.overallScore} > 7">
+                    <p th:text="${firms.overallScore}+' / 10'" style="color: green;font-size: 20px;text-align: center"></p>
+                </td>
+                <td th:if="${firms.overallScore} == 7">
+                    <p th:text="${firms.overallScore}+' / 10'" style="color: yellowgreen;font-size: 20px;text-align: center"></p>
+                </td>
+                <td th:if="${firms.overallScore} == 3">
+                    <p th:text="${firms.overallScore}+' / 10'" style="color: darkorange;font-size: 20px;text-align: center"></p>
+                </td>
             </tr>
             </tbody>
         </table>

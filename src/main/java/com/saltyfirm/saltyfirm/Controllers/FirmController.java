@@ -33,9 +33,14 @@ public class FirmController {
     UserService userService;
 
 
-    @GetMapping("/firms/{firmId}")
-    public String firms(@PathVariable int firmId, Model model) {
+    @GetMapping("/firms/{userId}/{firmId}")
+    public String firms(@PathVariable int userId, @PathVariable int firmId, Model model) {
         List<Department> department = departmentService.getDepartments(firmId);
+        User user = new User();
+        if (userId != 0) {
+            user = userService.findUserById(userId);
+        }
+        model.addAttribute("user",user);
         Firm firm = firmService.findFirmById(firmId);
         model.addAttribute("firms", firm);
         model.addAttribute("departments", department);
@@ -43,12 +48,17 @@ public class FirmController {
     }
 
 
-    @GetMapping("/department/{firmId}/{departmentId}")
-    public String departments(@PathVariable int departmentId, @PathVariable int firmId, Model model) {
+    @GetMapping("/department/{userId}/{firmId}/{departmentId}")
+    public String departments(@PathVariable int userId, @PathVariable int departmentId, @PathVariable int firmId, Model model) {
         Department department = departmentService.findDepartmentById(departmentId);
         Firm firms = firmService.findFirmById(firmId);
         List<Review> review = departmentService.getAllReviews(departmentId);
         Review departmentScore = departmentService.getRealDepartmentScores(departmentId);
+        User user = new User();
+        if (userId != 0) {
+            user = userService.findUserById(userId);
+        }
+        model.addAttribute("user",user);
         model.addAttribute("firms", firms);
         model.addAttribute("departments", department);
         model.addAttribute("reviews", review);
