@@ -1,16 +1,8 @@
 package com.saltyfirm.saltyfirm;
 
-import com.saltyfirm.saltyfirm.Models.Department;
-import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.*;
-import com.saltyfirm.saltyfirm.Services.DepartmentService;
-
-
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.Hashing;
 
 public class Test {
     public static void main(String[] args) {
@@ -45,14 +37,15 @@ public class Test {
         // FirmRepositoryImpl f = new FirmRepositoryImpl();
         // System.out.println(f.searchFirms("alle").toString());
 
-        //Aes a = new Aes();
-        //System.out.println(a.hashPassword("mypassword"));
-       // System.out.println(a.passwordExists(user));
-      //  System.out.println(a.usernameExists("frækfyr"));
+        Hashing a = new Hashing();
+        System.out.println(a.hashPassword("mypassword"));
+        System.out.println(a.passwordExists(user));
+        System.out.println(a.usernameExists(user));
 
 
-        // UserRepositoryImpl urr = new UserRepositoryImpl();
-        // System.out.println(urr.getAllUsers().toString());
+
+         UserRepositoryImpl urr = new UserRepositoryImpl();
+        System.out.println(urr.getAllUsers().toString());
 
        // ReviewRepositoryImpl rr = new ReviewRepositoryImpl();
         // Review review = new Review("Dette er en test for oprettelse af review", 6, "Tjener", 4, 5, 6, 7, 8, 9 )
