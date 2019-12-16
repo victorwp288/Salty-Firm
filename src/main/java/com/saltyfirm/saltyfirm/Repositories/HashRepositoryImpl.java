@@ -3,18 +3,14 @@ package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
-import com.saltyfirm.saltyfirm.Repositories.UserRepository;
-import com.saltyfirm.saltyfirm.Repositories.UserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Service
 public class HashRepositoryImpl implements HashRepository{
