@@ -2,6 +2,7 @@ package com.saltyfirm.saltyfirm.Controllers;
 
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
+import com.saltyfirm.saltyfirm.Services.API.TwilloSms;
 import com.saltyfirm.saltyfirm.Services.ReviewService;
 import com.saltyfirm.saltyfirm.Services.UserService;
 import org.slf4j.Logger;
@@ -25,6 +26,8 @@ public class UserController {
     UserService userService;
     @Autowired
     ReviewService reviewService;
+    @Autowired
+    TwilloSms twilloSms;
 
     @GetMapping("/createUser")
     public String newUser(Model model) {
@@ -36,6 +39,7 @@ public class UserController {
     @PostMapping("/createUser")
     public String createUser(@ModelAttribute User user) {
         userService.createUser(user);
+        twilloSms.SMS(Integer.toString(user.getPhoneNumber()));
         return "redirect:/";
     }
 
