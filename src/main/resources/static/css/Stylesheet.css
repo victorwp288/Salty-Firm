@@ -14,6 +14,7 @@
     border-bottom: 2px solid black;
     position: fixed;
     width: 100%;
+    text-align: center;
 }
 
 .topNavigationsbar input {
@@ -23,12 +24,13 @@
 }
 
 .Logo {
-    font-size: xx-large;
     font-weight: bold;
+    font-size: large;
     cursor:pointer;
     text-decoration:none;
     color: inherit;
-    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 25%;
 }
 .login {
     text-align: right;
@@ -63,5 +65,9 @@ body {
     font-size: 70px;
 }
 .bottomBar {
-    margin-top: 570px;
+    position: fixed;
+    text-align: right;
+    color: white;
+    margin-left: 25px;
+    margin-top: 25%;
 }
