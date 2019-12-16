@@ -39,7 +39,7 @@ public class HashRepositoryImpl implements HashRepository{
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(password.getBytes(), 0, password.length());
-            String hashedPassword = new BigInteger(1, md.digest()).toString(32);
+            String hashedPassword = new BigInteger(1, md.digest()).toString(16);
 
             return hashedPassword;
 

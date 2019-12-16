@@ -41,7 +41,6 @@ public class Test {
         System.out.println(a.hashPassword("mypassword"));
         //System.out.println(a.passwordExists(user));
         //System.out.println(a.usernameExists(user));
-        System.out.println(a.getSalt());
 
 
 
