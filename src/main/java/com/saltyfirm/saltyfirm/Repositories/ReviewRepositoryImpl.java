@@ -141,8 +141,8 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         int departmentId = 0;
         try {
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review SET post, salary, position, pension_scheme, benefits, " +
-                    "management, work_environment, flexibility, employment_time VALUE (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review SET post = ?, salary = ?, `position` = ?, pension_scheme = ?, benefits = ?, " +
+                                                                                   "management = ?, work_environment = ?, flexibility = ?, employment_time = ? WHERE review_id = ?");
 
             preparedStatement.setString(1, review.getPost());
             preparedStatement.setInt(2, review.getSalary());
@@ -153,6 +153,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             preparedStatement.setDouble(7, review.getWorkEnvironment());
             preparedStatement.setDouble(8, review.getFlexibility());
             preparedStatement.setInt(9, review.getEmploymentTime());
+            preparedStatement.setInt(10, review.getReviewId());
 
             preparedStatement.executeUpdate();
 
@@ -168,7 +169,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
                                                                 "  (SELECT\n" +
                                                                 "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /\n" +
                                                                 "    (SELECT COUNT(benefits)) AS total_total_score\n" +
-                                                                "    FROM review\n" +
+                                                                "    FROM saltyfirm.review\n" +
                                                                 "    WHERE department_fk_id = department_id) \n" +
                                                                 "WHERE department_id = ?;");
 
@@ -206,7 +207,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
                                                                 "  (SELECT\n" +
                                                                 "    (SELECT SUM(pension_scheme + benefits + management + work_environment + flexibility) / 5 AS total_score) /\n" +
                                                                 "    (SELECT COUNT(review_id)) AS total_total_score\n" +
-                                                                "    FROM review\n" +
+                                                                "    FROM saltyfirm.review\n" +
                                                                 "    WHERE department_fk_id = department_id) \n" +
                                                                 "WHERE department_id = ?;");
 
@@ -217,7 +218,6 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         return 0;
     }

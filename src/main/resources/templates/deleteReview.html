@@ -7,15 +7,46 @@
 <body>
 <div class="delete">
     <br>
-    <h3>Er du sikker på at du vil slette: </h3>
+    <h4>Er du sikker på at du vil slette anmeldelsen fra </h4>
 
     <form th:action="@{/user/deleteReview/}+${user.userId}+'/'+${review.reviewId}" method="post">
+        <h2 th:text="${review.firmName}+' - '+${review.departmentName}"></h2>
 
-        <p th:text="${review.post}"> </p>
-        <p th:text="${review.position}"> </p>
-
-
-
+        <h4>med følgende anmeldelse:</h4>
+        <table>
+        <tr>
+            <td>Stilling</td>
+            <td th:text="${review.position}"></td>
+        </tr>
+        <tr>
+            <td>Ansættelsestid</td>
+            <td th:text="${review.employmentTime}"></td>
+        </tr>
+        <tr>
+            <td>Beskrivelse</td>
+            <td th:text="${review.post}"></td>
+        </tr>
+        </table>
+<table>
+    <thead>
+    <tr>
+        <th>Pensionsordning</th>
+        <th>Personalegoder</th>
+        <th>Ledelsen</th>
+        <th>Arbejdsmiljø</th>
+        <th>Fleksibilitet</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><p th:text="${review.PensionScheme} + ' / 10'"></p></td>
+        <td><p th:text="${review.benefits} + ' / 10'"></p></td>
+        <td><p th:text="${review.management} + ' / 10'"></p></td>
+        <td><p th:text="${review.workEnvironment} + ' / 10'"></p></td>
+        <td><p th:text="${review.flexibility} + ' / 10'"></p></td>
+    </tr>
+    </tbody>
+</table>
         <p><input type="submit" value="Slet Anmeldelse" /></p>
     </form>
     <br>

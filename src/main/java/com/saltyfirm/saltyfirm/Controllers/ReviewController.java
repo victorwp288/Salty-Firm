@@ -57,14 +57,15 @@ public class ReviewController {
         User user = userRepository.findUserById(userId);
         model.addAttribute("user", user);
         Review review = reviewRepository.findReviewById(reviewId);
-        model.addAttribute(review);
+        model.addAttribute("review", review);
         return "editReview";
     }
 
     @PostMapping("/user/editReview/{userId}/{reviewId}")
-    public String doneEditingReview(Model model, @PathVariable int reviewId, @PathVariable int userId) {
+    public String doneEditingReview(Model model, @ModelAttribute Review review, @PathVariable int userId) {
         log.info("Post editing Review in " + this.getClass());
-        Review review = reviewRepository.findReviewById(reviewId);
+        User user = userRepository.findUserById(userId);
+        model.addAttribute("user", user);
         reviewRepository.editReview(review);
         return "redirect:/user/{userId}";
     }
