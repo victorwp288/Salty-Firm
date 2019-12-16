@@ -4,6 +4,8 @@ import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Services.ReviewService;
 import com.saltyfirm.saltyfirm.Services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     UserService userService;
@@ -46,16 +50,22 @@ public class UserController {
 
     @GetMapping("/user/editUser/{userId}")
     public String editUser(Model model, @PathVariable int userId) {
+        log.info("Starting editUser - finding user..");
         User user = userService.findUserById(userId);
         model.addAttribute("user",user);
+        log.info("editUser User found - returning 'editUser html'");
         return "editUser";
     }
 
     @PostMapping("/user/editUser/{userId}")
     public String updateUser(@ModelAttribute User current, @PathVariable int userId, Model model) {
+        log.info("Starting update User - finding user..");
         User user = userService.findUserById(userId);
-        model.addAttribute("user", current);
+        log.info("1");
+        model.addAttribute("user", userService.findUserById(userId));
+        log.info("2");
         userService.editUser(current);
+        log.info("update User done - redirecting til /user/{userId}");
         return "redirect:/user/{userId}";
     }
 

@@ -53,6 +53,9 @@
             <th><p>Fødselsdato</p></th>
             <td><input type="text" th:field="${user.birthdate}" minlength="10" maxlength="10" placeholder="dd-mm-yyyy" onfocus="this.placeholder=''" onblur="this.placeholder='dd-mm-yyyy'" required/></td>
         </tr>
+        <tr>
+            <td><input type="hidden" th:field="${user.privileges}"/></td>
+        </tr>
 
     </table>
     <br><br>

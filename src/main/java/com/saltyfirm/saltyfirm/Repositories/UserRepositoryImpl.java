@@ -57,11 +57,11 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(9, user.getMail());
             preparedStatement.setString(10, user.getNationality());
             if (user.getPrivileges().equals("admin")) {
-                preparedStatement.setInt(11, 1);
+                preparedStatement.setString(11, "1");
             } else if (user.getPrivileges().equals("user")) {
-                preparedStatement.setInt(11, 2);
+                preparedStatement.setString(11, "2");
             } else {
-                preparedStatement.setInt(11, 3);
+                preparedStatement.setString(11, "3");
             }
             preparedStatement.setInt(12, user.getUserId());
             preparedStatement.executeUpdate();
