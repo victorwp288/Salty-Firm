@@ -3,7 +3,6 @@ package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -18,8 +17,7 @@ public class HashRepositoryImpl implements HashRepository{
 
     private final String salt = "n0 H4Ck My p422W0rD";
 
-    @Autowired
-    UserRepository userRepository;
+
 
 
     @Override
