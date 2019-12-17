@@ -71,7 +71,7 @@
     <h1 class="header" style="font-weight: bold; z-index: 1;">VELKOMMEN TIL SALTY<span style="color: dodgerblue;font-weight: bold">FIRM</span></h1>
     <h3>Stedet hvor du kan se anmeldelser fra medarbejdere og selv give anmeldelser ... </h3>
     <br><br><br><br>
-    <h4> Søg efter firma</h4>
+    <h4> Søg efter et firma</h4>
     <div class="container" style="text-align: center">
         <form class="searchBar" th:action="@{/search/}+${user.userId}" method="post">
             <input type="text" th:field="${firm.firmName}" placeholder="Søg på firma..." style="width: 50%" required/>
