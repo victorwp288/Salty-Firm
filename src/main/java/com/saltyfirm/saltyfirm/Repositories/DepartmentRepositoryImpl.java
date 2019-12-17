@@ -96,7 +96,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
-    @Override
+    @Override // BLIVER IKKE BRUGT!
     public List<Double> getDepartmentScores(int departmentId) {
         List<Double> scores = new ArrayList<>();
         int pensionScheme = 0;
@@ -181,7 +181,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
-    @Override
+    @Override // SKAL AKTIVERES UNDER REVIEW OG SLETTES HER
     public List<Review> getAllReviews(int departmentId) {
         List<Review> reviews = new ArrayList<>();
         try {

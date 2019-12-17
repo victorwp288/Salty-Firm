@@ -38,7 +38,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.editDepartment(department);
     }
 
-    @Override
+    @Override // SKAL SLETTES, DENNE FINDES I getRealDepartmentScore
     public List<Double> getDepartmentScores(int departmentId) {
 
         return departmentRepository.getDepartmentScores(departmentId);
