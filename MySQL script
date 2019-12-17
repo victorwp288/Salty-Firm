@@ -8,7 +8,7 @@ USE saltyfirm;
 CREATE TABLE IF NOT EXISTS `privileges`
 (
     privileges_id       INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
-    access_level        VARCHAR(10)                  NOT NULL
+    access_level        VARCHAR(12)                  NOT NULL
 )
     ENGINE = InnoDB;
 
