@@ -1,7 +1,6 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
-import com.saltyfirm.saltyfirm.Models.SearchOverview;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -124,9 +123,8 @@ public class FirmRepositoryImpl implements FirmRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
-                double totalFirmScore = resultSet.getInt(1);
 
-                return totalFirmScore;
+                return resultSet.getInt(1);
             }
 
             }catch (SQLException e){

@@ -1,7 +1,6 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
-import com.saltyfirm.saltyfirm.Models.SearchOverview;
 
 import java.util.List;
 

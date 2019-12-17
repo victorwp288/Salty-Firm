@@ -68,30 +68,30 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Firma logo</th>
-            <th>Firma type</th>
-            <th style="width: 15%">Samlet SF score</th>
+            <th style="text-align: center">Firma logo</th>
+            <th style="text-align: center">Firma type</th>
+            <th style="width: 15%;text-align: center;">Samlet SF score</th>
             <th>Beskrivelse</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td><img th:src="${firms.logoURL}" alt="LOGO" height="100"/></td>
-            <td><p th:text="${firms.firmType}" style="font-size: 20px;text-align: center"></p></td>
+            <td><img th:src="${firms.logoURL}" alt="LOGO" height="100" style="margin-left: auto;margin-right: auto;display: block"/></td>
+            <td><p th:text="${firms.firmType}" style="font-size: 20px;text-align: center;line-height: 100px"></p></td>
             <td th:if="${firms.overallScore} < 3">
-                <p th:text="${firms.overallScore}+' / 10'" style="color: red;font-size: 20px;text-align: center"></p>
+                <p th:text="${firms.overallScore}+' / 10'" style="color: red;font-size: 20px;text-align: center;line-height: 100px"></p>
             </td>
             <td th:if="${firms.overallScore} > 3 and ${firms.overallScore} < 7">
-                <p th:text="${firms.overallScore}+' / 10'" style="color: #FFC733;font-size: 20px;text-align: center"></p>
+                <p th:text="${firms.overallScore}+' / 10'" style="color: #FFC733;font-size: 20px;text-align: center;line-height: 100px"></p>
             </td>
             <td th:if="${firms.overallScore} > 7">
-                <p th:text="${firms.overallScore}+' / 10'" style="color: green;font-size: 20px;text-align: center"></p>
+                <p th:text="${firms.overallScore}+' / 10'" style="color: green;font-size: 20px;text-align: center;line-height: 100px"></p>
             </td>
             <td th:if="${firms.overallScore} == 7">
-                <p th:text="${firms.overallScore}+' / 10'" style="color: yellowgreen;font-size: 20px;text-align: center"></p>
+                <p th:text="${firms.overallScore}+' / 10'" style="color: yellowgreen;font-size: 20px;text-align: center;line-height: 100px"></p>
             </td>
             <td th:if="${firms.overallScore} == 3">
-                <p th:text="${firms.overallScore}+' / 10'" style="color: darkorange;font-size: 20px;text-align: center"></p>
+                <p th:text="${firms.overallScore}+' / 10'" style="color: darkorange;font-size: 20px;text-align: center;line-height: 100px"></p>
             </td>
             <td><p th:text="${firms.description}" style="font-size: 15px"></p></td>
         </tr>

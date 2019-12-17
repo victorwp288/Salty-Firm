@@ -37,6 +37,9 @@ public class HomeController {
 
     @GetMapping("/{currentUserId}")
     public String index2(@PathVariable int currentUserId, Model model){
+        if (currentUserId == 0) {
+            return "redirect:/";
+        }
         User user = userService.findUserById(currentUserId);
         model.addAttribute(user);
         Firm firm = new Firm();
