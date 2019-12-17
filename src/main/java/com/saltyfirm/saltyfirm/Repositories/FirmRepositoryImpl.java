@@ -81,12 +81,12 @@ public class FirmRepositoryImpl implements FirmRepository {
     }
 
     @Override
-    public int deleteFirm(int id) {
+    public int deleteFirm(int firmId) {
         try {
             log.info("Executing deleteFirm");
             Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.firm WHERE firm_id = ?");
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, firmId);
 
             log.info("Executed deleteFirm");
             return preparedStatement.executeUpdate();

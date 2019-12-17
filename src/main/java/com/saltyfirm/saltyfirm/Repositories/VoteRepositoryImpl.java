@@ -24,10 +24,6 @@ public class VoteRepositoryImpl implements VoteRepository {
             Vote currentVote = new Vote();
 
 
-
-
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,11 +46,6 @@ public class VoteRepositoryImpl implements VoteRepository {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.vote WHERE saltyfirm.review_fk_id = ?");
 
             Vote currentVote = new Vote();
-
-
-
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();
