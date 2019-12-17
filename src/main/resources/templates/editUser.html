@@ -44,64 +44,71 @@
         <td><a th:href="@{'/'}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Log ud</a></td>
     </span>
 </div>
-<form th:action="@{/user/editUser}+'/'+${user.userId}" method="post">
-    <table>
-        <tr>
-            <th><p>Brugernavn</p></th>
-            <td><input type="text" th:field="${user.username}" placeholder="Brugernavn" onfocus="this.placeholder=''" onblur="this.placeholder='Brugernavn'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Adgangskode</p></th>
-            <td><input type="password" th:field="${user.password}" placeholder="Adgangskode" onfocus="this.placeholder=''" onblur="this.placeholder='Adgangskode'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Fornavn</p></th>
-            <td><input type="text" th:field="${user.firstname}" placeholder="Fornavn" onfocus="this.placeholder=''" onblur="this.placeholder='Fornavn'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Efternavn</p></th>
-            <td><input type="text" th:field="${user.lastname}" placeholder="Efternavn" onfocus="this.placeholder=''" onblur="this.placeholder='Efternavn'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Email adresse</p></th>
-            <td><input type="text" th:field="${user.mail}" placeholder="Email adresse" onfocus="this.placeholder=''" onblur="this.placeholder='Email adresse'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Uddannelse</p></th>
-            <td><input type="text" th:field="${user.education}" placeholder="Uddannelse" onfocus="this.placeholder=''" onblur="this.placeholder='Uddannelse'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Nationalitet</p></th>
-            <td><input type="text" th:field="${user.nationality}" placeholder="Nationalitet" onfocus="this.placeholder=''" onblur="this.placeholder='Nationalitet'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Telefon nummer</p></th>
-            <td><input type="text" minlength="8" maxlength="8" pattern="[0-9]{8}" th:field="${user.phoneNumber}" placeholder="Telefon Nummer" onfocus="this.placeholder=''" onblur="this.placeholder='Tlf nummer'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Køn</p></th>
-            <td>
-                <select th:field="${user.gender}">
-                    <option value="null">Ikke oplyst</option>
-                    <option value="Mand">Mand</option>
-                    <option value="Kvinde">Kvinde</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th><p>Fødselsdato</p></th>
-            <td><input type="text" th:field="${user.birthdate}" minlength="10" maxlength="10" placeholder="dd-mm-yyyy" onfocus="this.placeholder=''" onblur="this.placeholder='dd-mm-yyyy'" required/></td>
-        </tr>
+<br><br><br>
+<h1>Opdater Brugeroplysninger</h1>
+<br>
+<div class="container" style="width: 50%">
+    <form th:action="@{/user/editUser}+'/'+${user.userId}" method="post">
+        <table class="table table-bordered">
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: black;color: white"><p style="margin-top: 5px">Brugernavn</p></th>
+                <td><input type="text" th:field="${user.username}" placeholder="Brugernavn" onfocus="this.placeholder=''" onblur="this.placeholder='Brugernavn'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Adgangskode</p></th>
+                <td><input type="password" th:field="${user.password}" placeholder="Adgangskode" onfocus="this.placeholder=''" onblur="this.placeholder='Adgangskode'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Fornavn</p></th>
+                <td><input type="text" th:field="${user.firstname}" placeholder="Fornavn" onfocus="this.placeholder=''" onblur="this.placeholder='Fornavn'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Efternavn</p></th>
+                <td><input type="text" th:field="${user.lastname}" placeholder="Efternavn" onfocus="this.placeholder=''" onblur="this.placeholder='Efternavn'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Email adresse</p></th>
+                <td><input type="email" th:field="${user.mail}" placeholder="Email adresse" onfocus="this.placeholder=''" onblur="this.placeholder='Email adresse'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Uddannelse</p></th>
+                <td><input type="text" th:field="${user.education}" placeholder="Uddannelse" onfocus="this.placeholder=''" onblur="this.placeholder='Uddannelse'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Nationalitet</p></th>
+                <td><input type="text" th:field="${user.nationality}" placeholder="Nationalitet" onfocus="this.placeholder=''" onblur="this.placeholder='Nationalitet'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Telefon nummer</p></th>
+                <td><input type="text" minlength="8" maxlength="8" pattern="[0-9]{8}" th:field="${user.phoneNumber}" placeholder="Telefon Nummer" onfocus="this.placeholder=''" onblur="this.placeholder='Tlf nummer'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Køn</p></th>
+                <td>
+                    <select th:field="${user.gender}" style="height: 30px;border: none;width: 100%">
+                        <option value="null">Ikke oplyst</option>
+                        <option value="Mand">Mand</option>
+                        <option value="Kvinde">Kvinde</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: right;background-color: black;color: white"><p style="margin-top: 5px">Fødselsdato</p></th>
+                <td><input type="date" th:field="${user.birthdate}" minlength="10" maxlength="10" placeholder="dd-mm-yyyy" onfocus="this.placeholder=''" onblur="this.placeholder='dd-mm-yyyy'" style="height: 30px;border: none;width: 100%" required/></td>
+            </tr>
+        </table>
         <tr>
             <td><input type="hidden" th:field="${user.privileges}"/></td>
         </tr>
-
-    </table>
-    <br><br>
-    <p><input type="submit" value="Opdater"/></p>
-</form>
+        <br>
+        <div style="text-align: center">
+            <p><input type="submit" value="Opdater" style="height: 40px;width: 200px;font-size: large;color: green"/></p>
+        </div>
+    </form>
+</div>
+<br>
 <div style="text-align: center">
-    <a th:href="${'/user/'}+${user.userId}"><button>Annuller</button></a>
+    <a th:href="@{'/'}+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Tilbage</button></a>
 </div>
 <br>
 </body>

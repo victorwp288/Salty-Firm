@@ -92,8 +92,8 @@
             </tbody>
         </table>
     </div>
-    <div style="text-align: center">
-        <a th:href="${'/'}"><button>Tilbage</button></a>
-    </div>
+<div style="text-align: center">
+    <a th:href="@{'/'}+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Tilbage</button></a>
+</div>
 </body>
 </html>

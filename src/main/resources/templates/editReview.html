@@ -45,83 +45,98 @@
     </span>
 </div>
 <br><br><br>
-<h1>Edit Review</h1>
-<form th:action="@{/user/editReview/}+${user.userId}+'/'+${review.reviewId}" method="post">
-    <table>
-        <tr>
-            <th><p>Firmaets Navn</p></th>
-            <td><p th:text="${review.firmName}"></p></td>
-        </tr>
-        <tr>
-            <th><p>Afdelingens Navn</p></th>
-            <td><p th:text="${review.departmentName}"></p></td>
-        </tr>
-        <tr>
-            <th><p>Stilling</p></th>
-            <td><input type="text" th:field="${review.position}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Ansættelsesperiode (I antal måneder)</p></th>
-            <td><input type="text" th:field="${review.employmentTime}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Ansættelsesperiode'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Løn</p></th>
-            <td>
-                <select th:field="${review.salary}">
-                    <option value="1">Under 10.000 kr. </option>
-                    <option value="2">10.000 - 15.000 kr.</option>
-                    <option value="3">15.000 - 20.000 kr.</option>
-                    <option value="4">20.000 - 25.000 kr.</option>
-                    <option value="5">25.000 - 30.000 kr.</option>
-                    <option value="6">30.000 - 35.000 kr.</option>
-                    <option value="7">35.000 - 40.000 kr.</option>
-                    <option value="8">40.000 - 45.000 kr.</option>
-                    <option value="9">45.000 - 50.000 kr.</option>
-                    <option value="10">Over 50.000 kr.</option>
-                </select>
-            </td>
-        </tr>
-        <th><b>Bedømmelser:</b></th>
-        <tr>
-            <th><p>Pensionsordning</p></th>
-            <td>
-                <input th:field="${review.pensionScheme}" type="number" name="rating" min="1" max="10" step="1" value="5" required/>
-            </td>
-        </tr>
-        <tr>
-            <th><p>Arbejdsmiljø</p></th>
-            <td>
-                <input th:field="${review.workEnvironment}" type="number" name="rating" min="1" max="10" step="1" required/>
-            </td>
-        </tr>
+<h1>Opdater Anmeldelse</h1>
+<br>
+<div class="container" style="width: 50%">
+    <form th:action="@{/user/editReview/}+${user.userId}+'/'+${review.reviewId}" method="post">
+        <table class="table table-bordered">
+            <tr>
+                <td style="text-align: right; width: 25%;background-color: #000;color: white;border-right: transparent"><p style="margin-top: 7px;font-size: large">Overordnet information:</p></td>
+                <td style="text-align: left;background-color: #000;color: white;border-left: transparent"><b style="margin-top: 5px"></b></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Firmaets Navn</p></th>
+                <td><p th:text="${review.firmName}" style="margin-top: 5px;height: 30px;width: 100%;border: none"></p></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Afdelingens Navn</p></th>
+                <td><p th:text="${review.departmentName}" style="margin-top: 5px;height: 30px;width: 100%;border: none"></p></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Stilling</p></th>
+                <td><input type="text" th:field="${review.position}" placeholder="Stilling" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Ansættelsesperiode</p></th>
+                <td><input type="number" value="1" th:field="${review.employmentTime}" placeholder="Ansættelsesperiode" onfocus="this.placeholder=''" onblur="this.placeholder='Stilling'" style="margin-top: 5px;margin-right: 10px;height: 30px;width: 30%;border: none" required/><span>(Angiv hvor mange måneder du har været ansat)</span></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Løn</p></th>
+                <td>
+                    <select th:field="${review.salary}" style="margin-top: 5px;height: 30px;width: 100%;border: none">
+                        <option value="1">Under 10.000 kr. </option>
+                        <option value="2">10.000 - 15.000 kr.</option>
+                        <option value="3">15.000 - 20.000 kr.</option>
+                        <option value="4">20.000 - 25.000 kr.</option>
+                        <option value="5">25.000 - 30.000 kr.</option>
+                        <option value="6">30.000 - 35.000 kr.</option>
+                        <option value="7">35.000 - 40.000 kr.</option>
+                        <option value="8">40.000 - 45.000 kr.</option>
+                        <option value="9">45.000 - 50.000 kr.</option>
+                        <option value="10">Over 50.000 kr.</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; width: 25%;background-color: #000;color: white;border-right: transparent"><p style="margin-top: 7px;font-size: large">Bedømmelser:</p></td>
+                <td style="text-align: left;background-color: #000;color: white;border-left: transparent"><b style="margin-top: 5px"></b></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Pensionsordning</p></th>
+                <td>
+                    <input th:field="${review.pensionScheme}" type="number" name="rating" min="1" max="10" step="1" value="5" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Arbejdsmiljø</p></th>
+                <td>
+                    <input th:field="${review.workEnvironment}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
+                </td>
+            </tr>
 
-        <tr>
-            <th><p>Personalegoder</p></th>
-            <td>
-                <input th:field="${review.benefits}" type="number" name="rating" min="1" max="10" step="1" required/>
-            </td>
-        </tr>
-        <tr>
-            <th><p>Flexibilitet</p></th>
-            <td>
-                <input th:field="${review.flexibility}" type="number" name="rating" min="1" max="10" step="1" required/>
-            </td>
-        </tr>
-        <tr>
-            <th><p>Ledelsen</p></th>
-            <td>
-                <input th:field="${review.management}" type="number" name="rating" min="1" max="10" step="1" required/>
-            </td>
-        </tr>
-        <tr>
-            <th><p>Uddybbende kommentarer</p></th>
-            <td>
-                <textarea th:field="${review.post}" rows="4" cols="50"></textarea>
-            </td>
-        </tr>
-    </table>
-    <p><input type="submit" value="Opdater Anmeldelse" /></p>
-</form>
-<a th:href="'/user/'+${user.userId}"><button>Annuller</button></a>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Personalegoder</p></th>
+                <td>
+                    <input th:field="${review.benefits}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Flexibilitet</p></th>
+                <td>
+                    <input th:field="${review.flexibility}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Ledelsen</p></th>
+                <td>
+                    <input th:field="${review.management}" type="number" name="rating" min="1" max="10" step="1" style="border: none;margin-top: 5px;margin-right: 20px" required/><span>(Giv en karakter fra 1 - 10 point)</span>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px">Uddybbende kommentarer</p></th>
+                <td>
+                    <textarea placeholder="Skriv øvrige kommentarer om arbejdspladsen her..." onfocus="this.placeholder=''" onblur="this.placeholder='Skriv øvrige kommentarer om arbejdspladsen her...'" th:field="${review.post}" rows="4" cols="50" style="height: 100%;width: 100%;border: none"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <p style="text-align: center"><input type="submit" style="height: 40px;width: 200px;font-size: large;color: green" value="Opdater Anmeldelse" /></p>
+        </div>
+    </form>
+    <div style="text-align: center">
+        <a th:href="'/'+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+    </div>
+    <br>
+</div>
 </body>
 </html>

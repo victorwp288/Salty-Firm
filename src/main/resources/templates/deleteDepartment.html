@@ -45,20 +45,31 @@
     </span>
 </div>
 <br><br><br>
-<div class="delete">
+<div class="container">
     <br>
-    <h3>Er du sikker på at du vil slette: </h3>
-
-
+    <h4>Er du sikker på at du vil slette afdelingen </h4>
+    <br>
+    <h2 th:text="${firm.firmName+ ' ' + department.departmentName + ' ' +  firm.firmType}" style="color: dodgerblue"></h2>
     <form th:action="@{/firmList/departmentList/} + ${firm.firmId} + '/deleteDepartment/' + ${departmentId} + '/' + ${user.userId}" method="post">
 
-        <p th:text="${firm.firmName+ ' ' + department.departmentName + ' ' +  firm.firmType}"> </p>
-        <input type="hidden" th:field="${department.departmentId}"/>
-        <br>
-        <p><input type="submit" value="Slet Afdeling" /></p>
+        <h4>med følgende oplysninger:</h4>
+        <table class="table table-bordered">
+            <tr>
+                <td style="width: 20%;text-align: right;color: white;background-color: #555555">Adresse</td>
+                <td th:text="${department.departmentAddress}"></td>
+            </tr>
+            <tr>
+                <td style="width: 20%;text-align: right;color: white;background-color: #555555">Score</td>
+                <td th:text="${department.departmentScore}+' / 10'"></td>
+            </tr>
+        </table>
+        <div>
+            <p style="text-align: center"><input type="submit" style="height: 40px;width: 200px;font-size: large;color: red" value="Slet Afdeling" /></p>
+        </div>
     </form>
-    <br>
-    <a th:href="@{'/firmList/departmentList/'} + ${firm.firmId} + '/' + ${user.userId}"><button>Annuller</button></a>
+    <div style="text-align: center">
+        <a th:href="@{'/firmList/departmentList/'} + ${firm.firmId} + '/' + ${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+    </div>
     <br>
 </div>
 </body>

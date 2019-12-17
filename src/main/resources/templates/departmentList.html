@@ -47,11 +47,10 @@
 </div>
 <br><br><br>
 <h1 th:text="'Oversigt over '+${firm.firmName}+'´s afdelinger'"></h1>
-<div>
-    <table class="table table-striped table-hover table-bordered">
+<div class="container">
+    <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Afdelings id</th>
             <th>Afdelings navn</th>
             <th>Afdelings address</th>
             <th>Afdelings score</th>
@@ -62,21 +61,20 @@
 
         <tbody>
         <tr th:each="department : ${departmentList}">
-            <td><p th:text="${department.departmentId}"></p></td>
             <td><p th:text="${department.departmentName}"></p></td>
             <td><p th:text="${department.departmentAddress}"></p></td>
             <td><p th:text="${department.departmentScore}"></p></td>
-
             <td>
-                <a class="glyphicon glyphicon-edit" th:href="${'editDepartment/' + department.departmentId +'/'+ user.userId}"></a>
-                <a class="glyphicon glyphicon-remove" th:href="${'deleteDepartment/' + department.departmentId +'/'+ user.userId}"></a>
+                <a th:href="${'editDepartment/' + department.departmentId +'/'+ user.userId}" class="glyphicon glyphicon-cog" style="font-size: 150%;margin-right: 5px;margin-left: 5px"></a>
+                <a th:href="${'deleteDepartment/' + department.departmentId +'/'+ user.userId}" class="glyphicon glyphicon-trash" style="font-size: 150%"></a>
             </td>
 
         </tr>
         </tbody>
     </table>
-    <a th:href="@{'/firmList/'}+${user.userId}"><button>Tilbage</button></a>
-</div>
+    <div style="text-align: center">
+        <a th:href="'/firmList/departmentList/'+${firm.firmId}+'/'+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+    </div></div>
 </body>
 <div>
     <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>

@@ -73,7 +73,7 @@
         <td><p th:text="${current.nationality}"></p></td>
         <td><p th:text="${current.privileges}"></p></td>
         <td>
-            <a th:href="@{/userList/deleteUser/}+${current.userId}+'/'+${user.userId}"><button type="button" >Slet</button></a>
+            <a th:href="@{/userList/deleteUser/}+${current.userId}+'/'+${user.userId}" class="glyphicon glyphicon-trash" style="font-size: 150%"></a>
         </td>
     </tr>
     </tbody>

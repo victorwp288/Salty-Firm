@@ -45,20 +45,35 @@
     </span>
 </div>
 <br><br><br>
-<div class="delete">
+<div class="container">
     <br>
-    <h3>Er du sikker på at du vil slette: </h3>
+    <h3>Er du sikker på at du vil slette anmeldelsen fra </h3>
 
     <form th:action="@{/firmList/deleteFirm/}+ ${firm.firmId} + '/' + ${user.userId}" method="post">
+        <h2 th:text="${firm.firmName}" style="color: dodgerblue"></h2>
 
-        <p th:text="${firm.firmName+ ' ' +  firm.firmType}"> </p>
-        <input type="hidden" th:field="${firm.firmId}"/>
+        <h4>med følgende anmeldelse:</h4>
         <br>
-        <p><input type="submit" value="Slet Firma" /></p>
+        <table class="table table-bordered">
+            <tr>
+                <td style="width: 20%;text-align: right;color: white;background-color: #555555">Firma Type</td>
+                <td th:text="${firm.firmType}"></td>
+            </tr>
+            <tr>
+                <td style="width: 20%;text-align: right;color: white;background-color: #555555">Beskrivelse</td>
+                <td th:text="${firm.description}"></td>
+            </tr>
+        </table>
+
+        <div>
+            <p style="text-align: center"><input type="submit" style="height: 40px;width: 200px;font-size: large;color: red" value="Slet Anmeldelse" /></p>
+        </div>
     </form>
-    <br>
-    <a th:href="@{'/firmList'} + '/' + ${user.userId}"><button>Annuller</button></a>
+    <div style="text-align: center">
+        <a th:href="@{'/firmList/'}+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+    </div>
     <br>
 </div>
+
 </body>
 </html>

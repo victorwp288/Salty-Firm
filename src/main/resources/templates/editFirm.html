@@ -45,29 +45,37 @@
     </span>
 </div>
 <br><br><br>
+<h1>Opdater Firma oplysninger</h1>
+<br>
+<div class="container">
 <form th:action="@{/firmList/editFirm/}+${firm.firmId}+'/'+${user.userId}" method="post">
-    <table>
+    <table class="table table-bordered">
         <tr>
-            <th><p>Firmaets Navn</p></th>
-            <td><input type="text" th:field="${firm.firmName}" placeholder="Firma navn" onfocus="this.placeholder=''" onblur="this.placeholder='Firma navn'" required/></td>
+            <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px"><p>Firmaets Navn</p></th>
+            <td><input type="text" th:field="${firm.firmName}" placeholder="Firma navn" onfocus="this.placeholder=''" onblur="this.placeholder='Firma navn'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
         </tr>
         <tr>
-            <th><p>Firma type</p></th>
-            <td><input type="text" th:field="${firm.firmType}" placeholder="Firmatype" onfocus="this.placeholder=''" onblur="this.placeholder='Firmatype'" required/></td>
+            <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px"><p>Firma type</p></th>
+            <td><input type="text" th:field="${firm.firmType}" placeholder="Firmatype" onfocus="this.placeholder=''" onblur="this.placeholder='Firmatype'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
         </tr>
         <tr>
-            <th><p>Beskrivelse af firmaet</p></th>
-            <td>
-                <textarea th:field="${firm.description}" rows="4" cols="50"></textarea>
+            <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px"><p>Beskrivelse af firmaet</p></th>
+            <td >
+                <textarea th:field="${firm.description}" rows="4" cols="50" style="margin-top: 5px;height: 100%;width: 100%;border: none"></textarea>
             </td>
         </tr>
         <tr>
-            <th><p>URL til firmaets logo</p></th>
-            <td><input type="text" th:field="${firm.logoURL}" placeholder="Firma logo URL" onfocus="this.placeholder=''" onblur="this.placeholder='Firma logo URL'" required/></td>
+            <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px"><p>URL til firmaets logo</p></th>
+            <td><input type="text" th:field="${firm.logoURL}" placeholder="Firma logo URL" onfocus="this.placeholder=''" onblur="this.placeholder='Firma logo URL'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
         </tr>
     </table>
-    <p><input type="submit" value="Opdater Firma" /></p>
+    <div>
+        <p style="text-align: center"><input type="submit" style="height: 40px;width: 200px;font-size: large;color: green" value="Opdater Virksomhed" /></p>
+    </div>
 </form>
-<a th:href="'/firmList/'+${user.userId}"><button>Annuller</button></a>
+</div>
+<div style="text-align: center">
+    <a th:href="'/firmList/'+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+</div>
 </body>
 </html>

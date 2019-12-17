@@ -156,7 +156,7 @@ public class FirmController {
     }
 
     @PostMapping("/firmList/departmentList/{firmId}/deleteDepartment/{departmentId}/{userId}")
-    public String postDeleteDarptmetn(Model model, @PathVariable int userId, @PathVariable int firmId, @PathVariable int departmentId) {
+    public String postDeleteDepartment(Model model, @PathVariable int userId, @PathVariable int firmId, @PathVariable int departmentId) {
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
         Firm firm = firmService.findFirmById(firmId);
@@ -164,6 +164,6 @@ public class FirmController {
         Department department = departmentService.findDepartmentById(departmentId);
         model.addAttribute("department", department);
         departmentService.deleteDepartment(departmentId);
-        return "redirect:/";
+        return "redirect:/firmList/departmentList/{firmId}/{userId}";
     }
 }

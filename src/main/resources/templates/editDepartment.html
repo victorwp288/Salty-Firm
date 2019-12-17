@@ -45,23 +45,33 @@
     </span>
 </div>
 <br><br><br>
-<form th:action="@{/firmList/departmentList/}+${firm.firmId}+'/editDepartment/'+${department.departmentId}+'/'+${user.userId}" method="post">
-    <table>
-        <tr>
-            <th><p>Firmaets Navn</p></th>
-            <td><p th:field="${firm.firmName}"></p></td>
-        </tr>
-        <tr>
-            <th><p>Afdelingens navn</p></th>
-            <td><input type="text" th:field="${department.departmentName}" placeholder="Afdelingsnavn" onfocus="this.placeholder=''" onblur="this.placeholder='Afdelingsnavn'" required/></td>
-        </tr>
-        <tr>
-            <th><p>Afdelingens adresse</p></th>
-            <td><input th:field="${department.departmentAddress}"></td>
-        </tr>
-    </table>
-    <p><input type="submit" value="Opdater Afdeling" /></p>
-</form>
-<a th:href="'/firmList/departmentList/' + ${firm.firmId} + '/' + ${user.userId}"><button>Annuller</button></a>
+<h1>Opdater Afdelings oplysninger</h1>
+<br>
+<div class="container">
+    <form th:action="@{/firmList/departmentList/}+${firm.firmId}+'/editDepartment/'+${department.departmentId}+'/'+${user.userId}" method="post">
+        <table class="table table-bordered">
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px"><p>Firmaets Navn</p></th>
+                <td><p th:text="${firm.firmName}" style="margin-top: 5px;height: 30px;width: 100%;border: none"></p></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px"><p>Afdelingens Navn</p></th>
+                <td><input type="text" th:field="${department.departmentName}" placeholder="Afdelingsnavn" onfocus="this.placeholder=''" onblur="this.placeholder='Afdelingsnavn'" style="margin-top: 5px;height: 30px;width: 100%;border: none" required/></td>
+            </tr>
+            <tr>
+                <th style="text-align: right; width: 25%;background-color: #555;color: white"><p style="margin-top: 7px"><p>Adresse på afdelingen</p></th>
+                <td >
+                    <textarea th:field="${department.departmentAddress}" rows="4" cols="50" style="margin-top: 5px;height: 100%;width: 100%;border: none"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <p style="text-align: center"><input type="submit" style="height: 40px;width: 200px;font-size: large;color: green" value="Opdater Afdeling" /></p>
+        </div>
+    </form>
+</div>
+<div style="text-align: center">
+    <a th:href="'/firmList/departmentList/'+${firm.firmId}+'/'+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+</div>
 </body>
 </html>

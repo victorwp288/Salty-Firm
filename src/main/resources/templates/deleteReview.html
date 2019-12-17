@@ -50,47 +50,52 @@
     <h4>Er du sikker på at du vil slette anmeldelsen fra </h4>
 
     <form th:action="@{/user/deleteReview/}+${user.userId}+'/'+${review.reviewId}" method="post">
-        <h2 th:text="${review.firmName}+' - '+${review.departmentName}"></h2>
+        <h2 th:text="${review.firmName}+' - '+${review.departmentName}" style="color: dodgerblue"></h2>
 
         <h4>med følgende anmeldelse:</h4>
-        <table>
-        <tr>
-            <td>Stilling</td>
-            <td th:text="${review.position}"></td>
-        </tr>
-        <tr>
-            <td>Ansættelsestid</td>
-            <td th:text="${review.employmentTime}"></td>
-        </tr>
-        <tr>
-            <td>Beskrivelse</td>
-            <td th:text="${review.post}"></td>
-        </tr>
+        <table class="table table-bordered">
+            <table class="table table-bordered">
+                <tr>
+                    <td style="width: 20%;text-align: right;color: white;background-color: #555555">Stilling</td>
+                    <td th:text="${review.position}"></td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;text-align: right;color: white;background-color: #555555">Ansættelsestid</td>
+                    <td th:text="${review.employmentTime}+' måneder'"></td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;text-align: right;color: white;background-color: #555555">Beskrivelse</td>
+                    <td th:text="${review.post}"></td>
+                </tr>
+            </table>
+            <table class="table table-bordered">
+                <thead style="width: 20%;text-align: right;color: white;background-color: #555555">
+                <tr>
+                    <th>Pensionsordning</th>
+                    <th>Personalegoder</th>
+                    <th>Ledelsen</th>
+                    <th>Arbejdsmiljø</th>
+                    <th>Fleksibilitet</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><p th:text="${review.PensionScheme} + ' / 10'"></p></td>
+                    <td><p th:text="${review.benefits} + ' / 10'"></p></td>
+                    <td><p th:text="${review.management} + ' / 10'"></p></td>
+                    <td><p th:text="${review.workEnvironment} + ' / 10'"></p></td>
+                    <td><p th:text="${review.flexibility} + ' / 10'"></p></td>
+                </tr>
+                </tbody>
+            </table>
         </table>
-<table>
-    <thead>
-    <tr>
-        <th>Pensionsordning</th>
-        <th>Personalegoder</th>
-        <th>Ledelsen</th>
-        <th>Arbejdsmiljø</th>
-        <th>Fleksibilitet</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><p th:text="${review.PensionScheme} + ' / 10'"></p></td>
-        <td><p th:text="${review.benefits} + ' / 10'"></p></td>
-        <td><p th:text="${review.management} + ' / 10'"></p></td>
-        <td><p th:text="${review.workEnvironment} + ' / 10'"></p></td>
-        <td><p th:text="${review.flexibility} + ' / 10'"></p></td>
-    </tr>
-    </tbody>
-</table>
-        <p><input type="submit" value="Slet Anmeldelse" /></p>
+        <div>
+            <p style="text-align: center"><input type="submit" style="height: 40px;width: 200px;font-size: large;color: red" value="Slet Anmeldelse" /></p>
+        </div>
     </form>
-    <br>
-    <a th:href="@{'/user/'}+${user.userId}"><button>Annuller</button></a>
+    <div style="text-align: center">
+        <a th:href="@{'/user/'}+${user.userId}"><button style="height: 40px;width: 200px;font-size: large">Annuller</button></a>
+    </div>
     <br>
 </div>
 </body>
