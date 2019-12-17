@@ -107,10 +107,10 @@ INSERT INTO saltyfirm.privileges
 
 INSERT INTO saltyfirm.user
 (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id)
-VALUES ('test1', 'test1', 'Nicholas', 'Tureczek', 64037621, 'm', '04-02-1986', 'Tjener', 'test1@kea.dk', 'Sverige', 1),
-       ('test2', 'test2', 'Martin', 'Holmqvist', 12345678, 'f', '23-07-1988', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
-       ('test3', 'test3', 'Patrick', 'Jønnson', 98765432, 'm', '17-11-1986', 'Skraldemand', 'test3@kea.dk', 'Tyskland', 1),
-       ('test4', 'test4', 'Victor', 'Petersen', 56453535, 'm', '11-02-1991', 'Skraldemand', 'test4@kea.dk', 'Holland', 2);
+VALUES ('test1', '75fb58dec00bf83c8d7f1edcd6060ebf87a5e9a2212f0f44cdc5ea8e55db5dd2', 'Nicholas', 'Tureczek', 64037621, 'm', '04-02-1986', 'Tjener', 'test1@kea.dk', 'Sverige', 1),
+       ('test2', 'a2bee2000c9354030f8e2bc6cca9b4928f33c5280f9aa6637294c95d3719f930', 'Martin', 'Holmqvist', 12345678, 'f', '23-07-1988', 'Datamatiker', 'test2@kea.dk', 'Danmark', 2),
+       ('test3', 'f9f32713fe6dbc9a83fe70bed0e8b91f6fa6a6bfdbba7e06e5ea7ed86918f47a', 'Patrick', 'Jønnson', 98765432, 'm', '17-11-1986', 'Skraldemand', 'test3@kea.dk', 'Tyskland', 1),
+       ('test4', 'cf47be80cb975d2ed78fd49e853995f9ddce199de7535a93ee865e4619fb37cf', 'Victor', 'Petersen', 56453535, 'm', '11-02-1991', 'Skraldemand', 'test4@kea.dk', 'Holland', 2);
 
 INSERT INTO saltyfirm.firm
 (firm_name, firm_type, `description`, logo_url)
