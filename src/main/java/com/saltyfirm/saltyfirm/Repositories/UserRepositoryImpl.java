@@ -50,7 +50,7 @@ public class UserRepositoryImpl implements UserRepository {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET username = ?, password = ?, firstname = ?, lastname = ?, phone_number = ?, gender = ?, birthdate = ?, education = ?, mail = ?, nationality = ?, privileges_fk_id = ? WHERE user_id = ?");
 
             preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(2, hashRepository.hashPassword(user.getPassword()));
             preparedStatement.setString(3, user.getFirstname());
             preparedStatement.setString(4, user.getLastname());
             preparedStatement.setInt(5, user.getPhoneNumber());
