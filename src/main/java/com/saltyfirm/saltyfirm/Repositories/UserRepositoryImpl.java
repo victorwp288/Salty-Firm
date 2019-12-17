@@ -56,9 +56,9 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(8, user.getEducation());
             preparedStatement.setString(9, user.getMail());
             preparedStatement.setString(10, user.getNationality());
-            if (user.getPrivileges().equals("admin")) {
+            if (user.getPrivileges().equals("Administrator")) {
                 preparedStatement.setString(11, "1");
-            } else if (user.getPrivileges().equals("user")) {
+            } else if (user.getPrivileges().equals("Bruger")) {
                 preparedStatement.setString(11, "2");
             } else {
                 preparedStatement.setString(11, "3");

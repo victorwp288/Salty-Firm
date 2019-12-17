@@ -102,8 +102,8 @@ CREATE TABLE IF NOT EXISTS vote
 
 INSERT INTO saltyfirm.privileges
 (access_level)
-    VALUE  ('admin'),
-    ('user');
+    VALUE  ('Administrator'),
+    ('Bruger');
 
 INSERT INTO saltyfirm.user
 (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id)
