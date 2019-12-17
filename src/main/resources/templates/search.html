@@ -14,7 +14,7 @@
         <form th:action="@{/}"  method="post">
             <tr>
                 <span style="float: left; margin-left: 10px">
-                    <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none">SALTY<span style="color: dodgerblue;float: left">FIRM</span></a></td>
+                    <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit"><span>SALTY</span><span style="color: dodgerblue">FIRM</span></a></td>
                 </span>
                 <span style="text-align: center">
                     <td th:text="'Username'" style="margin-left: 5px"></td>
@@ -32,7 +32,7 @@
     <span th:if="${user.privileges == 'Bruger'}">
         <tr>
             <span style="float: left; margin-left: 10px">
-                <td style="text-align: left"><a class="Logo" th:href="@{'/'}+${user.userId}" style="text-decoration:none">SALTY<span style="color: dodgerblue;float: left">FIRM</span></a></td>
+                    <td style="text-align: left"><a class="Logo" th:href="@{'/'}+${user.userId}" style="text-decoration:none;color: inherit"><span>SALTY</span><span style="color: dodgerblue">FIRM</span></a></td>
             </span>
             <span style="text-align: center">
                 <td><a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 5%;height: 30px;line-height: 10px">Se Profil</a></td>
@@ -48,7 +48,7 @@
     </span>
     <span th:if="${user.privileges == 'Administrator'}">
         <span style="float: left; margin-left: 10px">
-            <td style="text-align: left"><a class="Logo" th:href="@{'/'}+${user.userId}" style="text-decoration:none">SALTY<span style="color: dodgerblue;float: left">FIRM</span></a></td>
+                    <td style="text-align: left"><a class="Logo" th:href="@{'/'}+${user.userId}" style="text-decoration:none;color: inherit"><span>SALTY</span><span style="color: dodgerblue">FIRM</span></a></td>
         </span>
         <span style="text-align: center">
             <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 5%;height: 30px;line-height: 10px">Se Profil</a>

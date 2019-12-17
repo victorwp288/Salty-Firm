@@ -12,9 +12,9 @@
     color: white;
     line-height: 20px;
     border-bottom: 2px solid black;
-    position: fixed;
     width: 100%;
     text-align: center;
+    position: sticky;
 }
 
 .topNavigationsbar input {
@@ -41,11 +41,9 @@
     border: 3px solid black;
 }
 h1,h2,h3,h4,h5,h6 {
-    position: relative;
     text-align: center;
     color: white;
     text-shadow:2px 2px 2px #000;
-    z-index: auto;
 }
 body {
     font-family: Bahnschrift, serif;
