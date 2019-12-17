@@ -2,7 +2,7 @@ package com.saltyfirm.saltyfirm.Controllers;
 
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
-// import com.saltyfirm.saltyfirm.Services.API.TwilloSms;
+import com.saltyfirm.saltyfirm.Repositories.HashRepositoryImpl;
 import com.saltyfirm.saltyfirm.Services.ReviewService;
 import com.saltyfirm.saltyfirm.Services.UserService;
 import org.slf4j.Logger;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+// import com.saltyfirm.saltyfirm.Services.API.TwilloSms;
+
 @Controller
 public class UserController {
 
@@ -24,6 +26,10 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    HashRepositoryImpl hashRepository;
+
     @Autowired
     ReviewService reviewService;
     // @Autowired
@@ -38,9 +44,13 @@ public class UserController {
 
     @PostMapping("/createUser")
     public String createUser(@ModelAttribute User user) {
-        userService.createUser(user);
-        // twilloSms.SMS(Integer.toString(user.getPhoneNumber()));
-        return "redirect:/";
+
+        if (hashRepository.usernameExists(user)) {
+            return "redirect:/createUser";
+        } else {
+            userService.createUser(user);
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/user/{userId}")
