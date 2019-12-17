@@ -12,7 +12,6 @@ public interface FirmRepository {
     int deleteFirm(int firmId);
     int editFirm(Firm firm);
     double getFirmTotalScore(int firmId);
-    List<SearchOverview> searchFirms2(String word);
     List<Firm> getAllFirms();
 
 }

@@ -136,37 +136,6 @@ public class FirmRepositoryImpl implements FirmRepository {
     }
 
     @Override
-    public List<SearchOverview> searchFirms2(String word) {
-        List<SearchOverview> currentSearch = new ArrayList<>();
-
-        try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, logo_url, overall_score FROM saltyfirm.firm WHERE firm_name LIKE ?");
-
-            preparedStatement.setString(1,"%" + word + "%");
-            ResultSet resultset = preparedStatement.executeQuery();
-
-            while (resultset.next()){
-                SearchOverview searchOverview = new SearchOverview();
-
-                searchOverview.setFirmName(resultset.getString("firm_name"));
-                searchOverview.setFirmLogoUrl(resultset.getString("logo_url"));
-                searchOverview.setTotalScore(resultset.getDouble("overall_score"));
-
-                currentSearch.add(searchOverview);
-            }
-
-            connection.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        return currentSearch;
-    }
-
-    @Override
     public List<Firm> getAllFirms(){
         List<Firm> firmList = new ArrayList<>();
         try {
