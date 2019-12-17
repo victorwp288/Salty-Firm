@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS firm
     firm_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
     firm_name           VARCHAR(100)                 NOT NULL,
     firm_type           VARCHAR(45),
-    overall_score       DOUBLE,
+    overall_score       DOUBLE(2,1),
     `description`       VARCHAR(500),
     logo_url            VARCHAR(200)
 )
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS department
     department_id       INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
     department_name     VARCHAR(65)                  NOT NULL,
     department_address  VARCHAR(200),
-    department_score    DOUBLE,
+    department_score    DOUBLE(2,1),
     firm_fk_id          INT              UNSIGNED    NOT NULL,
     FOREIGN KEY (firm_fk_id)
         REFERENCES firm (firm_id)
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS review
 (
     review_id           INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
     post                VARCHAR(600),
-    salary              INT NULL,
+    salary              INT,
     position            VARCHAR(100),
     pension_scheme      DOUBLE,
     benefits            DOUBLE,
