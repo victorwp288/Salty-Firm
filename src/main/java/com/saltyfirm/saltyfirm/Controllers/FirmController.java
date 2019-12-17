@@ -106,6 +106,9 @@ public class FirmController {
     public String firmList(Model model, @PathVariable int userId) {
         List<Firm> firm = firmService.getAllFirms();
         User user = userService.findUserById(userId);
+        if (userId != 0) {
+            user = userService.findUserById(userId);
+        }
         model.addAttribute("user", user);
         model.addAttribute("firmlist", firm);
         return "firmList";
