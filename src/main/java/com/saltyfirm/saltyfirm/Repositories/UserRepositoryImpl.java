@@ -12,6 +12,9 @@ import java.util.List;
 @Service
 public class UserRepositoryImpl implements UserRepository {
 
+    @Autowired
+    HashRepository hashRepository;
+
     @Override
     public int createUser(User user) {
         try {
@@ -19,7 +22,7 @@ public class UserRepositoryImpl implements UserRepository {
             PreparedStatement preparedStatement = connection.prepareStatement ("INSERT INTO saltyfirm.user (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
             preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(2, hashRepository.hashPassword(user.getPassword()));
             preparedStatement.setString(3, user.getFirstname());
             preparedStatement.setString(4, user.getLastname());
             preparedStatement.setInt(5, user.getPhoneNumber());
@@ -140,9 +143,9 @@ public class UserRepositoryImpl implements UserRepository {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON saltyfirm.user.privileges_fk_id = privileges.privileges_id WHERE user.username = ? AND user.password = ?");
 
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(2, hashRepository.hashPassword(password));
 
-            ResultSet resultSet =preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()){
                 User user = new User();

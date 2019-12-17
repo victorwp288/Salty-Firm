@@ -52,7 +52,7 @@
     </div>
 
     <div class="container" style="text-align: center">
-        <form class="searchBar" th:action="@{/search}" method="post">
+        <form class="searchBar" th:action="@{/search/}+${user.userId}" method="post">
             <input type="text" th:field="${firm.firmName}" placeholder="Søg på firma..." style="width: 50%" required/>
             <input type="submit" value="Søg" style="width: 10%">
         </form>
