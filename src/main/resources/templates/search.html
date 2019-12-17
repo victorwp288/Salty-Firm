@@ -25,7 +25,7 @@
     </span>
     <span th:if="${user.privileges == 'user'}">
         <tr>
-                <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit;margin-right: 29%;">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
+                <td style="text-align: left"><a class="Logo" th:href="@{'/'} + ${user.userId}" style="text-decoration:none;color: inherit;margin-right: 29%;">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
             <td><a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Se Profil</a></td>
             <td><a th:href="@{'/createReview'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin: 10px;height: 30px;line-height: 10px">Opret Anmeldelse</a></td>
             <td><span style="margin-top: 5px;margin-bottom: 5px"></span></td>
@@ -35,7 +35,7 @@
         </tr>
     </span>
     <span th:if="${user.privileges == 'admin'}">
-        <td style="text-align: left"><a class="Logo" th:href="@{'/'}" style="text-decoration:none;color: inherit;margin-right: 25%;">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
+        <td style="text-align: left"><a class="Logo" th:href="@{'/'} + ${user.userId}" style="text-decoration:none;color: inherit;margin-right: 25%;">SALTY<span style="color: dodgerblue">FIRM</span></a></td>
         <a th:href="@{'/user'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Se Profil</a>
         <a th:href="@{'/userList'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin-right: 10px;margin-left: 10px;height: 30px;line-height: 10px">Se Brugerliste</a>
         <a th:href="@{'/firmList'} + '/' + ${user.userId}" class="btn btn-lg btn-default" style="margin: 10px;height: 30px;line-height: 10px">Se Firmliste</a>
