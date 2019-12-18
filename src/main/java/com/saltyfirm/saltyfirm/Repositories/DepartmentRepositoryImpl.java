@@ -2,20 +2,25 @@ package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Department;
 import com.saltyfirm.saltyfirm.Models.Review;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
-import org.springframework.stereotype.Service;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Repository("DepartmentRepositoryImpl")
 public class DepartmentRepositoryImpl implements DepartmentRepository {
+
+    @Autowired
+    DbHandler dbHandler;
 
     @Override
     public Department findDepartmentById(int departmentId) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.department WHERE department_id = ?");
             preparedStatement.setInt(1, departmentId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -39,7 +44,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     public List<Department> getDepartments(int firmId) {
         List<Department> departmentsList = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.department WHERE firm_fk_id = ?");
             preparedStatement.setInt(1, firmId);
 
@@ -67,7 +72,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public int deleteDepartment(int departmentId) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.department WHERE department_id = ?");
             preparedStatement.setInt(1, departmentId);
             preparedStatement.executeUpdate();
@@ -82,7 +87,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public int editDepartment(Department department) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department SET department_name = ?, department_address = ? WHERE department_id = ?");
             preparedStatement.setString(1, department.getDepartmentName());
             preparedStatement.setString(2, department.getDepartmentAddress());
@@ -106,7 +111,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         int flexibility = 0;
         int counter = 0;
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
             preparedStatement.setInt(1, departmentId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -139,7 +144,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public Review getRealDepartmentScores(int departmentId) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT AVG(pension_scheme), AVG(benefits), AVG(management), AVG(work_environment), AVG(flexibility), AVG((pension_scheme + benefits + management + work_environment + flexibility)/5) AS overall_score\n" +
                                                                                    "FROM saltyfirm.review\n" +
                                                                                    "WHERE department_fk_id = ?;");
@@ -168,7 +173,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     public int updateDepartmentScore(int departmentId) {
         List<Double> scores = getDepartmentScores(departmentId);
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department SET department_score = ? WHERE department_id = ?");
             preparedStatement.setDouble(1, scores.get(5));
             preparedStatement.setInt(2, departmentId);
@@ -185,7 +190,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     public List<Review> getAllReviews(int departmentId) {
         List<Review> reviews = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
             preparedStatement.setInt(1, departmentId);
             ResultSet resultSet = preparedStatement.executeQuery();

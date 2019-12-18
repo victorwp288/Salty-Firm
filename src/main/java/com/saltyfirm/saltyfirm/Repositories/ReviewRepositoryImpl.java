@@ -1,21 +1,26 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Review;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
-import org.springframework.stereotype.Service;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Repository("ReviewRepositoryImpl")
 public class ReviewRepositoryImpl implements ReviewRepository {
+
+    @Autowired
+    DbHandler dbHandler;
 
     @Override
     public Review findReviewById(int reviewId) {
 
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time " +
                                                                                    "FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm " +
                                                                                    "WHERE firm_fk_id = firm_id AND department_fk_id = department_id AND review_id = ?;");
@@ -52,7 +57,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         int departmentId = 0;
         int firmId = 0;
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_id FROM saltyfirm.firm WHERE firm_name = ?");
             preparedStatement.setString(1,review.getFirmName());
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -139,7 +144,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     public int editReview(Review review) {
         int departmentId = 0;
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.review SET post = ?, salary = ?, `position` = ?, pension_scheme = ?, benefits = ?, " +
                                                                                    "management = ?, work_environment = ?, flexibility = ?, employment_time = ? WHERE review_id = ?");
 
@@ -189,7 +194,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     public int deleteReview(int reviewId) {
         int departmentId = 0;
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT department_id FROM saltyfirm.department, saltyfirm.review WHERE department_id = department_fk_id AND review_id = ?");
             preparedStatement.setInt(1, reviewId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -225,7 +230,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     public List<Review> getAllReviews(int departmentId) {
         List<Review> reviews = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
             preparedStatement.setInt(1, departmentId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -258,7 +263,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         List<Review> userReviews = new ArrayList<>();
 
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time " +
                     "FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm "+
                     "WHERE user_fk_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id");

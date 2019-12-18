@@ -1,24 +1,27 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.User;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Repository("UserRepositoryImpl")
 public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
     HashRepository hashRepository;
 
+    @Autowired
+    DbHandler dbHandler;
+
     @Override
     public int createUser(User user) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement ("INSERT INTO saltyfirm.user (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
             preparedStatement.setString(1, user.getUsername());
@@ -46,7 +49,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public int editUser(User user) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET username = ?, password = ?, firstname = ?, lastname = ?, phone_number = ?, gender = ?, birthdate = ?, education = ?, mail = ?, nationality = ?, privileges_fk_id = ? WHERE user_id = ?");
 
             preparedStatement.setString(1, user.getUsername());
@@ -79,7 +82,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public int deleteUser(int userId) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.user WHERE user_id = ?");
             preparedStatement.setInt(1,userId);
             preparedStatement.executeUpdate();
@@ -97,7 +100,7 @@ public class UserRepositoryImpl implements UserRepository {
         List<User> usersList = new ArrayList<>();
 
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.user LEFT JOIN  saltyfirm.privileges ON user.privileges_fk_id = privileges.privileges_id");
 
@@ -139,7 +142,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User checkLogin(String username, String password) {
 
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON saltyfirm.user.privileges_fk_id = privileges.privileges_id WHERE user.username = ? AND user.password = ?");
 
             preparedStatement.setString(1, username);

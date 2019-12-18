@@ -1,15 +1,19 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Vote;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
-import org.springframework.stereotype.Service;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Repository("VoteRepositoryImpl")
 public class VoteRepositoryImpl implements VoteRepository {
+
+    @Autowired
+    DbHandler dbHandler;
 
     @Override
     public int voteReview(boolean vote, int reviewId, int userId) {
@@ -17,7 +21,7 @@ public class VoteRepositoryImpl implements VoteRepository {
         int counter = 0;
 
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.vote WHERE saltyfirm.review_fk_id = ?");
 
@@ -41,7 +45,7 @@ public class VoteRepositoryImpl implements VoteRepository {
         int counter = 0;
 
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM saltyfirm.vote WHERE saltyfirm.review_fk_id = ?");
 

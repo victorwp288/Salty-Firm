@@ -2,8 +2,9 @@ package com.saltyfirm.saltyfirm.Repositories;
 
 
 import com.saltyfirm.saltyfirm.Models.User;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
-import org.springframework.stereotype.Service;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -11,14 +12,13 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 
-@Service
+@Repository("HashRepositoryImpl")
 public class HashRepositoryImpl implements HashRepository{
 
+    @Autowired
+    DbHandler dbHandler;
 
     private final String salt = "n0 H4Ck My p422W0rD";
-
-
-
 
     @Override
     public String hashPassword(String password) {
@@ -48,7 +48,7 @@ public class HashRepositoryImpl implements HashRepository{
     @Override
     public boolean usernameExists(User user) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.`user` WHERE username = ?");
             preparedStatement.setString(1, user.getUsername());
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -69,7 +69,7 @@ public class HashRepositoryImpl implements HashRepository{
     @Override
     public boolean passwordExists(User user) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.`user` WHERE password = ?");
             preparedStatement.setString(1, user.getPassword());
             ResultSet resultSet = preparedStatement.executeQuery();

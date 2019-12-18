@@ -1,8 +1,9 @@
 package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.Firm;
-import com.saltyfirm.saltyfirm.Repositories.DatabaseHelper.ProjectVariables;
+import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -11,6 +12,9 @@ import java.util.List;
 
 @Service
 public class FirmRepositoryImpl implements FirmRepository {
+
+    @Autowired
+    DbHandler dbHandler;
 
     private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -21,7 +25,7 @@ public class FirmRepositoryImpl implements FirmRepository {
 
 
         try{
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_name LIKE ?");
 
             preparedStatement.setString(1, "%" + word + "%");
@@ -51,7 +55,7 @@ public class FirmRepositoryImpl implements FirmRepository {
     public Firm findFirmById(int firmId) {
 
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_id = ?");
 
             preparedStatement.setInt(1, firmId);
@@ -83,7 +87,7 @@ public class FirmRepositoryImpl implements FirmRepository {
     public int deleteFirm(int firmId) {
         try {
             log.info("Executing deleteFirm");
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.firm WHERE firm_id = ?");
             preparedStatement.setInt(1, firmId);
 
@@ -98,7 +102,7 @@ public class FirmRepositoryImpl implements FirmRepository {
     @Override
     public int editFirm(Firm firm) {
         try{
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET firm_name = ?, firm_type = ?, description = ?, logo_url = ? WHERE firm_id = ?");
             preparedStatement.setString(1, firm.getFirmName());
             preparedStatement.setString(2, firm.getFirmType());
@@ -117,14 +121,15 @@ public class FirmRepositoryImpl implements FirmRepository {
     @Override
     public double getFirmTotalScore(int firmId) {
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(),ProjectVariables.getUsername(),ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT department_score FROM saltyfirm.department WHERE firm_fk_id = ?");
             preparedStatement.setInt(1, firmId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
+                double totalFirmScore = resultSet.getInt(1);
 
-                return resultSet.getInt(1);
+                return totalFirmScore;
             }
 
             }catch (SQLException e){
@@ -133,11 +138,12 @@ public class FirmRepositoryImpl implements FirmRepository {
         return 0;
     }
 
+
     @Override
     public List<Firm> getAllFirms(){
         List<Firm> firmList = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(ProjectVariables.getUrl(), ProjectVariables.getUsername(), ProjectVariables.getPassword());
+            Connection connection = dbHandler.createConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * from saltyfirm.firm");
 
