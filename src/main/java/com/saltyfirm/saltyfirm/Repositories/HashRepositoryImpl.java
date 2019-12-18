@@ -19,8 +19,22 @@ public class HashRepositoryImpl implements HashRepository{
     @Autowired
     DbHandler dbHandler;
 
+
+
     private final String salt = "n0 H4Ck My p422W0rD";
 
+    /**
+     * @author Victor
+     * <P>
+     *     Takes a password and processes it though MesseDigest
+     *     With the SHA-256 algorithm.
+     *     It starts from the beginning and runs through the lenght of the password
+     *     after that it returns the hashed password as hexadecimal
+     *     0-9, a-f
+     * </P>
+     * @param password String
+     * @return the hashed password or null
+     */
     @Override
     public String hashPassword(String password) {
 
