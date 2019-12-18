@@ -116,7 +116,7 @@ INSERT INTO saltyfirm.firm
 (firm_name, firm_type, `description`, logo_url)
 VALUES ('Bone´s', 'Restaurant','Stor virksomhed med mange restauranter i hele landet.','https://www.whyorange.dk/wp-content/uploads/2017/11/whyorange-julekalender-3-bones.png'),
        ('McDonalds', 'Restaurant','Stor virksomhed med mange restauranter i hele verdenen.','https://www.pngkey.com/png/full/217-2178380_mcdonalds-logo-png-mcdonalds-logo-png.png'),
-       ('Føtex', 'Supermarked','Stor supermarkedskæde med mange butikker i hele landet.','https://via.ritzau.dk/data/images/00843/7bd3bb38-962f-4f68-aab4-df59d3f8a81d.png'),
+       ('Meny', 'Supermarked','Stor supermarkedskæde med mange butikker i hele landet.','https://ekstrabladet.dk/incoming/b472fa/6858578/IMAGE_ALTERNATES/relationBig/desktop-20191123103620'),
        ('Sunset Boulevard', 'Restaurant','Restaurant som laver fastfood i form af sandwiches og andet tilbehør.','https://xpleo.org/images/com_xpleo/Sunset.jpg'),
        ('DSB', 'Togtransport', 'Selvstændig offentlig virksomhed som har monopol på de danske stats baner. Derudover operere de også i Sverige og Tyskland.', 'https://seeklogo.com/images/D/dsb-2014-logo-1EA8C51FC2-seeklogo.com.png');
 
