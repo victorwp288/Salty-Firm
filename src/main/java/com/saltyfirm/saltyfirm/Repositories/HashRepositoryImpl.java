@@ -26,7 +26,7 @@ public class HashRepositoryImpl implements HashRepository{
     /**
      * @author Victor
      * <P>
-     *     Takes a password and processes it though MesseDigest
+     *     Takes a password and processes it though MessageDigest
      *     With the SHA-256 algorithm.
      *     It starts from the beginning and runs through the lenght of the password
      *     after that it returns the hashed password as hexadecimal
