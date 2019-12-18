@@ -1,5 +1,5 @@
 -- Opret en ny skema kaldet 'saltyfirm' --
-CREATE SCHEMA IF NOT EXISTS saltyfirm DEFAULT CHARACTER SET UTF8;
+CREATE SCHEMA IF NOT EXISTS saltyfirm DEFAULT CHARACTER SET UTF8MB4;
 
 -- Vælg saltyfirm skema til at bruge --
 USE saltyfirm;
