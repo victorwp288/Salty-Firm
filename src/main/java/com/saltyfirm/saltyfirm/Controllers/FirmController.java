@@ -4,9 +4,6 @@ import com.saltyfirm.saltyfirm.Models.Department;
 import com.saltyfirm.saltyfirm.Models.Firm;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
-import com.saltyfirm.saltyfirm.Repositories.DepartmentRepository;
-import com.saltyfirm.saltyfirm.Repositories.FirmRepository;
-import com.saltyfirm.saltyfirm.Repositories.UserRepository;
 import com.saltyfirm.saltyfirm.Services.DepartmentService;
 import com.saltyfirm.saltyfirm.Services.FirmService;
 import com.saltyfirm.saltyfirm.Services.UserService;
@@ -20,6 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+/**
+ * @author Martin /
+ */
+
 @Controller
 public class FirmController {
 
@@ -31,7 +32,6 @@ public class FirmController {
 
     @Autowired
     UserService userService;
-
 
     @GetMapping("/firms/{userId}/{firmId}")
     public String firms(@PathVariable int userId, @PathVariable int firmId, Model model) {
@@ -46,7 +46,6 @@ public class FirmController {
         model.addAttribute("departments", department);
         return "firm";
     }
-
 
     @GetMapping("/department/{userId}/{firmId}/{departmentId}")
     public String departments(@PathVariable int userId, @PathVariable int departmentId, @PathVariable int firmId, Model model) {

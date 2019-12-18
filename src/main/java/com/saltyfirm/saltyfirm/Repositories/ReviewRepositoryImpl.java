@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// Martin | Nicholas
 @Repository("ReviewRepositoryImpl")
 public class ReviewRepositoryImpl implements ReviewRepository {
 
@@ -22,7 +22,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     DbHandler dbHandler;
 
     /**
-     * @author
+     * @author Martin
      * <p>
      *     When reviewId matches review_id the preparedstatment selects choosen cells from review, department and firm tabel.
      *     Review has firm_fk_id connectiong it to a firm id, firm has department_fk_id connecting it to a department id.
@@ -73,12 +73,12 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     /**
      * @author Martin
      *<p>
-     * En metode til at sørge for at lægge et review det rette sted i databasen.
-     * Da input fra brugeren er et navn på en virksomhed og afdeling, kræves det at der først tjekket om
-     * virksomheden eksisterer, som sker i første den af metoden. Derefter følger en række if-statements,
-     * som der som udgangspunkt sørger for at tjekke efter virksomhed/afdeling, og opretter et nyt hvis det
-     * ikke findes - og ellers returnerer ID'et for de to. Når man har begge ID'er, kan reviewet oprettes
-     * og forbindes til den rigtige afdeling og virksomhed.
+     *      En metode til at sørge for at lægge et review det rette sted i databasen.
+     *      Da input fra brugeren er et navn på en virksomhed og afdeling, kræves det at der først tjekket om
+     *      virksomheden eksisterer, som sker i første den af metoden. Derefter følger en række if-statements,
+     *      som der som udgangspunkt sørger for at tjekke efter virksomhed/afdeling, og opretter et nyt hvis det
+     *      ikke findes - og ellers returneres ID'et for de to. Når man har begge ID'er, kan reviewet oprettes
+     *      og forbindes til den rigtige afdeling og virksomhed gennem PK/FK.
      *</p>
      *
      * @param review  review object
@@ -178,7 +178,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
 
     /**
-     * @author
+     * @author Martin / Nicholas
      * Updates cells for a review where review_id matches the reviewId from review object
      *
      * @param review review object
@@ -237,13 +237,12 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     /**
-     * @author
+     * @author Martin / Nicholas
      * <p>
      *
      * </p>
      *
      * @param reviewId id for review
-     * @throws SQLException
      * @return 0
      */
     @Override
@@ -284,39 +283,6 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         return 0;
     }
 
-    // Denne metode ligger også i DepartmentRepository
-    public List<Review> getAllReviews(int departmentId) {
-        List<Review> reviews = new ArrayList<>();
-        try {
-            Connection connection = dbHandler.createConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
-            preparedStatement.setInt(1, departmentId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Review review = new Review();
-                review.setReviewId(resultSet.getInt("review_id"));
-                review.setPost(resultSet.getString("post"));
-                review.setSalary(resultSet.getInt("salary"));
-                review.setPosition(resultSet.getString("position"));
-                review.setPensionScheme(resultSet.getInt("pension_scheme"));
-                review.setBenefits(resultSet.getInt("benefits"));
-                review.setManagement(resultSet.getInt("management"));
-                review.setWorkEnvironment(resultSet.getInt("work_environment"));
-                review.setFlexibility(resultSet.getInt("flexibility"));
-                review.setEmploymentTime(resultSet.getInt("employment_time"));
-                reviews.add(review);
-            }
-            connection.close();
-            return reviews;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
     /**
      * @author Martin
      *<p>
@@ -326,7 +292,6 @@ public class ReviewRepositoryImpl implements ReviewRepository {
      *</p>
      * @param userId int id for user
      *
-     * @throws SQLException
      * @return userReviews list if a user have created a review for a firm and department, otherwise it returns null
      */
     public List<Review> fetchUserReview(int userId) {

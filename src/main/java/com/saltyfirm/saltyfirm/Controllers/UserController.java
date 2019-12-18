@@ -19,6 +19,10 @@ import java.util.List;
 
 // import com.saltyfirm.saltyfirm.Services.API.TwilloSms;
 
+/**
+ * @author Martin / Viktor.
+ */
+
 @Controller
 public class UserController {
 

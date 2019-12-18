@@ -13,7 +13,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//Victor Petersen | Patrick Jønsson
+// Victor Petersen | Patrick Jønsson
 @Repository("DepartmentRepositoryImpl")
 public class DepartmentRepositoryImpl implements DepartmentRepository {
 
