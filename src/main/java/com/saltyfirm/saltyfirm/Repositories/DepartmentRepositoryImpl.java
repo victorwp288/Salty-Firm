@@ -202,11 +202,12 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public int updateDepartmentScore(int departmentId) {
         log.info("Updating department score");
-        List<Double> scores = getDepartmentScores(departmentId);
+        Review review = getRealDepartmentScores(departmentId);
+        review.getDepartmentOverallScore();
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department SET department_score = ? WHERE department_id = ?");
-            preparedStatement.setDouble(1, scores.get(5));
+            preparedStatement.setDouble(1, review.getDepartmentOverallScore());
             preparedStatement.setInt(2, departmentId);
             preparedStatement.executeUpdate();
             connection.close();
