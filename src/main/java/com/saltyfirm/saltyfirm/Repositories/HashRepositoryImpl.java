@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
+// Victor Petersen
 
 @Repository("HashRepositoryImpl")
 public class HashRepositoryImpl implements HashRepository{
