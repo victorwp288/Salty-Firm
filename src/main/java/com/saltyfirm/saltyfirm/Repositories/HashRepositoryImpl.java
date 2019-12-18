@@ -20,7 +20,7 @@ public class HashRepositoryImpl implements HashRepository{
     DbHandler dbHandler;
 
 
-
+    //No changing simple salt, that gets added to the end of the password
     private final String salt = "n0 H4Ck My p422W0rD";
 
     /**
