@@ -42,11 +42,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.editDepartment(department);
     }
 
-    @Override
-    public List<Double> getDepartmentScores(int departmentId) {
-
-        return departmentRepository.getDepartmentScores(departmentId);
-    }
 
     @Override
     public int updateDepartmentScore(int departmentId) {

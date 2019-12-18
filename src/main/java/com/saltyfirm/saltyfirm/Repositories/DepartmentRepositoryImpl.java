@@ -118,46 +118,6 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return 0;
     }
 
-    @Override // BLIVER IKKE BRUGT!
-    public List<Double> getDepartmentScores(int departmentId) {
-        List<Double> scores = new ArrayList<>();
-        int pensionScheme = 0;
-        int benefits = 0;
-        int management = 0;
-        int workEnvironment = 0;
-        int flexibility = 0;
-        int counter = 0;
-        try {
-            Connection connection = dbHandler.createConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
-            preparedStatement.setInt(1, departmentId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                pensionScheme += resultSet.getInt("pension_scheme");
-                benefits += resultSet.getInt("benefits");
-                management += resultSet.getInt("management");
-                workEnvironment += resultSet.getInt("work_environment");
-                flexibility += resultSet.getInt("flexibility");
-                counter++;
-            }
-
-            scores.add((double) pensionScheme / counter);
-            scores.add((double) benefits / counter);
-            scores.add((double) management / counter);
-            scores.add((double) workEnvironment / counter);
-            scores.add((double) flexibility / counter);
-            scores.add((double) (pensionScheme + benefits + management + workEnvironment + flexibility) / (counter * 5));
-
-            connection.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return scores;
-    }
-
     /**
      * @author
      *  Takes the average from the 5 inde individual cell, add them together
