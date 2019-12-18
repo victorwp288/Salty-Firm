@@ -3,6 +3,7 @@ package com.saltyfirm.saltyfirm.Services;
 import com.saltyfirm.saltyfirm.Models.Department;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Repositories.DepartmentRepository;
+import com.saltyfirm.saltyfirm.Repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     DepartmentRepository departmentRepository;
+
+    @Autowired
+    ReviewRepository reviewRepository;
 
     @Override
     public Department findDepartmentById(int departmentId) {
@@ -38,7 +42,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.editDepartment(department);
     }
 
-    @Override // SKAL SLETTES, DENNE FINDES I getRealDepartmentScore
+    @Override
     public List<Double> getDepartmentScores(int departmentId) {
 
         return departmentRepository.getDepartmentScores(departmentId);
@@ -50,11 +54,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.updateDepartmentScore(departmentId);
     }
 
-    @Override
-    public List<Review> getAllReviews(int departmentId) {
 
-        return departmentRepository.getAllReviews(departmentId);
-    }
 
     public Review getRealDepartmentScores(int departmentId) {
         return departmentRepository.getRealDepartmentScores(departmentId);

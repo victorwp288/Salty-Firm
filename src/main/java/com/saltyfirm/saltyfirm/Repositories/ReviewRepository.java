@@ -10,5 +10,6 @@ public interface ReviewRepository {
     int createReview(Review review, int userId);
     int editReview(Review review);
     int deleteReview(int reviewId);
+    List<Review> getAllReviews(int departmentId);
     List<Review> fetchUserReview(int userId);
 }

@@ -6,6 +6,7 @@ import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Services.DepartmentService;
 import com.saltyfirm.saltyfirm.Services.FirmService;
+import com.saltyfirm.saltyfirm.Services.ReviewService;
 import com.saltyfirm.saltyfirm.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,9 @@ public class FirmController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ReviewService reviewService;
+
     @GetMapping("/firms/{userId}/{firmId}")
     public String firms(@PathVariable int userId, @PathVariable int firmId, Model model) {
         List<Department> department = departmentService.getDepartments(firmId);
@@ -51,7 +55,7 @@ public class FirmController {
     public String departments(@PathVariable int userId, @PathVariable int departmentId, @PathVariable int firmId, Model model) {
         Department department = departmentService.findDepartmentById(departmentId);
         Firm firms = firmService.findFirmById(firmId);
-        List<Review> review = departmentService.getAllReviews(departmentId);
+        List<Review> review = reviewService.getAllReviews(departmentId);
         Review departmentScore = departmentService.getRealDepartmentScores(departmentId);
         User user = new User();
         if (userId != 0) {

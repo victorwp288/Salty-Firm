@@ -13,6 +13,5 @@ public interface DepartmentService {
     int editDepartment(Department department);
     List<Double> getDepartmentScores(int departmentId);
     int updateDepartmentScore(int departmentId);
-    List<Review> getAllReviews(int departmentId);
     Review getRealDepartmentScores(int departmentId);
 }

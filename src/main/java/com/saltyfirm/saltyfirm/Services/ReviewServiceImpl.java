@@ -37,4 +37,10 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Review> fetchUserReview(int userId) {
         return reviewRepository.fetchUserReview(userId);
     }
+
+    @Override
+    public List<Review> getAllReviews(int departmentId){
+        return reviewRepository.getAllReviews(departmentId);
+    }
+
 }

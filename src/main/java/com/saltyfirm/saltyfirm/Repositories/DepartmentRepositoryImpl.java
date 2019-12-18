@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -214,40 +216,4 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         }
         return 0;
     }
-
-    @Override // SKAL AKTIVERES UNDER REVIEW OG SLETTES HER
-    public List<Review> getAllReviews(int departmentId) {
-        log.info("Fetching all reviews");
-        List<Review> reviews = new ArrayList<>();
-        try {
-            Connection connection = dbHandler.createConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.review WHERE department_fk_id = ?");
-            preparedStatement.setInt(1, departmentId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Review review = new Review();
-                review.setReviewId(resultSet.getInt("review_id"));
-                review.setPost(resultSet.getString("post"));
-                review.setSalary(resultSet.getInt("salary"));
-                review.setPosition(resultSet.getString("position"));
-                review.setPensionScheme(resultSet.getInt("pension_scheme"));
-                review.setBenefits(resultSet.getInt("benefits"));
-                review.setManagement(resultSet.getInt("management"));
-                review.setWorkEnvironment(resultSet.getInt("work_environment"));
-                review.setFlexibility(resultSet.getInt("flexibility"));
-                review.setEmploymentTime(resultSet.getInt("employment_time"));
-                reviews.add(review);
-            }
-            connection.close();
-            return reviews;
-
-        } catch (SQLException e) {
-            log.warn("Found SQLException: ");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
 }
