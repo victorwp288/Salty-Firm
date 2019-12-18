@@ -18,8 +18,16 @@ public class HashRepositoryImpl implements HashRepository{
     @Autowired
     DbHandler dbHandler;
 
+    /**
+     *
+     */
     private final String salt = "n0 H4Ck My p422W0rD";
 
+    /**
+     *
+     * @param password
+     * @return
+     */
     @Override
     public String hashPassword(String password) {
 

@@ -138,6 +138,21 @@ public class UserRepositoryImpl implements UserRepository {
         return null;
     }
 
+    /**
+     * @author
+     *
+     *<p>
+     * checkLogin searches user tabel for a user where username and password matches username and password in the database.
+     * The user will be left joined with the privileges tabel with privileges_fk_id and match it with privileges_id.
+     * This returns a user and his privliges and access level.
+     *</p>
+     *
+     * @param username username for user object
+     * @param password password for user object
+     *
+     * @throws SQLException
+     * @return user if username and password matches username and password in the database, otherwise null.
+     */
     @Override
     public User checkLogin(String username, String password) {
 

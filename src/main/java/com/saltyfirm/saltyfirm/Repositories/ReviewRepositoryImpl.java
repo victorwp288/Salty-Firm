@@ -16,6 +16,18 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     @Autowired
     DbHandler dbHandler;
 
+    /**
+     * @author
+     * <p>
+     *     When reviewId matches review_id the preparedstatment selects choosen cells from review, department and firm tabel.
+     *     Review has firm_fk_id connectiong it to a firm id, firm has department_fk_id connecting it to a department id.
+     *     Then it matches the int reviewId with review_id.
+     * </p>
+     *
+     * @param reviewId Id to find review
+     * @throws SQLException
+     * @return review object if the database has a review_id matching reviewId, otherwise returning null
+     */
     @Override
     public Review findReviewById(int reviewId) {
 
@@ -52,6 +64,22 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         return null;
     }
 
+    /**
+     * @author Martin
+     *<p>
+     * En metode til at sørge for at lægge et review det rette sted i databasen.
+     * Da input fra brugeren er et navn på en virksomhed og afdeling, kræves det at der først tjekket om
+     * virksomheden eksisterer, som sker i første den af metoden. Derefter følger en række if-statements,
+     * som der som udgangspunkt sørger for at tjekke efter virksomhed/afdeling, og opretter et nyt hvis det
+     * ikke findes - og ellers returnerer ID'et for de to. Når man har begge ID'er, kan reviewet oprettes
+     * og forbindes til den rigtige afdeling og virksomhed.
+     *</p>
+     *
+     * @param review  review object
+     * @param userId  Id for a user
+     * @throws SQLException
+     * @return
+     */
     @Override
     public int createReview(Review review, int userId) {
         int departmentId = 0;
@@ -140,6 +168,15 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         return 0;
     }
 
+
+    /**
+     * @author
+     * Updates cells for a review where review_id matches the reviewId from review object
+     *
+     * @param review review object
+     * @throws SQLException
+     * @return 0
+     */
     @Override
     public int editReview(Review review) {
         int departmentId = 0;
@@ -190,6 +227,16 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         return 0;
     }
 
+    /**
+     * @author
+     * <p>
+     *
+     * </p>
+     *
+     * @param reviewId id for review
+     * @throws SQLException
+     * @return 0
+     */
     @Override
     public int deleteReview(int reviewId) {
         int departmentId = 0;
@@ -217,7 +264,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
             preparedStatement.setInt(1, departmentId);
             preparedStatement.executeUpdate();
-            connection.close();
+           connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -259,6 +306,18 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
 
+    /**
+     * @author Martin
+     *<p>
+     *     Selects choosen parameters from review, department and firm tabel where user_fk_id matches userid
+     *     Review has department_fk_id that connects the review to a departmentId
+     *     Department has firm_fk_id linking ti to the firm
+     *</p>
+     * @param userId int id for user
+     *
+     * @throws SQLException
+     * @return userReviews list if a user have created a review for a firm and department, otherwise it returns null
+     */
     public List<Review> fetchUserReview(int userId) {
         List<Review> userReviews = new ArrayList<>();
 

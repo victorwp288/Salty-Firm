@@ -40,6 +40,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return null;
     }
 
+
     @Override
     public List<Department> getDepartments(int firmId) {
         List<Department> departmentsList = new ArrayList<>();
@@ -68,6 +69,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         }
         return null;
     }
+
 
     @Override
     public int deleteDepartment(int departmentId) {
@@ -141,6 +143,17 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return scores;
     }
 
+    /**
+     * @author
+     *  Takes the average from the 5 inde individual cell, add them together
+     *  and devides them with the number og cells used to get the average score
+     *  for a department
+     *
+     * @param departmentId
+     *
+     * @throws SQLException
+     * @return 0
+     */
     @Override
     public Review getRealDepartmentScores(int departmentId) {
         try {
