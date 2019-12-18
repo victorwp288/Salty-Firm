@@ -75,7 +75,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
      *<p>
      * En metode til at sørge for at lægge et review det rette sted i databasen.
      * Da input fra brugeren er et navn på en virksomhed og afdeling, kræves det at der først tjekket om
-     * virksomheden eksisterer, som sker i første del af metoden. Derefter følger en række if-statements,
+     * virksomheden eksisterer, som sker i første den af metoden. Derefter følger en række if-statements,
      * som der som udgangspunkt sørger for at tjekke efter virksomhed/afdeling, og opretter et nyt hvis det
      * ikke findes - og ellers returnerer ID'et for de to. Når man har begge ID'er, kan reviewet oprettes
      * og forbindes til den rigtige afdeling og virksomhed.

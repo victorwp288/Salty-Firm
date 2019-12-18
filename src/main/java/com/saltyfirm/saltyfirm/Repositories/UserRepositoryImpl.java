@@ -22,6 +22,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Autowired
     DbHandler dbHandler;
 
+    /**
+     * @author Martin & Nicholas.
+     *
+     *
+     */
 
     @Override
     public int createUser(User user) {
@@ -52,6 +57,12 @@ public class UserRepositoryImpl implements UserRepository {
 
         return 0;
     }
+
+    /**
+     * @author Martin & Nicholas.
+     * @param user
+     * @return 0
+     */
 
     @Override
     public int editUser(User user) {
@@ -90,7 +101,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public int deleteUser(int userId) {
-        log.info("Delting user");
+        log.info("Deleting user");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.user WHERE user_id = ?");
@@ -104,6 +115,11 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return 0;
     }
+
+    /**
+     * @author Nicholas
+     * @return
+     */
 
     @Override
     public List<User> getAllUsers() {
@@ -140,6 +156,11 @@ public class UserRepositoryImpl implements UserRepository {
         return usersList;
     }
 
+    /**
+     * @author Nicholas
+     * @param userId
+     * @return
+     */
     @Override
     public User findUserById(int userId) {
         log.info("Finding user by id");
