@@ -2,6 +2,8 @@ package com.saltyfirm.saltyfirm.Repositories;
 
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,14 +14,18 @@ import java.util.List;
 @Repository("UserRepositoryImpl")
 public class UserRepositoryImpl implements UserRepository {
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     HashRepository hashRepository;
 
     @Autowired
     DbHandler dbHandler;
 
+
     @Override
     public int createUser(User user) {
+        log.info("Creating user");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement ("INSERT INTO saltyfirm.user (username, password, firstname, lastname, phone_number, gender, birthdate, education, mail, nationality, privileges_fk_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
@@ -40,6 +46,7 @@ public class UserRepositoryImpl implements UserRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
 
@@ -48,6 +55,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public int editUser(User user) {
+        log.info("Editing user");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.user SET username = ?, password = ?, firstname = ?, lastname = ?, phone_number = ?, gender = ?, birthdate = ?, education = ?, mail = ?, nationality = ?, privileges_fk_id = ? WHERE user_id = ?");
@@ -74,6 +82,7 @@ public class UserRepositoryImpl implements UserRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return 0;
@@ -81,6 +90,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public int deleteUser(int userId) {
+        log.info("Delting user");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.user WHERE user_id = ?");
@@ -89,6 +99,7 @@ public class UserRepositoryImpl implements UserRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return 0;
@@ -96,7 +107,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> getAllUsers() {
-
+        log.info("Fetching all users");
         List<User> usersList = new ArrayList<>();
 
         try {
@@ -123,6 +134,7 @@ public class UserRepositoryImpl implements UserRepository {
             }
             connection.close();
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return usersList;
@@ -130,6 +142,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findUserById(int userId) {
+        log.info("Finding user by id");
         for (User currentUser : getAllUsers()) {
             if (userId == currentUser.getUserId()) {
                 return currentUser;
@@ -155,7 +168,7 @@ public class UserRepositoryImpl implements UserRepository {
      */
     @Override
     public User checkLogin(String username, String password) {
-
+        log.info("Validating Login");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON saltyfirm.user.privileges_fk_id = privileges.privileges_id WHERE user.username = ? AND user.password = ?");
@@ -187,6 +200,7 @@ public class UserRepositoryImpl implements UserRepository {
             }
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return null;

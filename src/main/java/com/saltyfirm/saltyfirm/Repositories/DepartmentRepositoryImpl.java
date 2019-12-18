@@ -3,6 +3,8 @@ package com.saltyfirm.saltyfirm.Repositories;
 import com.saltyfirm.saltyfirm.Models.Department;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,14 +13,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Victor Petersen | Patrick Jønsson
 @Repository("DepartmentRepositoryImpl")
 public class DepartmentRepositoryImpl implements DepartmentRepository {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     DbHandler dbHandler;
 
     @Override
     public Department findDepartmentById(int departmentId) {
+        log.info("Finding department via id");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.department WHERE department_id = ?");
@@ -34,6 +40,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
 
@@ -43,6 +50,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public List<Department> getDepartments(int firmId) {
+        log.info("Fetching all departments");
         List<Department> departmentsList = new ArrayList<>();
         try {
             Connection connection = dbHandler.createConnection();
@@ -65,6 +73,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             return departmentsList;
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return null;
@@ -73,6 +82,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public int deleteDepartment(int departmentId) {
+        log.info("Deleting department");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM saltyfirm.department WHERE department_id = ?");
@@ -80,6 +90,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
 
@@ -88,6 +99,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public int editDepartment(Department department) {
+        log.info("Editing department");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.department SET department_name = ?, department_address = ? WHERE department_id = ?");
@@ -98,6 +110,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return 0;
@@ -156,6 +169,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
      */
     @Override
     public Review getRealDepartmentScores(int departmentId) {
+        log.info("Fetching department scores");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT AVG(pension_scheme), AVG(benefits), AVG(management), AVG(work_environment), AVG(flexibility), AVG((pension_scheme + benefits + management + work_environment + flexibility)/5) AS overall_score\n" +
@@ -176,6 +190,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
                 return review;
             }
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return null;
@@ -184,6 +199,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public int updateDepartmentScore(int departmentId) {
+        log.info("Updating department score");
         List<Double> scores = getDepartmentScores(departmentId);
         try {
             Connection connection = dbHandler.createConnection();
@@ -201,6 +217,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override // SKAL AKTIVERES UNDER REVIEW OG SLETTES HER
     public List<Review> getAllReviews(int departmentId) {
+        log.info("Fetching all reviews");
         List<Review> reviews = new ArrayList<>();
         try {
             Connection connection = dbHandler.createConnection();
@@ -226,6 +243,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             return reviews;
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return null;

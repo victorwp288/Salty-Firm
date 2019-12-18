@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Victor Petersen | Patrick Jønsson
 @Repository("VoteRepositoryImpl")
 public class VoteRepositoryImpl implements VoteRepository {
 

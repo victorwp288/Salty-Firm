@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// Victor Petersen | Patrick Jønsson
 @Component
 public class DbHandler {
 

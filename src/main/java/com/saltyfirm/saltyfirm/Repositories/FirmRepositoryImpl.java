@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Victor Petersen | Patrick Jønsson
 @Service
 public class FirmRepositoryImpl implements FirmRepository {
 
@@ -20,9 +21,9 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public List<Firm> searchFirms(String word) {
+        log.info("Searching for a firm");
 
         List<Firm> firmList = new ArrayList<>();
-
 
         try{
             Connection connection = dbHandler.createConnection();
@@ -45,6 +46,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             }
 
         } catch (SQLException e){
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
 
@@ -53,7 +55,7 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public Firm findFirmById(int firmId) {
-
+        log.info("Finding firm by id");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.firm WHERE firm_id = ?");
@@ -77,6 +79,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         log.info("No firm found");
@@ -85,6 +88,7 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public int deleteFirm(int firmId) {
+        log.info("Deleting firm");
         try {
             log.info("Executing deleteFirm");
             Connection connection = dbHandler.createConnection();
@@ -94,6 +98,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             log.info("Executed deleteFirm");
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return 0;
@@ -101,6 +106,7 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public int editFirm(Firm firm) {
+        log.info("Editing firm");
         try{
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE saltyfirm.firm SET firm_name = ?, firm_type = ?, description = ?, logo_url = ? WHERE firm_id = ?");
@@ -113,6 +119,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             return preparedStatement.executeUpdate();
 
         } catch (SQLException e){
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return 0;
@@ -120,6 +127,7 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public double getFirmTotalScore(int firmId) {
+        log.info("Fetching total firm score");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT department_score FROM saltyfirm.department WHERE firm_fk_id = ?");
@@ -133,6 +141,7 @@ public class FirmRepositoryImpl implements FirmRepository {
             }
 
             }catch (SQLException e){
+            log.warn("Found SQLException: ");
                 e.printStackTrace();
         }
         return 0;
@@ -141,6 +150,7 @@ public class FirmRepositoryImpl implements FirmRepository {
 
     @Override
     public List<Firm> getAllFirms(){
+        log.info("Fetching all firms");
         List<Firm> firmList = new ArrayList<>();
         try {
             Connection connection = dbHandler.createConnection();

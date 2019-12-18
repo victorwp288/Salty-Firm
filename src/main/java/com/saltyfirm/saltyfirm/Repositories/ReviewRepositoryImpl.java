@@ -3,6 +3,8 @@ package com.saltyfirm.saltyfirm.Repositories;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Repositories.DatabaseConnection.DbHandler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +12,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Repository("ReviewRepositoryImpl")
 public class ReviewRepositoryImpl implements ReviewRepository {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     DbHandler dbHandler;
@@ -30,7 +35,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
      */
     @Override
     public Review findReviewById(int reviewId) {
-
+        log.info("Finding review by id");
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time " +
@@ -59,6 +64,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return null;
@@ -82,6 +88,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
      */
     @Override
     public int createReview(Review review, int userId) {
+        log.info("Creating review");
         int departmentId = 0;
         int firmId = 0;
         try {
@@ -162,6 +169,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
 
@@ -179,6 +187,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
      */
     @Override
     public int editReview(Review review) {
+        log.info("Editing review ");
         int departmentId = 0;
         try {
             Connection connection = dbHandler.createConnection();
@@ -220,9 +229,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
-
 
         return 0;
     }
@@ -239,6 +248,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
      */
     @Override
     public int deleteReview(int reviewId) {
+        log.info("Deleting review");
         int departmentId = 0;
         try {
             Connection connection = dbHandler.createConnection();
@@ -267,6 +277,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
            connection.close();
 
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
 
@@ -319,6 +330,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
      * @return userReviews list if a user have created a review for a firm and department, otherwise it returns null
      */
     public List<Review> fetchUserReview(int userId) {
+        log.info("Fetching users reviews");
         List<Review> userReviews = new ArrayList<>();
 
         try {
@@ -349,6 +361,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
             return userReviews;
         } catch (SQLException e) {
+            log.warn("Found SQLException: ");
             e.printStackTrace();
         }
         return null;
