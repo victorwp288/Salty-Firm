@@ -3,6 +3,7 @@ package com.saltyfirm.saltyfirm.Controllers;
 import com.saltyfirm.saltyfirm.Models.Review;
 import com.saltyfirm.saltyfirm.Models.User;
 import com.saltyfirm.saltyfirm.Repositories.HashRepositoryImpl;
+import com.saltyfirm.saltyfirm.Services.API.TwilloSms;
 import com.saltyfirm.saltyfirm.Services.ReviewService;
 import com.saltyfirm.saltyfirm.Services.UserService;
 import org.slf4j.Logger;
@@ -17,10 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-// import com.saltyfirm.saltyfirm.Services.API.TwilloSms;
-
 /**
- * @author Martin / Viktor.
+ * @author Martin / Victor.
  */
 
 @Controller
@@ -36,8 +35,8 @@ public class UserController {
 
     @Autowired
     ReviewService reviewService;
-    // @Autowired
-    // TwilloSms twilloSms;
+    @Autowired
+    TwilloSms twilloSms;
 
     @GetMapping("/createUser")
     public String newUser(Model model) {
@@ -53,6 +52,7 @@ public class UserController {
             return "redirect:/createUser";
         } else {
             userService.createUser(user);
+            twilloSms.sms(user.getPhoneNumber());
             return "redirect:/";
         }
     }
