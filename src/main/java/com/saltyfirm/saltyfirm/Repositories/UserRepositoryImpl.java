@@ -161,6 +161,48 @@ public class UserRepositoryImpl implements UserRepository {
      * @param userId
      * @return
      */
+
+
+    @Override
+    public User findUserById(int userId) {
+        try {
+            Connection connection = dbHandler.createConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON user.privileges_fk_id = privileges.privileges_id WHERE user_id = ?");
+
+
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                User current = new User();
+
+                current.setUserId(resultSet.getInt("user_id"));
+                current.setUsername(resultSet.getString("username"));
+                current.setPassword(resultSet.getString("password"));
+                current.setFirstname(resultSet.getString("firstname"));
+                current.setLastname(resultSet.getString("lastname"));
+                current.setPhoneNumber(resultSet.getInt("phone_number"));
+                current.setGender(resultSet.getString("gender"));
+                current.setBirthdate(resultSet.getString("birthdate"));
+                current.setEducation(resultSet.getString("education"));
+                current.setMail(resultSet.getString("mail"));
+                current.setNationality(resultSet.getString("nationality"));
+                current.setPrivileges(resultSet.getString("privileges"));
+
+                if(userId == current.getUserId()){
+                    return current;
+                }
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+    /*
     @Override
     public User findUserById(int userId) {
         log.info("Finding user by id");
@@ -171,6 +213,8 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return null;
     }
+
+     */
 
     /**
      * @author
