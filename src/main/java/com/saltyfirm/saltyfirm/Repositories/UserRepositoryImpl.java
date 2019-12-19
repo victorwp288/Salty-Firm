@@ -117,7 +117,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     /**
-     * @author Nicholas
+     * @author Nicholas / Martin
      * @return
      */
 
@@ -157,7 +157,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     /**
-     * @author Nicholas
+     * @author Nicholas / Martin
      * @param userId
      * @return
      */
@@ -217,7 +217,7 @@ public class UserRepositoryImpl implements UserRepository {
      */
 
     /**
-     * @author
+     * @author Nicholas / Martin
      *
      *<p>
      * checkLogin searches user tabel for a user where username and password matches username and password in the database.

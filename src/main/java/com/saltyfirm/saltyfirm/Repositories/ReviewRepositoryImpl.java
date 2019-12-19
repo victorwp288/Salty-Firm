@@ -24,7 +24,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     DbHandler dbHandler;
 
     /**
-     * @author
+     * @author Nicholas / Martin
      * <p>
      *     When reviewId matches review_id the preparedstatment selects choosen cells from review, department and firm tabel.
      *     Review has firm_fk_id connectiong it to a firm id, firm has department_fk_id connecting it to a department id.
@@ -180,7 +180,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
 
     /**
-     * @author
+     * @author Martin / Nicholas
      * Updates cells for a review where review_id matches the reviewId from review object
      *
      * @param review review object
@@ -239,7 +239,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     /**
-     * @author
+     * @author Martin / Nicholas
      * <p>
      *
      * </p>
@@ -286,6 +286,11 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         return 0;
     }
 
+    /**
+     * @author Martin / Nicholas
+     * @param departmentId
+     * @return
+     */
     public List<Review> getAllReviews(int departmentId) {
         List<Review> reviews = new ArrayList<>();
         try {
@@ -319,7 +324,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
 
     /**
-     * @author Martin
+     * @author Martin / Nicholas
      *<p>
      *     Selects choosen parameters from review, department and firm tabel where user_fk_id matches userid
      *     Review has department_fk_id that connects the review to a departmentId
