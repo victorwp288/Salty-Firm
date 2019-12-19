@@ -162,7 +162,6 @@ public class UserRepositoryImpl implements UserRepository {
      * @return
      */
 
-
     @Override
     public User findUserById(int userId) {
         try {
@@ -187,11 +186,10 @@ public class UserRepositoryImpl implements UserRepository {
                 current.setEducation(resultSet.getString("education"));
                 current.setMail(resultSet.getString("mail"));
                 current.setNationality(resultSet.getString("nationality"));
-                current.setPrivileges(resultSet.getString("privileges"));
+                current.setPrivileges(resultSet.getString("access_level"));
 
-                if(userId == current.getUserId()){
-                    return current;
-                }
+                return current;
+
             }
 
         } catch (SQLException e){
@@ -200,21 +198,6 @@ public class UserRepositoryImpl implements UserRepository {
         return null;
     }
 
-
-
-    /*
-    @Override
-    public User findUserById(int userId) {
-        log.info("Finding user by id");
-        for (User currentUser : getAllUsers()) {
-            if (userId == currentUser.getUserId()) {
-                return currentUser;
-            }
-        }
-        return null;
-    }
-
-     */
 
     /**
      * @author Nicholas / Martin
