@@ -342,8 +342,8 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         try {
             Connection connection = dbHandler.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT firm_name, department_name, review_id, post, salary, position, pension_scheme, benefits, management, work_environment, flexibility, employment_time " +
-                    "FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm "+
-                    "WHERE user_fk_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id");
+                                                                                   "FROM saltyfirm.review, saltyfirm.department, saltyfirm.firm "+
+                                                                                   "WHERE user_fk_id = ? AND department_fk_id = department_id AND firm_fk_id = firm_id");
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 

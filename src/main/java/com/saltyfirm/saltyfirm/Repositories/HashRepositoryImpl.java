@@ -46,7 +46,7 @@ public class HashRepositoryImpl implements HashRepository{
         password = password + salt;
 
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            MessageDigest md = MessageDigest.getInstance("SHA-256");    // One way hashing algorithm.
             md.update(password.getBytes(), 0, password.length());
             String hashedPassword = new BigInteger(1, md.digest()).toString(16);
 

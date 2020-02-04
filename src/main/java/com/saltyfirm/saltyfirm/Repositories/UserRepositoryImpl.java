@@ -166,8 +166,8 @@ public class UserRepositoryImpl implements UserRepository {
     public User findUserById(int userId) {
         try {
             Connection connection = dbHandler.createConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON user.privileges_fk_id = privileges.privileges_id WHERE user_id = ?");
-
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM saltyfirm.user LEFT JOIN saltyfirm.privileges ON user.privileges_fk_id = privileges.privileges_id " +
+                                                                                   "WHERE user_id = ?");
 
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();

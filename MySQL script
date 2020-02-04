@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `user`
 (
     user_id             INT              UNSIGNED    NOT NULL    AUTO_INCREMENT     PRIMARY KEY,
     username            VARCHAR(45)                  NOT NULL    UNIQUE,
-    `password`          VARCHAR(300)                  NOT NULL,
+    `password`          VARCHAR(300)                 NOT NULL,
     firstname           VARCHAR(45)                  NOT NULL,
     lastname            VARCHAR(75)                  NOT NULL,
     phone_number        INT                          NOT NULL    UNIQUE,
